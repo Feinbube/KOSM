@@ -1,0 +1,15 @@
+[submodule "Related Work/HyperEdit"]
+	path = Related Work/HyperEdit
+	url = https://github.com/Ezriilc/HyperEdit.git
+[submodule "Related Work/KOS"]
+	path = Related Work/KOS
+	url = https://github.com/KSP-KOS/KOS
+[submodule "Related Work/KSPAPIExtensions"]
+	path = Related Work/KSPAPIExtensions
+	url = https://github.com/Swamp-Ig/KSPAPIExtensions
+[submodule "Related Work/Telemachus"]
+	path = Related Work/Telemachus
+	url = https://github.com/richardbunt/Telemachus.git
+[submodule "Related Work/ksp-devtools"]
+	path = Related Work/ksp-devtools
+	url = https://github.com/angavrilov/ksp-devtools.git
