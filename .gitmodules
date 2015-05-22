@@ -13,3 +13,6 @@
 [submodule "Related Work/ksp-devtools"]
 	path = Related Work/ksp-devtools
 	url = https://github.com/angavrilov/ksp-devtools.git
+[submodule "Related Work/MechJeb2"]
+	path = Related Work/MechJeb2
+	url = https://github.com/MuMech/MechJeb2.git
