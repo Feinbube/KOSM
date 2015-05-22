@@ -52,10 +52,16 @@ namespace KOSM
 
         private void toggleLauncherButtonToTrue()
         {
+            ToOrbit();
         }
 
         private void toggleLauncherButtonToFalse()
         {
+        }
+
+        private void ToOrbit()
+        {
+            Staging.ActivateNextStage();
         }
     }
 }
