@@ -45,6 +45,9 @@
     <Compile Include="Game\WorldObject.cs" />
     <Compile Include="Game\Rocket.cs" />
     <Compile Include="Immortal.cs" />
+    <Compile Include="Reporting\ILog.cs" />
+    <Compile Include="Reporting\Log.cs" />
+    <Compile Include="Windows\LogWindow.cs" />
     <Compile Include="Scripts\IScript.cs" />
     <Compile Include="Game\World.cs" />
     <Compile Include="KOSMBehaviour.cs" />

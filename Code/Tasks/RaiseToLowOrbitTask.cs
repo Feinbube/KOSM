@@ -22,7 +22,7 @@ namespace KOSM.Tasks
 
             double safeLowOrbit = rocket.MainBody.LowOrbit * 1.1;
             rocket.Throttle = (safeLowOrbit - rocket.Orbit.ApoapsisAltitude) / (safeLowOrbit*0.01);
-            rocket.SetSteering(90, 90 * Math.Pow(1 - rocket.Altitude / safeLowOrbit, 4));
+            rocket.SetCompassSteering(90, 90 * Math.Pow(1 - rocket.Altitude / safeLowOrbit, 4));
         }
 
         private bool RocketIsHeighEnough()

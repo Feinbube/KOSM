@@ -17,9 +17,11 @@ namespace KOSM.Game
         public double AltitudeOverGround { get { return vessel.terrainAltitude; } }
         public double Throttle
         {
-            get { return vessel.ctrlState.mainThrottle; }
+            get { return vessel == FlightGlobals.ActiveVessel ? FlightInputHandler.state.mainThrottle : vessel.ctrlState.mainThrottle; }
             set
             {
+                world.DebugLog.Add("Setting throttle to " + value);
+
                 vessel.ctrlState.mainThrottle = (float)clamp(value, 0, 1);
 
                 if (vessel == FlightGlobals.ActiveVessel)
@@ -45,9 +47,8 @@ namespace KOSM.Game
             this.vessel = vessel;
         }
 
-        public void SetSteering(double p1, double p2)
+        public void SetCompassSteering(double degreesFromNorth, double pitchAboveHorizon)
         {
-            //throw new NotImplementedException();
         }
 
         public override bool Equals(object obj)

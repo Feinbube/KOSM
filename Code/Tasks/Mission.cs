@@ -44,7 +44,19 @@ namespace KOSM.Tasks
             if (this.IsComplete)
                 return;
 
+            world.DebugLog.Clear();
+
+            UpdateLog(world, this.tasks[0]);
             this.tasks[0].Execute(world, this);
+
+        }
+
+        Task latestTask = null;
+        private void UpdateLog(World world, Task currentTask)
+        {
+            if (currentTask != latestTask)
+                world.MissionLog.Add(currentTask.InfoText);
+            latestTask = this.tasks[0];
         }
     }
 }
