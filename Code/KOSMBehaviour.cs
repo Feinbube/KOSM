@@ -41,7 +41,7 @@ namespace KOSM
             GameEvents.onGUIApplicationLauncherDestroyed.Add(removeAppLauncher);
 
             debugWindow = new LogWindow(1, 10, 50, "KOSM Debug UI", world.DebugLog);
-            missionWindow = new LogWindow(2, 10, 300, "KOSM Mission Log", world.MissionLog);
+            missionWindow = new LogWindow(2, 320, 50, "KOSM Mission Log", world.MissionLog);
         }
 
         public void Update()

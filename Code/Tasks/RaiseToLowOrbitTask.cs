@@ -13,7 +13,7 @@ namespace KOSM.Tasks
 
         public override void Execute(World world, Mission mission)
         {
-            if(RocketIsHeighEnough())
+            if (RocketIsHeighEnough())
             {   // all done
                 rocket.Throttle = 0;
                 mission.Complete(this);
@@ -21,13 +21,13 @@ namespace KOSM.Tasks
             }
 
             double safeLowOrbit = rocket.MainBody.LowOrbit * 1.1;
-            rocket.Throttle = (safeLowOrbit - rocket.Orbit.ApoapsisAltitude) / (safeLowOrbit*0.01);
-            rocket.SetCompassSteering(90, 90 * Math.Pow(1 - rocket.Altitude / safeLowOrbit, 4));
+            rocket.Throttle = (safeLowOrbit - rocket.Orbit.ApoapsisAltitude) / (safeLowOrbit * 0.01);
+            rocket.SetCompassSteering(90, 90 * Math.Pow(1 - rocket.Altitude / safeLowOrbit, 4), 0);
         }
 
         private bool RocketIsHeighEnough()
         {
-            double safeLowOrbit = rocket.MainBody.LowOrbit*1.1;
+            double safeLowOrbit = rocket.MainBody.LowOrbit * 1.1;
             return (!rocket.MainBody.HasAtmosphere && rocket.Orbit.ApoapsisAltitude > safeLowOrbit)
                 || (rocket.MainBody.HasAtmosphere && rocket.Orbit.ApoapsisAltitude > safeLowOrbit && rocket.Altitude > Math.Min(safeLowOrbit, rocket.Orbit.ApoapsisAltitude * 0.9));
         }
