@@ -11,6 +11,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <ProjectGuid>{1ECC4DF7-35E2-481A-AA92-30402B981FCC}</ProjectGuid>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup>
     <OutputType>Library</OutputType>
@@ -38,11 +40,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game\Body.cs" />
+    <Compile Include="Game\Orbit.cs" />
+    <Compile Include="Game\WorldObject.cs" />
+    <Compile Include="Game\Rocket.cs" />
     <Compile Include="Immortal.cs" />
+    <Compile Include="Scripts\IScript.cs" />
+    <Compile Include="Game\World.cs" />
     <Compile Include="KOSMBehaviour.cs" />
     <Compile Include="KOSMModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\RocketMissionScript.cs" />
+    <Compile Include="Examples\TestScript.cs" />
+    <Compile Include="Examples\PresentationScript.cs" />
+    <Compile Include="States\OnGroundState.cs" />
+    <Compile Include="States\State.cs" />
+    <Compile Include="Tasks\CircularizeOrbitTask.cs" />
+    <Compile Include="Tasks\HohmannTransferTask.cs" />
+    <Compile Include="Tasks\LandAtTask.cs" />
+    <Compile Include="Tasks\Mission.cs" />
+    <Compile Include="Tasks\MoveFromToTask.cs" />
+    <Compile Include="Tasks\RaiseToLowOrbitTask.cs" />
+    <Compile Include="Tasks\RocketTask.cs" />
+    <Compile Include="Tasks\Task.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

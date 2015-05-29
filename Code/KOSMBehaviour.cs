@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+using KOSM.Examples;
+using KOSM.Game;
+
 namespace KOSM
 {
     public class KOSMBehaviour : MonoBehaviour
@@ -16,6 +19,10 @@ namespace KOSM
         private Texture2D launcherButtonTexture;
 
         private ApplicationLauncherButton applicationLauncherButton;
+
+        bool executingScript = false;
+        PresentationScript script = new PresentationScript();
+        World world = new World();
 
         public void Awake()
         {
@@ -30,6 +37,12 @@ namespace KOSM
             GameEvents.onGUIApplicationLauncherDestroyed.Add(removeAppLauncher);
         }
 
+        public void Update()
+        {
+            if (executingScript)
+                script.Update(world);
+        }
+    
         private void addAppLauncher()
         {
             if (ApplicationLauncher.Instance == null || applicationLauncherButton != null)
@@ -52,16 +65,12 @@ namespace KOSM
 
         private void toggleLauncherButtonToTrue()
         {
-            ToOrbit();
+            executingScript = true;
         }
 
         private void toggleLauncherButtonToFalse()
         {
-        }
-
-        private void ToOrbit()
-        {
-            Staging.ActivateNextStage();
+            executingScript = false;
         }
     }
 }
