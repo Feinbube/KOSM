@@ -30,6 +30,12 @@ namespace KOSM.Scripts
             }
         }
 
+        public void Reset(World world)
+        {
+            missions = new List<Mission>();
+            world.MissionLog.Clear();
+        }
+
         protected abstract Mission newMission(World world, Rocket rocket);
     }
 }

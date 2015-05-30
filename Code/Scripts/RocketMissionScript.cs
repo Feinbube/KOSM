@@ -26,6 +26,12 @@ namespace KOSM.Scripts
             mission.Execute(world);
         }
 
+        public void Reset(World world)
+        {
+            mission = null;
+            world.MissionLog.Clear();
+        }
+
         protected abstract Mission newMission(World world, Rocket rocket);
     }
 }
