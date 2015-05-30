@@ -19,3 +19,6 @@
 [submodule "Related Work/Extraplanetary-Launchpads"]
 	path = Related Work/Extraplanetary-Launchpads
 	url = https://github.com/evilC/Extraplanetary-Launchpads.git
+[submodule "Related Work/Pilot-Assistant"]
+	path = Related Work/Pilot-Assistant
+	url = https://github.com/Crzyrndm/Pilot-Assistant.git
