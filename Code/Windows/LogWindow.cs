@@ -14,17 +14,19 @@ namespace KOSM.Windows
         int index;
         float x = 0;
         float y = 0;
+        float w = 500;
         string title = "Log Window";
 
         protected Rect windowPos;
 
         public float Height { get { return windowPos.height; } }
 
-        public LogWindow(int index, float x, float y, string title, ILog log)
+        public LogWindow(int index, float x, float y, float w, string title, ILog log)
         {
             this.index = index;
             this.x = x;
             this.y = y;
+            this.w = w;
             this.title = title;
             this.log = log;
         }
@@ -42,7 +44,7 @@ namespace KOSM.Windows
         private void drawGUI()
         {
             GUI.skin = HighLogic.Skin;
-            windowPos = GUILayout.Window(index, new Rect(x, y, 50, 50), drawWindow, title, GUILayout.MinWidth(300));
+            windowPos = GUILayout.Window(index, new Rect(x, y, 50, 50), drawWindow, title, GUILayout.MinWidth(w));
         }
 
         private void drawWindow(int windowID)

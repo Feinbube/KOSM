@@ -57,6 +57,22 @@ namespace KOSM.Game
         /// </summary>
         public double Pitch { get { return (rotationVesselSurface.eulerAngles.x > 180) ? (360.0 - rotationVesselSurface.eulerAngles.x) : -rotationVesselSurface.eulerAngles.x; } }
 
+        public double PitchDelta
+        {
+            get { return vessel == FlightGlobals.ActiveVessel ? FlightInputHandler.state.pitch : vessel.ctrlState.pitch; }
+            set
+            {
+                value = clamp(value, -1, 1);
+
+                world.DebugLog.Add("Setting PitchDelta from " + PitchDelta + " to " + value);
+                world.DebugLog.Add("Setting PitchTrim is " + vessel.ctrlState.pitch + " and " + FlightInputHandler.state.pitch);
+                vessel.ctrlState.pitch = (float)value;
+
+                if (vessel == FlightGlobals.ActiveVessel)
+                    FlightInputHandler.state.pitch = (float)value;
+            }
+        }
+
         /// <summary>
         /// -180° to 180°
         /// </summary>
@@ -88,9 +104,13 @@ namespace KOSM.Game
         /// <param name="targetRoll">--180° to 180°</param>
         public void SetCompassSteering(double targetHeading, double targetPitch, double targetRoll)
         {
-            world.DebugLog.Add("Setting Compass Steering: ");
+            //world.DebugLog.Add("Deactivating Autopilot.");
+            //vessel.Autopilot.Disable();
+            
+            //world.DebugLog.Add("Setting Compass Steering: ");
             world.DebugLog.Add("  Heading from " + Heading + " to " + targetHeading);
             world.DebugLog.Add("  Pitch from " + Pitch + " to " + targetPitch);
+            this.PitchDelta = (targetPitch - Pitch) / 90.0;
             world.DebugLog.Add("  Roll from " + Roll + " to " + targetRoll);
         }
 

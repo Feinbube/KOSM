@@ -10,7 +10,7 @@ using KOSM.States;
 
 namespace KOSM.Examples
 {
-    public class PresentationScript : RocketMissionScript
+    public class PresentationScript : MultiRocketMissionScript
     {
         protected override Mission newMission(World world, Rocket rocket)
         {

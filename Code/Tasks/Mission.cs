@@ -42,9 +42,7 @@ namespace KOSM.Tasks
         public void Execute(World world)
         {
             if (this.IsComplete)
-                return;
-
-            world.DebugLog.Clear();
+                return;            
 
             UpdateLog(world, this.tasks[0]);
             this.tasks[0].Execute(world, this);
