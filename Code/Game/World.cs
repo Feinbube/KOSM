@@ -24,7 +24,7 @@ namespace KOSM.Game
             }
         }
 
-        public List<Rocket> Rockets { get { return FlightGlobals.Vessels.Select(a => new Rocket(this, a)).ToList(); } }
+        public List<Rocket> Rockets { get { return FlightGlobals.Vessels.Where(a => a.HasControlSources()).Select(a => new Rocket(this, a)).ToList(); } }
 
         public Body FindBodyByName(string bodyName)
         {

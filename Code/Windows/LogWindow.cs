@@ -50,6 +50,7 @@ namespace KOSM.Windows
         private void drawWindow(int windowID)
         {
             GUILayout.BeginVertical();
+            GUI.skin.label.fontSize = 11;
             foreach (string message in log.Messages)
                 GUILayout.Label(message, GUI.skin.label, GUILayout.ExpandWidth(true));
             GUILayout.EndVertical();
