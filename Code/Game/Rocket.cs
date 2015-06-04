@@ -252,16 +252,6 @@ namespace KOSM.Game
             return (vessel.findWorldCenterOfMass() - vessel.mainBody.position).normalized;
         }
 
-        private Vector3d getEast()
-        {
-            return vessel.mainBody.getRFrmVel(vessel.findWorldCenterOfMass()).normalized;
-        }
-
-        private Vector3d getForward()
-        {
-            return vessel.GetTransform().up;
-        }
-
         #endregion Rotation #######################################################################
 
         #region Maneuvers  ########################################################################

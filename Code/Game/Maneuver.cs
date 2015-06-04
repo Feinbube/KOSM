@@ -18,9 +18,6 @@ namespace KOSM.Game
         public Vector3d DeltaV { get { return maneuverNode.DeltaV; } }
         public Vector3d BurnVector { get { return maneuverNode.GetBurnVector(rocket.Orbit.orbit); } }
         public double DueTime { get { return maneuverNode.UT; } }
-        public double RadialOut { get { return maneuverNode.DeltaV.x; } }
-        public double Normal { get { return maneuverNode.DeltaV.y; } }
-        public double Prograde { get { return maneuverNode.DeltaV.z; } }
         public double Magnitude { get { return BurnVector.magnitude; } }
 
         public Maneuver(World world, Rocket rocket, PatchedConicSolver patchedConicSolver, ManeuverNode maneuverNode)
@@ -33,13 +30,7 @@ namespace KOSM.Game
             this.InitialDeltaV = maneuverNode.DeltaV;
         }
 
-        public double SecondsLeft
-        {
-            get
-            {
-                return DueTime - world.PointInTime;
-            }
-        }
+        public double SecondsLeft { get { return DueTime - world.PointInTime; } }
 
         public double BurnDuration(Rocket rocket)
         {
@@ -51,12 +42,6 @@ namespace KOSM.Game
             patchedConicSolver.RemoveManeuverNode(maneuverNode);
         }
 
-        public bool Complete
-        {
-            get
-            {
-                return Vector3d.Dot(InitialDeltaV, DeltaV) < 0 || BurnVector.magnitude < 0.1;
-            }
-        }
+        public bool Complete { get { return Vector3d.Dot(InitialDeltaV, DeltaV) < 0 || BurnVector.magnitude < 0.1; } }
     }
 }
