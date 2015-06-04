@@ -15,9 +15,11 @@ namespace KOSM.Examples
         protected override Mission newMission(World world, Rocket rocket)
         {
             return new Mission(
-                new MoveFromToTask(world, rocket, new OnGroundState(world, "Kerbin"), new OnGroundState(world, "Mun")),
-                new MoveFromToTask(world, rocket, new OnGroundState(world, "Mun"), new OnGroundState(world, "Minmus")),
-                new MoveFromToTask(world, rocket, new OnGroundState(world, "Minmus"), new OnGroundState(world, "Kerbin"))
+                new RunMissionTask(world, rocket, new OnGroundState(world, "Kerbin"), new InOrbitState(world, "Kerbin")),
+                new RunMissionTask(world, rocket, new InOrbitState(world, "Kerbin"), new OnGroundState(world, "Kerbin"))
+                //new RunMissionTask(world, rocket, new OnGroundState(world, "Kerbin"), new OnGroundState(world, "Mun")),
+                //new RunMissionTask(world, rocket, new OnGroundState(world, "Mun"), new OnGroundState(world, "Minmus")),
+                //new RunMissionTask(world, rocket, new OnGroundState(world, "Minmus"), new OnGroundState(world, "Kerbin"))
             );
         }
     }

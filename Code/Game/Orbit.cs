@@ -62,5 +62,9 @@ namespace KOSM.Game
         {
             return "Apoapsis: " + Format.Distance(ApoapsisAltitude) + " Periapsis: " + Format.Distance(PeriapsisAltitude);
         }
+
+        public bool MovingTowardsPeriapsis { get { return TimeToApoapsis > TimeToPeriapsis; } }
+
+        public bool MovingTowardsApoapsis { get { return TimeToApoapsis < TimeToPeriapsis; } }
     }
 }

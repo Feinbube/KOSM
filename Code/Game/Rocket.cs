@@ -43,7 +43,9 @@ namespace KOSM.Game
             get { return vessel == FlightGlobals.ActiveVessel ? FlightInputHandler.state.mainThrottle : vessel.ctrlState.mainThrottle; }
             set
             {
-                value = clamp(value, 0, 1);
+                double maxThrottleLimitDueToWrongRotation = Math.Max(0.1, 1 - TurnDeviation);
+
+                value = clamp(value, 0, maxThrottleLimitDueToWrongRotation);
 
                 if (value > 0)
                     checkStaging();
@@ -182,13 +184,19 @@ namespace KOSM.Game
             return value > 180 ? value - 360.0 : value;
         }
 
-        public bool Turned
+        /// <summary>
+        /// From 0 (perfect on track) to 1 (opposite direction).
+        /// It is (1 - cos(angle)) / 2.
+        /// </summary>
+        public double TurnDeviation
         {
             get
             {
-                return (this.vessel.Autopilot.SAS.lockedHeading.eulerAngles - this.vessel.Autopilot.SAS.currentRotation.eulerAngles).magnitude < 0.5;
+                return (1 - Vector3d.Dot(this.vessel.Autopilot.SAS.lockedHeading.eulerAngles.normalized, this.vessel.Autopilot.SAS.currentRotation.eulerAngles.normalized)) / 2;
             }
         }
+
+        public bool Turned { get { return TurnDeviation < 0.00000076; } } // less than 0.1° deviation
 
         /// <summary>
         /// Wish for a target heading, pitch and roll. We see what we can do.
@@ -213,6 +221,14 @@ namespace KOSM.Game
             get
             {
                 return Quaternion.Inverse(Quaternion.Euler(90, 0, 0) * Quaternion.Inverse(vessel.ReferenceTransform.rotation) * Quaternion.identity);
+            }
+        }
+
+        public Vector3d Up
+        {
+            get
+            {
+                return vessel.upAxis;
             }
         }
 

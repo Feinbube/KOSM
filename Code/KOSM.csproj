@@ -52,6 +52,7 @@
     <Compile Include="Reporting\Log.cs" />
     <Compile Include="Scripts\MultiRocketMissionScript.cs" />
     <Compile Include="Reporting\GraphicsOverlay.cs" />
+    <Compile Include="States\InOrbitState.cs" />
     <Compile Include="Tasks\ExecuteManeuverTask.cs" />
     <Compile Include="Tasks\CheckAndRepairOrbitTask.cs" />
     <Compile Include="Windows\LogWindow.cs" />
@@ -69,7 +70,7 @@
     <Compile Include="Tasks\HohmannTransferTask.cs" />
     <Compile Include="Tasks\LandAtTask.cs" />
     <Compile Include="Tasks\Mission.cs" />
-    <Compile Include="Tasks\MoveFromToTask.cs" />
+    <Compile Include="Tasks\RunMissionTask.cs" />
     <Compile Include="Tasks\RaiseToLowOrbitTask.cs" />
     <Compile Include="Tasks\RocketTask.cs" />
     <Compile Include="Tasks\Task.cs" />

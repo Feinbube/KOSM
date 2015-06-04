@@ -8,13 +8,13 @@ using KOSM.States;
 
 namespace KOSM.Tasks
 {
-    public class MoveFromToTask : Task
+    public class RunMissionTask : Task
     {
         private Rocket rocket;
         private State start;
         private State objective;
 
-        public MoveFromToTask(World world, Rocket rocket, State start, State objective)
+        public RunMissionTask(World world, Rocket rocket, State start, State objective)
         {
             this.rocket = rocket;
             this.start = start;
@@ -23,12 +23,18 @@ namespace KOSM.Tasks
 
         public override void Execute(World world, Mission mission)
         {
-            if (start is OnGroundState && objective is OnGroundState)
+            if (start is OnGroundState && objective is InOrbitState)
             {
                 mission.PushAfter(this, 
                     new RaiseToLowOrbitTask(world, rocket),
-                    new CircularizeOrbitTask(world, rocket),
-                    new HohmannTransferTask(world, rocket, objective.Body),
+                    new CircularizeOrbitTask(world, rocket)
+                    );
+
+                mission.Complete(world, this);
+            }
+            else if (start is InOrbitState && objective is OnGroundState)
+            {
+                mission.PushAfter(this,
                     new LandAtTask(world, rocket, objective as OnGroundState)
                     );
 
