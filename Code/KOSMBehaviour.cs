@@ -45,16 +45,25 @@ namespace KOSM
             debugWindow = new LogWindow(2, Screen.width - 510, 50, 500, "KOSM Debug UI", world.DebugLog);
         }
 
+        bool first = true;
+
         public void Update()
         {
+            if (first)
+            {
+                first = false;
+                world.StartGame("KOSM", "quicksave");
+            }
+
             if (executingScript)
                 script.Update(world);
         }
-    
+
         private void gameReset(ConfigNode game)
         {
             executingScript = false;
             script.Reset(world);
+            toggleLauncherButtonToTrue();
         }
 
         private void addAppLauncher()

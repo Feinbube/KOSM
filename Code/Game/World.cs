@@ -51,5 +51,44 @@ namespace KOSM.Game
 
             return true;
         }
+
+        public void SaveGame(string filename)
+        {
+            global::Game game = HighLogic.CurrentGame.Updated();
+            game.startScene = GameScenes.FLIGHT;
+            GamePersistence.SaveGame(game, filename, HighLogic.SaveFolder, SaveMode.OVERWRITE);
+        }
+
+        public void StartGame(string profile, string filename)
+        {
+            HighLogic.SaveFolder = profile;
+            LoadGame(filename);
+        }
+
+        public void LoadGame(string filename)
+        {
+            global::Game game = GamePersistence.LoadGame(filename, HighLogic.SaveFolder, true, false);
+
+            if (game == null) throw new Exception("Game " + filename + " could not be loaded!");
+            if (!game.compatible) throw new Exception("Save file " + filename + " is not compatible with your version of KSP!");
+
+            if (game.flightState == null) return; // throw new Exception("Flightstate " + filename + " could not be loaded!");
+
+            FlightDriver.StartAndFocusVessel(game, game.flightState.activeVesselIdx);
+        }
+
+        public bool QuickSave()
+        {
+            if (!HighLogic.CurrentGame.Parameters.Flight.CanQuickSave) return false;
+            QuickSaveLoad.QuickSave();
+            return true;
+        }
+
+        public bool QuickLoad()
+        {
+            if (!HighLogic.CurrentGame.Parameters.Flight.CanQuickLoad) return false;
+            LoadGame("quicksave");
+            return true;
+        }
     }
 }
