@@ -18,5 +18,14 @@ namespace KOSM.Game
         {
             return Math.Min(max, Math.Max(min, value));
         }
+
+        protected void dLog(string message)
+        {
+            world.DebugLog.Add(message);
+        }
+        protected void mLog(string message)
+        {
+            world.MissionLog.Add(message);
+        }
     }
 }

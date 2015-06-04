@@ -7,9 +7,9 @@ namespace KOSM.Reporting
 {
     public interface ILog
     {
-        List<string> Messages { get; }
+        List<object> Messages { get; }
 
-        void Add(string message);
+        void Add(object message);
 
         void Clear();
     }

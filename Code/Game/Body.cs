@@ -11,11 +11,14 @@ namespace KOSM.Game
 
         public string Name { get { return celestialBody.GetName(); } }
 
-        public bool HasAtmosphere { get{return celestialBody.atmosphere; }}
+        public bool HasAtmosphere { get { return celestialBody.atmosphere; } }
 
-        public double LowOrbit { get { return HasAtmosphere ? celestialBody.atmosphereDepth : Math.Max(10000, celestialBody.Radius * 0.05);  } }
-        
-        public Body(World world, CelestialBody celestialBody) : base(world)
+        public double LowOrbit { get { return HasAtmosphere ? celestialBody.atmosphereDepth : Math.Max(10000, celestialBody.Radius * 0.05); } }
+
+        public double SafeLowOrbit { get { return LowOrbit * 1.1; } }
+
+        public Body(World world, CelestialBody celestialBody)
+            : base(world)
         {
             this.celestialBody = celestialBody;
         }

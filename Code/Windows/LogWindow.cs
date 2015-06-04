@@ -51,8 +51,8 @@ namespace KOSM.Windows
         {
             GUILayout.BeginVertical();
             GUI.skin.label.fontSize = 11;
-            foreach (string message in log.Messages)
-                GUILayout.Label(message, GUI.skin.label, GUILayout.ExpandWidth(true));
+            foreach (object message in log.Messages)
+                GUILayout.Label(message.ToString(), GUI.skin.label, GUILayout.ExpandWidth(true));
             GUILayout.EndVertical();
 
             GUI.DragWindow();

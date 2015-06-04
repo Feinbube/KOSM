@@ -32,13 +32,13 @@ namespace KOSM.Tasks
                     new LandAtTask(world, rocket, objective as OnGroundState)
                     );
 
-                mission.Complete(this);
+                mission.Complete(world, this);
             }
             else
                 throw new NotImplementedException();
         }
 
-        public override string InfoText
+        public override string Description
         {
             get { return "Moving the " + rocket + " from " + start + " to " + objective + "."; }
         }

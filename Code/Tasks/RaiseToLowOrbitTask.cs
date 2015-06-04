@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using KOSM.Game;
+using KOSM.Reporting;
 
 namespace KOSM.Tasks
 {
@@ -16,25 +17,23 @@ namespace KOSM.Tasks
             if (RocketIsHeighEnough())
             {   // all done
                 rocket.Throttle = 0;
-                mission.Complete(this);
+                mission.Complete(world, this);
                 return;
             }
 
-            double safeLowOrbit = rocket.MainBody.LowOrbit * 1.1;
-            rocket.Throttle = (safeLowOrbit - rocket.Orbit.ApoapsisAltitude) / (safeLowOrbit * 0.01);
-            rocket.SetCompassSteering(90 * Math.Pow(1 - rocket.Altitude / safeLowOrbit, 4), 90, 0);
+            rocket.Throttle = (rocket.MainBody.SafeLowOrbit - rocket.Orbit.ApoapsisAltitude) / (rocket.MainBody.SafeLowOrbit * 0.01);
+            rocket.SetCompassSteering(90 * Math.Pow(1 - rocket.Altitude / rocket.MainBody.SafeLowOrbit, 4), 90, 0);
         }
 
         private bool RocketIsHeighEnough()
         {
-            double safeLowOrbit = rocket.MainBody.LowOrbit * 1.1;
-            return (!rocket.MainBody.HasAtmosphere && rocket.Orbit.ApoapsisAltitude > safeLowOrbit)
-                || (rocket.MainBody.HasAtmosphere && rocket.Orbit.ApoapsisAltitude > safeLowOrbit && rocket.Altitude > Math.Min(safeLowOrbit, rocket.Orbit.ApoapsisAltitude * 0.9));
+            return (!rocket.MainBody.HasAtmosphere && rocket.Orbit.ApoapsisAltitude > rocket.MainBody.SafeLowOrbit)
+                || (rocket.MainBody.HasAtmosphere && rocket.Altitude > rocket.MainBody.SafeLowOrbit * 0.91);
         }
 
-        public override string InfoText
+        public override string Description
         {
-            get { return "Raising apoapsis to low orbit."; }
+            get { return "Raising apoapsis to low orbit. (" + Format.Distance(rocket.MainBody.SafeLowOrbit) + ")"; }
         }
     }
 }

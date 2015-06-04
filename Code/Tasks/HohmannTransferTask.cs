@@ -22,7 +22,7 @@ namespace KOSM.Tasks
             throw new NotImplementedException();
         }
 
-        public override string InfoText
+        public override string Description
         {
             get { return "Executing a Hohmann transfer to " + body.Name + "."; }
         }

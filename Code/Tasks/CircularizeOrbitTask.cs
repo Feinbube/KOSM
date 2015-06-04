@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using KOSM.Game;
+using KOSM.Reporting;
 
 namespace KOSM.Tasks
 {
@@ -13,10 +14,19 @@ namespace KOSM.Tasks
 
         public override void Execute(World world, Mission mission)
         {
-            throw new NotImplementedException();
+            rocket.AddApoapsisManeuver(rocket.MainBody.SafeLowOrbit);
+            
+            this.Details = "Raising periapsis from " + Format.Distance(rocket.Orbit.PeriapsisAltitude) + " to " + Format.Distance(rocket.MainBody.SafeLowOrbit);
+
+            mission.PushAfter(this,
+                new ExecuteManeuverTask(world, rocket),
+                new CheckAndRepairOrbitTask(world, rocket, rocket.MainBody.SafeLowOrbit)
+                );
+
+            mission.Complete(world, this);
         }
 
-        public override string InfoText
+        public override string Description
         {
             get { return "Circulizing the orbit."; }
         }

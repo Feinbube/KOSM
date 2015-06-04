@@ -4,17 +4,18 @@ using System.Linq;
 using System.Text;
 
 using KOSM.Game;
-using KOSM.States;
+using KOSM.Reporting;
 
 namespace KOSM.Tasks
 {
-    public class LandAtTask : RocketTask
+    public class CheckAndRepairOrbitTask : RocketTask
     {
-        protected OnGroundState objective = null;
-        public LandAtTask(World world, Rocket rocket, OnGroundState objective)
+        private double targetHeight;
+
+        public CheckAndRepairOrbitTask(World world, Rocket rocket, double targetHeight)
             : base(world, rocket)
         {
-            this.objective = objective;
+            this.targetHeight = targetHeight;
         }
 
         public override void Execute(World world, Mission mission)
@@ -24,7 +25,7 @@ namespace KOSM.Tasks
 
         public override string Description
         {
-            get { return "Landing at " + objective + "."; }
+            get { return "Checking orbit. (Height should be " + Format.Distance(targetHeight) + ".)"; }
         }
     }
 }

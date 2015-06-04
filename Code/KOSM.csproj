@@ -41,13 +41,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game\Body.cs" />
+    <Compile Include="Game\Maneuver.cs" />
     <Compile Include="Game\Orbit.cs" />
     <Compile Include="Game\WorldObject.cs" />
     <Compile Include="Game\Rocket.cs" />
     <Compile Include="Immortal.cs" />
+    <Compile Include="Reporting\Format.cs" />
+    <Compile Include="Reporting\IDraw.cs" />
     <Compile Include="Reporting\ILog.cs" />
     <Compile Include="Reporting\Log.cs" />
     <Compile Include="Scripts\MultiRocketMissionScript.cs" />
+    <Compile Include="Reporting\GraphicsOverlay.cs" />
+    <Compile Include="Tasks\ExecuteManeuverTask.cs" />
+    <Compile Include="Tasks\CheckAndRepairOrbitTask.cs" />
     <Compile Include="Windows\LogWindow.cs" />
     <Compile Include="Scripts\IScript.cs" />
     <Compile Include="Game\World.cs" />

@@ -14,47 +14,64 @@ namespace KOSM.Tasks
         public bool IsComplete { get { return this.tasks.Count <= 0; } }
 
         public Mission() { }
+
         public Mission(params Task[] tasks)
         {
             this.tasks.AddRange(tasks);
         }
 
-        public void Push(Task task)
+        public void PushAtEnd(Task task)
         {
             this.tasks.Add(task);
         }
 
-        public void PushAfter(Task parent, Task task)
+        public void PushBefore(Task parent, Task task)
         {
             this.tasks.Insert(tasks.IndexOf(parent), task);
         }
 
-        public void PushAfter(Task parent, params Task[] tasks)
+        public void PushBefore(Task parent, params Task[] tasks)
         {
             this.tasks.InsertRange(this.tasks.IndexOf(parent), tasks);
         }
 
-        public void Complete(Task task)
+        public void PushAfter(Task parent, Task task)
         {
+            this.tasks.Insert(tasks.IndexOf(parent)+1, task);
+        }
+
+        public void PushAfter(Task parent, params Task[] tasks)
+        {
+            this.tasks.InsertRange(this.tasks.IndexOf(parent)+1, tasks);
+        }
+
+        public void Complete(World world, Task task)
+        {
+            UpdateLog(world, task);
             this.tasks.Remove(task);
         }
 
         public void Execute(World world)
         {
             if (this.IsComplete)
-                return;            
+                return;
 
             UpdateLog(world, this.tasks[0]);
             this.tasks[0].Execute(world, this);
-
         }
 
-        Task latestTask = null;
+        string latestTaskDescription = null;
+        string latestTaskDetails = null;
+
         private void UpdateLog(World world, Task currentTask)
         {
-            if (currentTask != latestTask)
-                world.MissionLog.Add(currentTask.InfoText);
-            latestTask = this.tasks[0];
+            if (currentTask.Description != latestTaskDescription)
+                world.MissionLog.Add(currentTask.Description);
+            latestTaskDescription = currentTask.Description;
+
+            if (currentTask.Details != null && currentTask.Details != latestTaskDetails)
+                world.MissionLog.Add("  " + currentTask.Details);
+            latestTaskDetails = currentTask.Details;
         }
     }
 }

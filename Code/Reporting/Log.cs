@@ -7,14 +7,14 @@ namespace KOSM.Reporting
 {
     public class Log : ILog
     {
-        List<string> messages = new List<string>();
+        List<object> messages = new List<object>();
 
-        public List<string> Messages
+        public List<object> Messages
         {
             get { return messages; }
         }
 
-        public void Add(string message)
+        public void Add(object message)
         {
             messages.Add(message);
         }

@@ -11,6 +11,8 @@ namespace KOSM.Tasks
     {
         public abstract void Execute(World world, Mission mission);
 
-        public abstract string InfoText { get; }
+        public abstract string Description { get; }
+
+        public string Details { get; set; }
     }
 }
