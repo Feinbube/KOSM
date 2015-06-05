@@ -14,7 +14,7 @@ namespace KOSM.Scripts
 
         public void Update(World world)
         {
-            world.DebugLog.Clear();
+            world.LiveDebugLog.Clear();
 
             // we only consider the first rocket.
             Rocket rocket = world.Rockets[0];

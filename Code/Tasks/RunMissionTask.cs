@@ -29,24 +29,22 @@ namespace KOSM.Tasks
                     new RaiseToLowOrbitTask(world, rocket),
                     new CircularizeOrbitTask(world, rocket)
                     );
-
-                mission.Complete(world, this);
             }
             else if (start is InOrbitState && objective is OnGroundState)
             {
                 mission.PushAfter(this,
                     new LandAtTask(world, rocket, objective as OnGroundState)
                     );
-
-                mission.Complete(world, this);
             }
             else
                 throw new NotImplementedException();
+
+            mission.Complete(world, this);
         }
 
         public override string Description
         {
-            get { return "Moving the " + rocket + " from " + start + " to " + objective + "."; }
+            get { return "Running a mission to move " + rocket + " from " + start.ToString() + " to " + objective.ToString() + "."; }
         }
     }
 }

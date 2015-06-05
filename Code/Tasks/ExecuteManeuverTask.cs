@@ -20,29 +20,15 @@ namespace KOSM.Tasks
         {
             if (maneuver == null)
                 maneuver = rocket.NextManeuver;
-
-            double burnDuration = maneuver.BurnDuration(rocket);
-            double timeToManeuver = maneuver.SecondsLeft - burnDuration / 2;
             
-            Details = "Waiting for next maneuver at " + Format.MissionTime(rocket.MissionTime + timeToManeuver) + ".";
-            if(world.WarpTime(timeToManeuver - 60))
-                return;
-
-            Details = "Turning ship for maneuver.";
-            rocket.SetSteering(maneuver.BurnVector);
-
-            if(rocket.Turned)
-                if(world.WarpTime(timeToManeuver))
-                    return;
-
-            if( timeToManeuver > 0)
+            if (!TurnAndWait(world, maneuver, maneuver.BurnVector))
                 return;
 
             Details = "Burning for a DeltaV of " + Format.Speed(maneuver.InitialMagnitude) + ".";
 
             if(!maneuver.Complete)
             {
-                rocket.Throttle = Math.Min(burnDuration, 1);
+                rocket.Throttle = Math.Min(maneuver.BurnDuration, 1);
                 return;
             }
 

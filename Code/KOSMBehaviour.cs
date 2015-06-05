@@ -12,8 +12,11 @@ namespace KOSM
 {
     public class KOSMBehaviour : MonoBehaviour
     {
-        LogWindow debugWindow = null;
-        LogWindow missionWindow = null;
+        LogWindow persistentDebugWindow = null;
+        LogWindow liveDebugWindow = null;
+
+        LogWindow missionLogWindow = null;
+        LogWindow missionPlanWindow = null;
 
         private bool initialized = false;
 
@@ -41,13 +44,16 @@ namespace KOSM
             GameEvents.onGUIApplicationLauncherDestroyed.Add(removeAppLauncher);
             GameEvents.onGameStateLoad.Add(gameReset);
 
-            missionWindow = new LogWindow(1, 10, 50, 300, "KOSM Mission Log", world.MissionLog);
-            debugWindow = new LogWindow(2, Screen.width - 510, 50, 500, "KOSM Debug UI", world.DebugLog);
+            missionLogWindow = new LogWindow(1, 10, 50, 500, "KOSM Mission Log", 10, world.MissionLog);
+            missionPlanWindow = new LogWindow(2, 10, 350, 500, "KOSM Mission Plan", 10, world.MissionPlanLog);
+            liveDebugWindow = new LogWindow(3, Screen.width - 510, 50, 500, "KOSM Live Debug", 10, world.LiveDebugLog);
+            persistentDebugWindow = new LogWindow(4, Screen.width - 510, 350, 500, "KOSM Debug Log", 10, world.DebugLog);
+            
         }
 
         bool first = true;
 
-        public void Update()
+        public void FixedUpdate()
         {
             if (first)
             {
@@ -56,7 +62,10 @@ namespace KOSM
             }
 
             if (executingScript)
+            {
                 script.Update(world);
+                world.FinishUpdate();
+            }
         }
 
         private void gameReset(ConfigNode game)
@@ -89,15 +98,19 @@ namespace KOSM
         private void toggleLauncherButtonToTrue()
         {
             executingScript = true;
-            debugWindow.Show();
-            missionWindow.Show();
+            missionLogWindow.Show();
+            missionPlanWindow.Show();
+            persistentDebugWindow.Show();
+            liveDebugWindow.Show();
         }
 
         private void toggleLauncherButtonToFalse()
         {
             executingScript = false;
-            debugWindow.Hide();
-            missionWindow.Hide();
+            missionLogWindow.Hide();
+            missionPlanWindow.Hide();
+            persistentDebugWindow.Hide();
+            liveDebugWindow.Hide();            
         }
     }
 }

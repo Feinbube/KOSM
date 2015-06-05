@@ -13,7 +13,7 @@ namespace KOSM.States
 
         public override string ToString()
         {
-            return Body.Name;
+            return "an orbit around " + Body.Name;
         }
     }
 }

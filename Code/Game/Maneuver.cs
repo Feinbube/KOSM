@@ -16,8 +16,7 @@ namespace KOSM.Game
         public double InitialMagnitude { get { return InitialDeltaV.magnitude; } }
 
         public Vector3d DeltaV { get { return maneuverNode.DeltaV; } }
-        public Vector3d BurnVector { get { return maneuverNode.GetBurnVector(rocket.Orbit.orbit); } }
-        public double DueTime { get { return maneuverNode.UT; } }
+        public Vector3d BurnVector { get { return maneuverNode.GetBurnVector(rocket.Orbit.orbit); } }        
         public double Magnitude { get { return BurnVector.magnitude; } }
 
         public Maneuver(World world, Rocket rocket, PatchedConicSolver patchedConicSolver, ManeuverNode maneuverNode)
@@ -30,11 +29,22 @@ namespace KOSM.Game
             this.InitialDeltaV = maneuverNode.DeltaV;
         }
 
-        public double SecondsLeft { get { return DueTime - world.PointInTime; } }
+        public double TimeWhenDue { get { return maneuverNode.UT; } }
+        public double TimeOfBurn { get { return TimeWhenDue - BurnDuration / 2; } }
+        public double TimeOfTurn { get { return TimeOfBurn - 60; } }
 
-        public double BurnDuration(Rocket rocket)
+        public double TimeTillDue { get { return TimeWhenDue - world.PointInTime; } }
+        public double TimeTillBurn { get { return TimeTillDue - BurnDuration / 2; } }
+        public double TimeTillTurn { get { return TimeTillBurn - 60; } }
+
+        public double MissionTimeWhenDue { get { return rocket.MissionTime + TimeTillDue; } }
+
+        public double BurnDuration
         {
-            return rocket.MaxAcceleration == 0 ? double.MaxValue : this.Magnitude / rocket.MaxAcceleration;
+            get
+            {
+                return rocket.MaxAcceleration == 0 ? double.MaxValue : this.Magnitude / rocket.MaxAcceleration;
+            }
         }
 
         public void Remove()
@@ -42,6 +52,6 @@ namespace KOSM.Game
             patchedConicSolver.RemoveManeuverNode(maneuverNode);
         }
 
-        public bool Complete { get { return Vector3d.Dot(InitialDeltaV, DeltaV) < 0 || BurnVector.magnitude < 0.1; } }
+        public bool Complete { get { return Vector3d.Dot(InitialDeltaV, DeltaV) < 0 || BurnVector.magnitude < 0.1; } }        
     }
 }

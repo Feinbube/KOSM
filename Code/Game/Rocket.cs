@@ -16,7 +16,39 @@ namespace KOSM.Game
         public double MissionTime { get { return vessel.missionTime; } }
 
         public double Altitude { get { return vessel.altitude; } }
-        public double AltitudeOverGround { get { return vessel.terrainAltitude; } }
+        public double AltitudeOverGround { get { return vessel.GetHeightFromTerrain() - RocketVerticalHeight; } }
+
+        public double RocketVerticalHeight
+        {
+            get
+            {
+                if (vessel.rigidbody == null)
+                    return 0;
+
+                double altitudeOfPart = double.MaxValue;
+                foreach (Part part in vessel.Parts)
+                {
+                    if (part.collider == null)
+                        continue;
+
+                    Vector3 extents = part.collider.bounds.extents;
+                    float partRadius = Mathf.Max(extents[0], Mathf.Max(extents[1], extents[2]));
+                    double partAltitudeBottom = Math.Max(0, vessel.mainBody.GetAltitude(part.collider.bounds.center) - partRadius);
+                    if (partAltitudeBottom < altitudeOfPart)
+                        altitudeOfPart = partAltitudeBottom;
+                }
+
+                return Altitude - altitudeOfPart;
+            }
+        }
+
+        public double HorizontalSurfaceSpeed { get { return vessel.horizontalSrfSpeed; } }
+
+        public double VerticalSpeed { get { return vessel.verticalSpeed; } }
+
+        public double SurfaceVelocityMagnitude { get { return vessel.srf_velocity.magnitude; } }
+
+        public bool Landed { get { return vessel.situation == Vessel.Situations.LANDED || vessel.situation == Vessel.Situations.PRELAUNCH || vessel.situation == Vessel.Situations.SPLASHED; } }
 
         public Body MainBody { get { return world.FindBodyByName(vessel.mainBody.GetName()); } }
 
@@ -30,6 +62,15 @@ namespace KOSM.Game
             }
         }
 
+        public void LowerGear()
+        {
+            vessel.ActionGroups.SetGroup(KSPActionGroup.Gear, true);
+        }
+
+        public void RaiseGear()
+        {
+            vessel.ActionGroups.SetGroup(KSPActionGroup.Gear, false);
+        }
         public Rocket(World world, Vessel vessel)
             : base(world)
         {
@@ -43,12 +84,13 @@ namespace KOSM.Game
             get { return vessel == FlightGlobals.ActiveVessel ? FlightInputHandler.state.mainThrottle : vessel.ctrlState.mainThrottle; }
             set
             {
-                double maxThrottleLimitDueToWrongRotation = Math.Max(0.1, 1 - TurnDeviation);
-
-                value = clamp(value, 0, maxThrottleLimitDueToWrongRotation);
+                value = clamp(value, 0, 1);
 
                 if (value > 0)
+                {
+                    world.PreventTimeWarping();
                     checkStaging();
+                }
 
                 vessel.ctrlState.mainThrottle = (float)value;
 
@@ -185,18 +227,18 @@ namespace KOSM.Game
         }
 
         /// <summary>
-        /// From 0 (perfect on track) to 1 (opposite direction).
-        /// It is (1 - cos(angle)) / 2.
+        /// In Degree from 0 (perfect on track) to 180 (opposite direction).
         /// </summary>
         public double TurnDeviation
         {
             get
             {
-                return (1 - Vector3d.Dot(this.vessel.Autopilot.SAS.lockedHeading.eulerAngles.normalized, this.vessel.Autopilot.SAS.currentRotation.eulerAngles.normalized)) / 2;
+                double vdot = Vector3d.Dot(this.vessel.Autopilot.SAS.lockedHeading.eulerAngles.normalized, this.vessel.Autopilot.SAS.currentRotation.eulerAngles.normalized);
+                return vdot >= 1 ? 0 : vdot <= -1 ? 180 : 180 * Math.Acos(vdot) / Math.PI;
             }
         }
 
-        public bool Turned { get { return TurnDeviation < 0.00000076; } } // less than 0.1° deviation
+        public bool Turned { get { return TurnDeviation < 0.1; } } // less than 0.1° deviation
 
         /// <summary>
         /// Wish for a target heading, pitch and roll. We see what we can do.
@@ -216,21 +258,9 @@ namespace KOSM.Game
             LockHeading(Quaternion.LookRotation(forward, Facing * Vector3.up));
         }
 
-        public Quaternion Facing
-        {
-            get
-            {
-                return Quaternion.Inverse(Quaternion.Euler(90, 0, 0) * Quaternion.Inverse(vessel.ReferenceTransform.rotation) * Quaternion.identity);
-            }
-        }
+        public Quaternion Facing { get { return Quaternion.Inverse(Quaternion.Euler(90, 0, 0) * Quaternion.Inverse(vessel.ReferenceTransform.rotation) * Quaternion.identity); } }
 
-        public Vector3d Up
-        {
-            get
-            {
-                return vessel.upAxis;
-            }
-        }
+        public Vector3d Up { get { return vessel.upAxis; } }
 
         public void LockHeading(Quaternion newHeading)
         {
@@ -240,6 +270,9 @@ namespace KOSM.Game
 
             if (vessel.Autopilot.SAS.lockedHeading != newHeading)
                 this.vessel.Autopilot.SAS.LockHeading(newHeading, true);
+
+            if (!Turned)
+                world.PreventTimeWarping();
         }
 
         private void enableStabilityAssist()
@@ -268,6 +301,9 @@ namespace KOSM.Game
             return (vessel.findWorldCenterOfMass() - vessel.mainBody.position).normalized;
         }
 
+        public Vector3d OrbitRetrograde { get { return vessel.obt_velocity.normalized * -1; } }
+        public Vector3d SurfaceRetrograde { get { return vessel.srf_velocity.normalized * -1; } }
+
         #endregion Rotation #######################################################################
 
         #region Maneuvers  ########################################################################
@@ -278,14 +314,22 @@ namespace KOSM.Game
         {
             get
             {
-                var timeOfNextManeuver = Maneuvers.Where(a => a.DueTime > world.PointInTime).Min(a => a.DueTime);
-                return Maneuvers.Where(a => a.DueTime == timeOfNextManeuver).First();
+                if (Maneuvers.Count == 0)
+                    return null;
+
+                var timeOfNextManeuver = Maneuvers.Where(a => a.TimeWhenDue > world.PointInTime).Min(a => a.TimeWhenDue);
+                return Maneuvers.Where(a => a.TimeWhenDue == timeOfNextManeuver).First();
             }
         }
 
         public void AddApoapsisManeuver(double targetAltitude)
         {
             addNode(world.PointInTime + this.orbit.TimeToApoapsis, 0, 0, this.orbit.DeltaVForApoapsisManeuver(targetAltitude));
+        }
+
+        public void AddPeriapsisManeuver(double targetAltitude)
+        {
+            addNode(world.PointInTime + this.orbit.TimeToPeriapsis, 0, 0, this.orbit.DeltaVForPeriapsisManeuver(targetAltitude));
         }
 
         private void addNode(double pointInTime, double radialOut, double normal, double prograde)

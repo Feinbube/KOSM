@@ -17,6 +17,8 @@ namespace KOSM.Game
 
         public double SafeLowOrbit { get { return LowOrbit * 1.1; } }
 
+        public double GravityAtSealevel { get { return celestialBody.gravParameter / Math.Pow(celestialBody.Radius, 2); } }
+
         public Body(World world, CelestialBody celestialBody)
             : base(world)
         {

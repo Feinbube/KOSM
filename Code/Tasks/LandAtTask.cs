@@ -19,12 +19,18 @@ namespace KOSM.Tasks
 
         public override void Execute(World world, Mission mission)
         {
-            throw new NotImplementedException();
+            mission.PushAfter(this,
+                    new DeOrbitTask(world, rocket, objective),
+                    new DescentToHoverTask(world, rocket, objective),
+                    new FinalDescentTask(world, rocket, objective)
+                    //new NewDescent(world, rocket, objective)
+                    );
+            mission.Complete(world, this);
         }
 
         public override string Description
         {
-            get { return "Landing at " + objective + "."; }
+            get { return "Landing at " + objective.ToString() + "."; }
         }
     }
 }

@@ -14,13 +14,13 @@ namespace KOSM.Scripts
 
         public void Update(World world)
         {
-            world.DebugLog.Clear();
-
+            world.LiveDebugLog.Clear();
+            world.LiveDebugLog.Add("Number or rockets: " + world.Rockets.Count);
             for (int i = 0; i < world.Rockets.Count; i++)
             {
                 Rocket rocket = world.Rockets[i];
 
-                world.DebugLog.Add("### Controlling Vessel #" + i + " (" + rocket.Name + ") ######");
+                world.LiveDebugLog.Add("### Controlling Vessel #" + i + " (" + rocket.Name + ") ######");
 
                 // first start -> create mission
                 if (missions.Count <= i || missions[i] == null)

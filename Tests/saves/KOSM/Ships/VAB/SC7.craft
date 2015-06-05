@@ -1,8 +1,8 @@
-ship = SC8
+ship = SC7
 version = 1.0.2
 description = 
 type = VAB
-size = 5.892022,12.74451,5.892019
+size = 5.89202,12.29902,5.892019
 PART
 {
 	part = probeCoreOcto_4294876490
@@ -25,14 +25,6 @@ PART
 	modMass = 0
 	modSize = (0.0, 0.0, 0.0)
 	link = sasModule_4294864474
-	link = solarPanels5_4294861394
-	link = solarPanels5_4294856884
-	link = solarPanels5_4294856852
-	link = solarPanels5_4294856820
-	link = solarPanels5_4294856788
-	link = solarPanels5_4294856756
-	link = solarPanels5_4294856724
-	link = solarPanels5_4294856692
 	attN = bottom,sasModule_4294864474
 	EVENTS
 	{
@@ -177,8 +169,8 @@ PART
 	modCost = 0
 	modMass = 0
 	modSize = (0.0, 0.0, 0.0)
-	link = batteryBankMini_4294862594
-	attN = bottom,batteryBankMini_4294862594
+	link = fuelTank.long_4294875526
+	attN = bottom,fuelTank.long_4294875526
 	attN = top,probeCoreOcto_4294876490
 	EVENTS
 	{
@@ -229,99 +221,11 @@ PART
 }
 PART
 {
-	part = batteryBankMini_4294862594
-	partName = Part
-	pos = 0.03952944,18.20813,-0.1249182
-	attPos = 0,0,0
-	attPos0 = 0,-0.1911106,0
-	rot = 0,0,0,1
-	attRot = 0,0,0,1
-	attRot0 = 0,0,0,1
-	mir = 1,1,1
-	symMethod = Radial
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	sepI = 0
-	attm = 0
-	modCost = 0
-	modMass = 0
-	modSize = (0.0, 0.0, 0.0)
-	link = batteryBankMini_4294862230
-	attN = top,sasModule_4294864474
-	attN = bottom,batteryBankMini_4294862230
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	PARTDATA
-	{
-	}
-	RESOURCE
-	{
-		name = ElectricCharge
-		amount = 200
-		maxAmount = 200
-		flowState = True
-		isTweakable = True
-		hideFlow = False
-		flowMode = Both
-	}
-}
-PART
-{
-	part = batteryBankMini_4294862230
-	partName = Part
-	pos = 0.03952944,18.00813,-0.1249182
-	attPos = 0,0,0
-	attPos0 = 0,-0.2000008,0
-	rot = 0,0,0,1
-	attRot = 0,0,0,1
-	attRot0 = 0,0,0,1
-	mir = 1,1,1
-	symMethod = Radial
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	sepI = 0
-	attm = 0
-	modCost = 0
-	modMass = 0
-	modSize = (0.0, 0.0, 0.0)
-	link = fuelTank.long_4294875526
-	attN = top,batteryBankMini_4294862594
-	attN = bottom,fuelTank.long_4294875526
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	PARTDATA
-	{
-	}
-	RESOURCE
-	{
-		name = ElectricCharge
-		amount = 200
-		maxAmount = 200
-		flowState = True
-		isTweakable = True
-		hideFlow = False
-		flowMode = Both
-	}
-}
-PART
-{
 	part = fuelTank.long_4294875526
 	partName = Part
-	pos = 0.03952944,16.03312,-0.1249182
+	pos = 0.03952944,16.43313,-0.1249182
 	attPos = 0,0,0
-	attPos0 = 0,-1.975,0
+	attPos0 = 0,-1.96611,0
 	rot = 0,0,0,1
 	attRot = 0,0,0,1
 	attRot0 = 0,0,0,1
@@ -337,7 +241,7 @@ PART
 	modMass = 0
 	modSize = (0.0, 0.0, 0.0)
 	link = liquidEngine2_4294871188
-	attN = top,batteryBankMini_4294862230
+	attN = top,sasModule_4294864474
 	attN = bottom,liquidEngine2_4294871188
 	EVENTS
 	{
@@ -373,7 +277,7 @@ PART
 {
 	part = liquidEngine2_4294871188
 	partName = Part
-	pos = 0.03952944,13.2438,-0.1249182
+	pos = 0.03952944,13.64381,-0.1249182
 	attPos = 0,0,0
 	attPos0 = 0,-2.789326,0
 	rot = 0,0,0,1
@@ -594,7 +498,7 @@ PART
 {
 	part = stackDecoupler_4294871880
 	partName = Part
-	pos = 0.03952944,12.46082,-0.1249182
+	pos = 0.03952944,12.86083,-0.1249182
 	attPos = 0,0,0
 	attPos0 = 0,-0.7829742,0
 	rot = 0,0,0,1
@@ -685,7 +589,7 @@ PART
 {
 	part = fuelTank.long_4294874850
 	partName = Part
-	pos = 0.03952944,10.45284,-0.1249182
+	pos = 0.03952944,10.85284,-0.1249182
 	attPos = 0,0,0
 	attPos0 = 0,-2.007995,0
 	rot = 0,0,0,1
@@ -743,7 +647,7 @@ PART
 {
 	part = liquidEngine2_4294872304
 	partName = Part
-	pos = 0.03952944,7.663497,-0.1249182
+	pos = 0.03952944,8.063502,-0.1249182
 	attPos = 0,0,0
 	attPos0 = 0,-2.789326,0
 	rot = 0,0,0,1
@@ -962,7 +866,7 @@ PART
 {
 	part = fuelTank.long_4294874372
 	partName = Part
-	pos = -0.5848531,9.747045,-1.20638
+	pos = -0.5848531,10.14705,-1.20638
 	attPos = 0,0,0
 	attPos0 = -0.6243825,-0.7057819,-1.081462
 	rot = 7.410693E-09,0.5,-1.28357E-08,-0.8660254
@@ -1020,10 +924,10 @@ PART
 {
 	part = liquidEngine2_4294873718
 	partName = Part
-	pos = -0.584853,6.957716,-1.20638
+	pos = -0.584853,7.357721,-1.20638
 	attPos = 0,0,0
 	attPos0 = -4.773721E-08,-2.789326,-2.477419E-15
-	rot = -1.621317E-09,0.9659259,-6.050815E-09,-0.2588187
+	rot = -1.621317E-09,0.965926,-6.050815E-09,-0.2588187
 	attRot = 0,0,0,1
 	attRot0 = -6.050803E-09,-0.7071071,-6.050798E-09,0.7071065
 	mir = 1,1,1
@@ -1242,10 +1146,10 @@ PART
 {
 	part = winglet_4294870276
 	partName = Part
-	pos = -1.213764,8.826102,-2.295686
+	pos = -1.213764,9.226108,-2.295686
 	attPos = 0,0,0
 	attPos0 = -1.257821,-0.9209423,1.503414E-07
-	rot = 1.016133E-08,0.4999999,-1.759995E-08,-0.8660254
+	rot = 1.016133E-08,0.4999999,-1.759995E-08,-0.8660255
 	attRot = 0,0,0,1
 	attRot0 = 3.105331E-16,4.432104E-08,5.501276E-09,1
 	mir = 1,1,1
@@ -1288,7 +1192,7 @@ PART
 {
 	part = fuelTank.long_4294869484
 	partName = Part
-	pos = -1.041933,9.747045,0.4994642
+	pos = -1.041933,10.14705,0.4994642
 	attPos = 0,0,0
 	attPos0 = -1.081462,-0.7057819,0.6243824
 	rot = -3.836059E-09,-0.2588191,-1.431636E-08,-0.9659259
@@ -1346,7 +1250,7 @@ PART
 {
 	part = liquidEngine2_4294869446
 	partName = Part
-	pos = -1.041933,6.957716,0.4994641
+	pos = -1.041933,7.357721,0.4994641
 	attPos = 0,0,0
 	attPos0 = -4.773721E-08,-2.789326,-2.477419E-15
 	rot = -5.425016E-09,0.5000004,-3.132129E-09,-0.8660253
@@ -1568,7 +1472,7 @@ PART
 {
 	part = winglet_4294869294
 	partName = Part
-	pos = -2.131238,8.826102,1.128375
+	pos = -2.131238,9.226108,1.128375
 	attPos = 0,0,0
 	attPos0 = -1.257821,-0.9209423,1.503414E-07
 	rot = -5.259895E-09,-0.2588192,-1.963019E-08,-0.9659259
@@ -1614,7 +1518,7 @@ PART
 {
 	part = fuelTank.long_4294869258
 	partName = Part
-	pos = 0.6639121,9.747045,0.9565439
+	pos = 0.6639121,10.14705,0.9565439
 	attPos = 0,0,0
 	attPos0 = 0.6243826,-0.7057819,1.081462
 	rot = -1.28357E-08,-0.8660255,-7.410693E-09,-0.4999999
@@ -1672,10 +1576,10 @@ PART
 {
 	part = liquidEngine2_4294869220
 	partName = Part
-	pos = 0.663912,6.957716,0.9565438
+	pos = 0.663912,7.357721,0.9565438
 	attPos = 0,0,0
 	attPos0 = -4.773721E-08,-2.789326,-2.477419E-15
-	rot = -6.050815E-09,-0.2588187,1.62132E-09,-0.965926
+	rot = -6.050815E-09,-0.2588187,1.621317E-09,-0.965926
 	attRot = 0,0,0,1
 	attRot0 = -6.050803E-09,-0.7071071,-6.050798E-09,0.7071065
 	mir = 1,1,1
@@ -1894,7 +1798,7 @@ PART
 {
 	part = winglet_4294869068
 	partName = Part
-	pos = 1.292823,8.826102,2.045849
+	pos = 1.292823,9.226108,2.045849
 	attPos = 0,0,0
 	attPos0 = -1.257821,-0.9209423,1.503414E-07
 	rot = -1.759995E-08,-0.8660255,-1.016133E-08,-0.4999999
@@ -1940,7 +1844,7 @@ PART
 {
 	part = fuelTank.long_4294869032
 	partName = Part
-	pos = 1.120991,9.747045,-0.7493007
+	pos = 1.120991,10.14705,-0.7493007
 	attPos = 0,0,0
 	attPos0 = 1.081462,-0.7057819,-0.6243825
 	rot = -1.431636E-08,-0.9659259,3.836059E-09,0.2588191
@@ -1998,7 +1902,7 @@ PART
 {
 	part = liquidEngine2_4294868994
 	partName = Part
-	pos = 1.120991,6.957716,-0.7493007
+	pos = 1.120991,7.357721,-0.7493007
 	attPos = 0,0,0
 	attPos0 = -4.773721E-08,-2.789326,-2.477419E-15
 	rot = -3.132129E-09,-0.8660253,5.425016E-09,-0.5000004
@@ -2220,7 +2124,7 @@ PART
 {
 	part = winglet_4294868842
 	partName = Part
-	pos = 2.210299,8.826102,-1.378212
+	pos = 2.210298,9.226108,-1.378212
 	attPos = 0,0,0
 	attPos0 = -1.257821,-0.9209423,1.503414E-07
 	rot = -1.963019E-08,-0.9659259,5.259895E-09,0.2588192
@@ -2259,710 +2163,6 @@ PART
 		}
 		ACTIONS
 		{
-		}
-	}
-}
-PART
-{
-	part = solarPanels5_4294861394
-	partName = Part
-	pos = -0.2032675,18.67808,-0.3677151
-	attPos = 0,0,0
-	attPos0 = -0.2427969,0.0006504059,-0.2427969
-	rot = 0,0.9238798,0,-0.3826828
-	attRot = 0,0,0,1
-	attRot0 = 0,0.9238798,0,-0.3826828
-	mir = 1,1,1
-	symMethod = Radial
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	sepI = 0
-	attm = 1
-	modCost = 0
-	modMass = 0
-	modSize = (0.0, 0.0, 0.0)
-	sym = solarPanels5_4294856884
-	sym = solarPanels5_4294856852
-	sym = solarPanels5_4294856820
-	sym = solarPanels5_4294856788
-	sym = solarPanels5_4294856756
-	sym = solarPanels5_4294856724
-	sym = solarPanels5_4294856692
-	srfN = srfAttach,probeCoreOcto_4294876490
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	PARTDATA
-	{
-	}
-	MODULE
-	{
-		name = ModuleDeployableSolarPanel
-		isEnabled = True
-		currentRotation = (0, 0, 0, 0)
-		stateString = RETRACTED
-		storedAnimationTime = 0
-		storedAnimationSpeed = 0
-		EVENTS
-		{
-			Extend
-			{
-				active = True
-				guiActive = True
-				guiIcon = Extend Panels
-				guiName = Extend Panels
-				category = Extend Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			Retract
-			{
-				active = True
-				guiActive = True
-				guiIcon = Retract Panels
-				guiName = Retract Panels
-				category = Retract Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-		}
-		ACTIONS
-		{
-			ExtendPanelsAction
-			{
-				actionGroup = None
-			}
-			ExtendAction
-			{
-				actionGroup = None
-			}
-			RetractAction
-			{
-				actionGroup = None
-			}
-		}
-	}
-}
-PART
-{
-	part = solarPanels5_4294856884
-	partName = Part
-	pos = -0.3038372,18.67808,-0.1249182
-	attPos = 0,0,0
-	attPos0 = -0.3433667,0.0006504059,2.980232E-08
-	rot = 0,0.7071072,0,-0.7071064
-	attRot = 0,0,0,1
-	attRot0 = 0,0.7071073,0,-0.7071064
-	mir = 1,1,1
-	symMethod = Radial
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	sepI = 0
-	attm = 1
-	modCost = 0
-	modMass = 0
-	modSize = (0.0, 0.0, 0.0)
-	sym = solarPanels5_4294861394
-	sym = solarPanels5_4294856852
-	sym = solarPanels5_4294856820
-	sym = solarPanels5_4294856788
-	sym = solarPanels5_4294856756
-	sym = solarPanels5_4294856724
-	sym = solarPanels5_4294856692
-	srfN = srfAttach,probeCoreOcto_4294876490
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	PARTDATA
-	{
-	}
-	MODULE
-	{
-		name = ModuleDeployableSolarPanel
-		isEnabled = True
-		currentRotation = (0, 0, 0, 0)
-		stateString = RETRACTED
-		storedAnimationTime = 0
-		storedAnimationSpeed = 0
-		EVENTS
-		{
-			Extend
-			{
-				active = True
-				guiActive = True
-				guiIcon = Extend Panels
-				guiName = Extend Panels
-				category = Extend Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			Retract
-			{
-				active = True
-				guiActive = True
-				guiIcon = Retract Panels
-				guiName = Retract Panels
-				category = Retract Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-		}
-		ACTIONS
-		{
-			ExtendPanelsAction
-			{
-				actionGroup = None
-			}
-			ExtendAction
-			{
-				actionGroup = None
-			}
-			RetractAction
-			{
-				actionGroup = None
-			}
-		}
-	}
-}
-PART
-{
-	part = solarPanels5_4294856852
-	partName = Part
-	pos = -0.2032675,18.67808,0.1178787
-	attPos = 0,0,0
-	attPos0 = -0.2427969,0.0006504059,0.2427969
-	rot = 0,0.3826841,0,-0.9238793
-	attRot = 0,0,0,1
-	attRot0 = 0,0.3826841,0,-0.9238793
-	mir = 1,1,1
-	symMethod = Radial
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	sepI = 0
-	attm = 1
-	modCost = 0
-	modMass = 0
-	modSize = (0.0, 0.0, 0.0)
-	sym = solarPanels5_4294861394
-	sym = solarPanels5_4294856884
-	sym = solarPanels5_4294856820
-	sym = solarPanels5_4294856788
-	sym = solarPanels5_4294856756
-	sym = solarPanels5_4294856724
-	sym = solarPanels5_4294856692
-	srfN = srfAttach,probeCoreOcto_4294876490
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	PARTDATA
-	{
-	}
-	MODULE
-	{
-		name = ModuleDeployableSolarPanel
-		isEnabled = True
-		currentRotation = (0, 0, 0, 0)
-		stateString = RETRACTED
-		storedAnimationTime = 0
-		storedAnimationSpeed = 0
-		EVENTS
-		{
-			Extend
-			{
-				active = True
-				guiActive = True
-				guiIcon = Extend Panels
-				guiName = Extend Panels
-				category = Extend Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			Retract
-			{
-				active = True
-				guiActive = True
-				guiIcon = Retract Panels
-				guiName = Retract Panels
-				category = Retract Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-		}
-		ACTIONS
-		{
-			ExtendPanelsAction
-			{
-				actionGroup = None
-			}
-			ExtendAction
-			{
-				actionGroup = None
-			}
-			RetractAction
-			{
-				actionGroup = None
-			}
-		}
-	}
-}
-PART
-{
-	part = solarPanels5_4294856820
-	partName = Part
-	pos = 0.03952944,18.67808,0.2184485
-	attPos = 0,0,0
-	attPos0 = -3.72529E-09,0.0006504059,0.3433667
-	rot = 0,6.922574E-07,0,-1
-	attRot = 0,0,0,1
-	attRot0 = 0,6.922574E-07,0,-1
-	mir = 1,1,1
-	symMethod = Radial
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	sepI = 0
-	attm = 1
-	modCost = 0
-	modMass = 0
-	modSize = (0.0, 0.0, 0.0)
-	sym = solarPanels5_4294861394
-	sym = solarPanels5_4294856884
-	sym = solarPanels5_4294856852
-	sym = solarPanels5_4294856788
-	sym = solarPanels5_4294856756
-	sym = solarPanels5_4294856724
-	sym = solarPanels5_4294856692
-	srfN = srfAttach,probeCoreOcto_4294876490
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	PARTDATA
-	{
-	}
-	MODULE
-	{
-		name = ModuleDeployableSolarPanel
-		isEnabled = True
-		currentRotation = (0, 0, 0, 0)
-		stateString = RETRACTED
-		storedAnimationTime = 0
-		storedAnimationSpeed = 0
-		EVENTS
-		{
-			Extend
-			{
-				active = True
-				guiActive = True
-				guiIcon = Extend Panels
-				guiName = Extend Panels
-				category = Extend Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			Retract
-			{
-				active = True
-				guiActive = True
-				guiIcon = Retract Panels
-				guiName = Retract Panels
-				category = Retract Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-		}
-		ACTIONS
-		{
-			ExtendPanelsAction
-			{
-				actionGroup = None
-			}
-			ExtendAction
-			{
-				actionGroup = None
-			}
-			RetractAction
-			{
-				actionGroup = None
-			}
-		}
-	}
-}
-PART
-{
-	part = solarPanels5_4294856788
-	partName = Part
-	pos = 0.2823264,18.67808,0.1178787
-	attPos = 0,0,0
-	attPos0 = 0.2427969,0.0006504059,0.2427969
-	rot = 0,-0.3826828,0,-0.9238798
-	attRot = 0,0,0,1
-	attRot0 = 0,-0.3826828,0,-0.9238798
-	mir = 1,1,1
-	symMethod = Radial
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	sepI = 0
-	attm = 1
-	modCost = 0
-	modMass = 0
-	modSize = (0.0, 0.0, 0.0)
-	sym = solarPanels5_4294861394
-	sym = solarPanels5_4294856884
-	sym = solarPanels5_4294856852
-	sym = solarPanels5_4294856820
-	sym = solarPanels5_4294856756
-	sym = solarPanels5_4294856724
-	sym = solarPanels5_4294856692
-	srfN = srfAttach,probeCoreOcto_4294876490
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	PARTDATA
-	{
-	}
-	MODULE
-	{
-		name = ModuleDeployableSolarPanel
-		isEnabled = True
-		currentRotation = (0, 0, 0, 0)
-		stateString = RETRACTED
-		storedAnimationTime = 0
-		storedAnimationSpeed = 0
-		EVENTS
-		{
-			Extend
-			{
-				active = True
-				guiActive = True
-				guiIcon = Extend Panels
-				guiName = Extend Panels
-				category = Extend Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			Retract
-			{
-				active = True
-				guiActive = True
-				guiIcon = Retract Panels
-				guiName = Retract Panels
-				category = Retract Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-		}
-		ACTIONS
-		{
-			ExtendPanelsAction
-			{
-				actionGroup = None
-			}
-			ExtendAction
-			{
-				actionGroup = None
-			}
-			RetractAction
-			{
-				actionGroup = None
-			}
-		}
-	}
-}
-PART
-{
-	part = solarPanels5_4294856756
-	partName = Part
-	pos = 0.3828961,18.67808,-0.1249183
-	attPos = 0,0,0
-	attPos0 = 0.3433667,0.0006504059,-5.215406E-08
-	rot = 0,-0.7071064,0,-0.7071072
-	attRot = 0,0,0,1
-	attRot0 = 0,-0.7071064,0,-0.7071072
-	mir = 1,1,1
-	symMethod = Radial
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	sepI = 0
-	attm = 1
-	modCost = 0
-	modMass = 0
-	modSize = (0.0, 0.0, 0.0)
-	sym = solarPanels5_4294861394
-	sym = solarPanels5_4294856884
-	sym = solarPanels5_4294856852
-	sym = solarPanels5_4294856820
-	sym = solarPanels5_4294856788
-	sym = solarPanels5_4294856724
-	sym = solarPanels5_4294856692
-	srfN = srfAttach,probeCoreOcto_4294876490
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	PARTDATA
-	{
-	}
-	MODULE
-	{
-		name = ModuleDeployableSolarPanel
-		isEnabled = True
-		currentRotation = (0, 0, 0, 0)
-		stateString = RETRACTED
-		storedAnimationTime = 0
-		storedAnimationSpeed = 0
-		EVENTS
-		{
-			Extend
-			{
-				active = True
-				guiActive = True
-				guiIcon = Extend Panels
-				guiName = Extend Panels
-				category = Extend Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			Retract
-			{
-				active = True
-				guiActive = True
-				guiIcon = Retract Panels
-				guiName = Retract Panels
-				category = Retract Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-		}
-		ACTIONS
-		{
-			ExtendPanelsAction
-			{
-				actionGroup = None
-			}
-			ExtendAction
-			{
-				actionGroup = None
-			}
-			RetractAction
-			{
-				actionGroup = None
-			}
-		}
-	}
-}
-PART
-{
-	part = solarPanels5_4294856724
-	partName = Part
-	pos = 0.2823263,18.67808,-0.3677151
-	attPos = 0,0,0
-	attPos0 = 0.2427969,0.0006504059,-0.2427969
-	rot = 0,-0.9238793,0,-0.3826841
-	attRot = 0,0,0,1
-	attRot0 = 0,-0.9238793,0,-0.3826841
-	mir = 1,1,1
-	symMethod = Radial
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	sepI = 0
-	attm = 1
-	modCost = 0
-	modMass = 0
-	modSize = (0.0, 0.0, 0.0)
-	sym = solarPanels5_4294861394
-	sym = solarPanels5_4294856884
-	sym = solarPanels5_4294856852
-	sym = solarPanels5_4294856820
-	sym = solarPanels5_4294856788
-	sym = solarPanels5_4294856756
-	sym = solarPanels5_4294856692
-	srfN = srfAttach,probeCoreOcto_4294876490
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	PARTDATA
-	{
-	}
-	MODULE
-	{
-		name = ModuleDeployableSolarPanel
-		isEnabled = True
-		currentRotation = (0, 0, 0, 0)
-		stateString = RETRACTED
-		storedAnimationTime = 0
-		storedAnimationSpeed = 0
-		EVENTS
-		{
-			Extend
-			{
-				active = True
-				guiActive = True
-				guiIcon = Extend Panels
-				guiName = Extend Panels
-				category = Extend Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			Retract
-			{
-				active = True
-				guiActive = True
-				guiIcon = Retract Panels
-				guiName = Retract Panels
-				category = Retract Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-		}
-		ACTIONS
-		{
-			ExtendPanelsAction
-			{
-				actionGroup = None
-			}
-			ExtendAction
-			{
-				actionGroup = None
-			}
-			RetractAction
-			{
-				actionGroup = None
-			}
-		}
-	}
-}
-PART
-{
-	part = solarPanels5_4294856692
-	partName = Part
-	pos = 0.03952933,18.67808,-0.4682849
-	attPos = 0,0,0
-	attPos0 = -1.117587E-07,0.0006504059,-0.3433667
-	rot = 0,-1,0,-5.089693E-07
-	attRot = 0,0,0,1
-	attRot0 = 0,-1,0,-5.089693E-07
-	mir = 1,1,1
-	symMethod = Radial
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	sepI = 0
-	attm = 1
-	modCost = 0
-	modMass = 0
-	modSize = (0.0, 0.0, 0.0)
-	sym = solarPanels5_4294861394
-	sym = solarPanels5_4294856884
-	sym = solarPanels5_4294856852
-	sym = solarPanels5_4294856820
-	sym = solarPanels5_4294856788
-	sym = solarPanels5_4294856756
-	sym = solarPanels5_4294856724
-	srfN = srfAttach,probeCoreOcto_4294876490
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	PARTDATA
-	{
-	}
-	MODULE
-	{
-		name = ModuleDeployableSolarPanel
-		isEnabled = True
-		currentRotation = (0, 0, 0, 0)
-		stateString = RETRACTED
-		storedAnimationTime = 0
-		storedAnimationSpeed = 0
-		EVENTS
-		{
-			Extend
-			{
-				active = True
-				guiActive = True
-				guiIcon = Extend Panels
-				guiName = Extend Panels
-				category = Extend Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			Retract
-			{
-				active = True
-				guiActive = True
-				guiIcon = Retract Panels
-				guiName = Retract Panels
-				category = Retract Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-		}
-		ACTIONS
-		{
-			ExtendPanelsAction
-			{
-				actionGroup = None
-			}
-			ExtendAction
-			{
-				actionGroup = None
-			}
-			RetractAction
-			{
-				actionGroup = None
-			}
 		}
 	}
 }

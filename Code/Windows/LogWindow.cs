@@ -15,19 +15,21 @@ namespace KOSM.Windows
         float x = 0;
         float y = 0;
         float w = 500;
+        int rows = 10;
         string title = "Log Window";
 
         protected Rect windowPos;
 
         public float Height { get { return windowPos.height; } }
 
-        public LogWindow(int index, float x, float y, float w, string title, ILog log)
+        public LogWindow(int index, float x, float y, float w, string title, int rows, ILog log)
         {
             this.index = index;
             this.x = x;
             this.y = y;
             this.w = w;
             this.title = title;
+            this.rows = rows;
             this.log = log;
         }
 
@@ -51,8 +53,10 @@ namespace KOSM.Windows
         {
             GUILayout.BeginVertical();
             GUI.skin.label.fontSize = 11;
-            foreach (object message in log.Messages)
-                GUILayout.Label(message.ToString(), GUI.skin.label, GUILayout.ExpandWidth(true));
+            for (int i = Math.Max(0, log.Messages.Count - rows); i < log.Messages.Count; i++)
+                GUILayout.Label(log.Messages[i].ToString(), GUI.skin.label, GUILayout.ExpandWidth(true));
+            for (int i = 0; i < rows - log.Messages.Count; i++)
+                GUILayout.Label("", GUI.skin.label, GUILayout.ExpandWidth(true));
             GUILayout.EndVertical();
 
             GUI.DragWindow();

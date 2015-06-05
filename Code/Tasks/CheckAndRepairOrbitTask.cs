@@ -21,17 +21,18 @@ namespace KOSM.Tasks
         public override void Execute(World world, Mission mission)
         {
             if (rocket.Orbit.PeriapsisAltitude > targetAltitude * 0.95)
+            {
                 mission.Complete(world, this);
+                return;
+            }
 
             this.Details = "Resulting orbit is too low! Trying my best to get back on track.";
 
-            if (rocket.Orbit.MovingTowardsPeriapsis)
+            if ((rocket.Orbit.MovingTowardsPeriapsis && rocket.Altitude < targetAltitude) || (rocket.Orbit.MovingTowardsApoapsis && rocket.Orbit.ApoapsisAltitude < targetAltitude))
             {
                 rocket.SetSteering(rocket.Up);
                 rocket.Throttle = 1;
-
-                if (rocket.Altitude < targetAltitude || (rocket.Orbit.MovingTowardsApoapsis && rocket.Orbit.ApoapsisAltitude < targetAltitude))
-                    return;        
+                return;
             }
 
             rocket.Throttle = 0;

@@ -58,6 +58,15 @@ namespace KOSM.Tasks
 
             UpdateLog(world, this.tasks[0]);
             this.tasks[0].Execute(world, this);
+
+            ShowMissionPlan(world);
+        }
+
+        public void ShowMissionPlan(World world)
+        {
+            world.MissionPlanLog.Clear();
+            for (int i = 0; i < tasks.Count; i++)
+                world.MissionPlanLog.Add(tasks[i].Description);
         }
 
         string latestTaskDescription = null;

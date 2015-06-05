@@ -18,6 +18,8 @@ namespace KOSM.Game
 
         public double VelocityAtApoapsis { get { return OrbitVelocity(orbit.referenceBody.gravParameter, ApoapsisRadius, orbit.semiMajorAxis); } }
 
+        public double VelocityAtPeriapsis { get { return OrbitVelocity(orbit.referenceBody.gravParameter, PeriapsisRadius, orbit.semiMajorAxis); } }
+
         public double PeriapsisAltitude { get { return this.orbit.PeA; } }
 
         public double PeriapsisRadius { get { return this.orbit.PeA; } }
@@ -34,11 +36,22 @@ namespace KOSM.Game
         {
             double targetVelocityAtApsis = OrbitVelocity(
                 orbit.referenceBody.gravParameter,
-                targetAltitude + orbit.referenceBody.Radius,
+                ApoapsisRadius,
                 SemiMajorAxis(orbit.referenceBody.Radius, ApoapsisAltitude, targetAltitude)
                 );
 
             return targetVelocityAtApsis - VelocityAtApoapsis;
+        }
+
+        public double DeltaVForPeriapsisManeuver(double targetAltitude)
+        {
+            double targetVelocityAtApsis = OrbitVelocity(
+                orbit.referenceBody.gravParameter,
+                PeriapsisRadius,
+                SemiMajorAxis(orbit.referenceBody.Radius, targetAltitude, PeriapsisAltitude)
+                );
+
+            return targetVelocityAtApsis - VelocityAtPeriapsis;
         }
 
         // v = sqrt( G*M * (2/r - 1/a) )

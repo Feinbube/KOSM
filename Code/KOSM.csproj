@@ -53,8 +53,11 @@
     <Compile Include="Scripts\MultiRocketMissionScript.cs" />
     <Compile Include="Reporting\GraphicsOverlay.cs" />
     <Compile Include="States\InOrbitState.cs" />
+    <Compile Include="Tasks\DescentToHoverTask.cs" />
     <Compile Include="Tasks\ExecuteManeuverTask.cs" />
     <Compile Include="Tasks\CheckAndRepairOrbitTask.cs" />
+    <Compile Include="Tasks\FinalDescentTask.cs" />
+    <Compile Include="Tasks\DeOrbitTask.cs" />
     <Compile Include="Windows\LogWindow.cs" />
     <Compile Include="Scripts\IScript.cs" />
     <Compile Include="Game\World.cs" />

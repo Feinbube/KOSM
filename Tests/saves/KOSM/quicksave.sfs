@@ -10,7 +10,7 @@ GAME
 	scene = 7
 	editor = None
 	flag = 
-	launchID = 14
+	launchID = 17
 	PARAMETERS
 	{
 		preset = Normal
@@ -93,56 +93,275 @@ GAME
 			MaxDeltaTime = 21600
 		}
 	}
+	SCENARIO
+	{
+		name = VesselRecovery
+		scene = 5, 7, 8, 6
+	}
+	SCENARIO
+	{
+		name = ScenarioDestructibles
+		scene = 5, 7, 6, 8
+		SpaceCenter/Administration/Facility/mainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/AstronautComplex/Facility/building
+		{
+			intact = True
+		}
+		SpaceCenter/LaunchPad/Facility/LaunchPadMedium/KSCFlagPoleLaunchPad
+		{
+			intact = True
+		}
+		SpaceCenter/LaunchPad/Facility/LaunchPadMedium/ksp_pad_waterTower
+		{
+			intact = True
+		}
+		SpaceCenter/LaunchPad/Facility/LaunchPadMedium/ksp_pad_sphereTank
+		{
+			intact = True
+		}
+		SpaceCenter/LaunchPad/Facility/LaunchPadMedium/ksp_pad_launchPad
+		{
+			intact = True
+		}
+		SpaceCenter/LaunchPad/Facility/LaunchPadMedium/ksp_pad_cylTank
+		{
+			intact = True
+		}
+		SpaceCenter/MissionControl/Facility/building
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/SideLab
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/Observatory
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/WindTunnel
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/CornerLab
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/MainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/CentralBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/SmallLab
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/ksp_pad_cylTank
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/Section4
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/Section3
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/Section2
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/Section1
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/End27
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/End09
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/model_runway_new_v43/runway_light_SW
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/model_runway_new_v43/runway_light_NW
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/model_runway_new_v43/runway_light_NE
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/model_runway_new_v43/runway_light_SE
+		{
+			intact = True
+		}
+		SpaceCenter/SpaceplaneHangar/Facility/mainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/SpaceplaneHangar/Facility/ksp_pad_waterTower
+		{
+			intact = True
+		}
+		SpaceCenter/SpaceplaneHangar/Facility/ksp_pad_cylTank
+		{
+			intact = True
+		}
+		SpaceCenter/SpaceplaneHangar/Facility/Tank
+		{
+			intact = True
+		}
+		SpaceCenter/TrackingStation/Facility/MainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/TrackingStation/Facility/dish_array/dish_east
+		{
+			intact = True
+		}
+		SpaceCenter/TrackingStation/Facility/dish_array/dish_north
+		{
+			intact = True
+		}
+		SpaceCenter/TrackingStation/Facility/dish_array/dish_south
+		{
+			intact = True
+		}
+		SpaceCenter/VehicleAssemblyBuilding/Facility/PodMemorial
+		{
+			intact = True
+		}
+		SpaceCenter/VehicleAssemblyBuilding/Facility/mainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/VehicleAssemblyBuilding/Facility/Tank
+		{
+			intact = True
+		}
+		SpaceCenter/VehicleAssemblyBuilding/Facility/ksp_pad_cylTank
+		{
+			intact = True
+		}
+		SpaceCenter/FlagPole/Facility
+		{
+			intact = True
+		}
+		SpaceCenter/VehicleAssemblyBuilding/Facility/VAB2
+		{
+			intact = True
+		}
+		SpaceCenter/TrackingStation/Facility/OuterDish
+		{
+			intact = True
+		}
+		SpaceCenter/TrackingStation/Facility/building
+		{
+			intact = True
+		}
+		SpaceCenter/SpaceplaneHangar/Facility/Building
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/ForeverAlone
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/mainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/MissionControl/Facility/mainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/LaunchPad/Facility/Flag
+		{
+			intact = True
+		}
+		SpaceCenter/AstronautComplex/Facility/mainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/Administration/Facility/Building
+		{
+			intact = True
+		}
+	}
+	SCENARIO
+	{
+		name = ScenarioDiscoverableObjects
+		scene = 7, 8, 5
+		lastSeed = 588900808
+		sizeCurve
+		{
+			key = 0 0 1.5 1.5
+			key = 0.3 0.45 0.875 0.875
+			key = 0.7 0.55 0.875 0.875
+			key = 1 1 1.5 1.5
+		}
+	}
 	FLIGHTSTATE
 	{
 		version = 1.0.2
-		UT = 3227.09583036629
-		activeVessel = 1
+		UT = 6153.60613437208
+		activeVessel = 0
 		mapViewFiltering = -1026
 		VESSEL
 		{
-			pid = 449a846b68124e1ab694a1ab315f8126
-			name = SC4
+			pid = 8a466bfe413e45f89fcbecfd470e2364
+			name = SC8
 			type = Probe
-			sit = SUB_ORBITAL
-			landed = False
-			landedAt = 
+			sit = PRELAUNCH
+			landed = True
+			landedAt = KSC_LaunchPad_Platform
 			splashed = False
-			met = 336.980788610811
-			lct = 2631.05504175571
+			met = 0
+			lct = 6153.60613437208
 			root = 0
-			lat = -0.120438933466473
-			lon = -33.2072409658462
-			alt = 75878.3407912229
-			hgt = -1
-			nrm = 6.035527E-07,0.0751552,-0.9971719
-			rot = 0.3118912,-0.3134063,-0.6344103,0.6340536
-			CoM = 8.650649E-07,-2.831601,-2.46842E-06
-			stg = 0
+			lat = -0.0972197342019488
+			lon = 285.442326808744
+			alt = 84.9200382925337
+			hgt = 12.3521
+			nrm = 1.266899E-05,1,1.792966E-05
+			rot = -0.7009872,-0.09215163,-0.0973229,0.7004667
+			CoM = -7.679763E-05,-8.392804,-8.531596E-06
+			stg = 3
 			prst = False
-			ref = 2642408434
+			ref = 2150160979
 			ctrl = True
-			cPch = 
-			cHdg = 
+			cPch = 0.2
+			cHdg = 0.3
 			cMod = 0
 			ORBIT
 			{
-				SMA = 586764.105579965
-				ECC = 0.153778207815947
-				INC = 0.124693106789487
-				LPE = 112.74411148605
-				LAN = 181.250729405795
-				MNA = 2.96000167095062
-				EPH = 2968.03583036652
+				SMA = 300816.972791924
+				ECC = 0.994822704507065
+				INC = 0.097219724169614
+				LPE = 90.005567582245
+				LAN = 207.997611454909
+				MNA = 3.14159348003518
+				EPH = 6153.60613437208
 				REF = 1
 			}
 			PART
 			{
 				name = probeCoreOcto
-				cid = 4294875592
-				uid = 2642408434
-				mid = 1151828181
-				launchID = 12
+				cid = 4294876490
+				uid = 2150160979
+				mid = 3023447419
+				launchID = 16
 				parent = 0
 				position = 0,0,0
 				rotation = 0,0,0,1
@@ -158,13 +377,13 @@ GAME
 				attN = bottom, 1
 				attN = None, -1
 				mass = 0.1
-				temp = 304.22410355072
+				temp = 287.619149415554
 				expt = 0
-				state = 1
+				state = 0
 				connected = True
 				attached = True
 				flag = 
-				rTrf = probeCoreOcto (SC4)
+				rTrf = probeCoreOcto
 				modCost = 0
 				EVENTS
 				{
@@ -213,7 +432,7 @@ GAME
 				{
 					name = ModuleReactionWheel
 					isEnabled = True
-					stateString = Running
+					stateString = Idle
 					WheelState = Active
 					EVENTS
 					{
@@ -275,15 +494,12 @@ GAME
 					Log
 					{
 						flight = 0
-						0 = Land,Kerbin
-						0 = Flight,Kerbin
-						0 = Suborbit,Kerbin
 					}
 				}
 				RESOURCE
 				{
 					name = ElectricCharge
-					amount = 10
+					amount = 9.95346666770664
 					maxAmount = 10
 					flowState = True
 					isTweakable = True
@@ -293,13 +509,13 @@ GAME
 			}
 			PART
 			{
-				name = fuelTank.long
-				cid = 4294874826
-				uid = 3890153727
-				mid = 1151828181
-				launchID = 12
+				name = sasModule
+				cid = 4294864474
+				uid = 1882280785
+				mid = 3023447419
+				launchID = 16
 				parent = 0
-				position = 0,-2.06208038330078,0
+				position = 0,-0.278188705444336,0
 				rotation = 0,0,0,1
 				mirror = 1,1,1
 				symMethod = Radial
@@ -310,12 +526,189 @@ GAME
 				sidx = -1
 				attm = 0
 				srfN = None, -1
-				attN = top, 0
 				attN = bottom, 2
-				mass = 0.5
-				temp = 304.24639057233
+				attN = top, 0
+				mass = 0.05
+				temp = 287.568128173126
 				expt = 0.5
-				state = 1
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = sasModule
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleReactionWheel
+					isEnabled = True
+					stateString = Idle
+					WheelState = Active
+					EVENTS
+					{
+						OnToggle
+						{
+							active = True
+							guiActive = True
+							guiActiveEditor = True
+							guiIcon = Toggle Torque
+							guiName = Toggle Torque
+							category = Toggle Torque
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						Activate
+						{
+							actionGroup = None
+						}
+						Deactivate
+						{
+							actionGroup = None
+						}
+						Toggle
+						{
+							actionGroup = None
+						}
+					}
+				}
+			}
+			PART
+			{
+				name = batteryBankMini
+				cid = 4294862594
+				uid = 356805855
+				mid = 3023447419
+				launchID = 16
+				parent = 1
+				position = 0,-0.46929931640625,0
+				rotation = 0,0,0,1
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sepI = 0
+				sidx = -1
+				attm = 0
+				srfN = None, -1
+				attN = top, 1
+				attN = bottom, 3
+				mass = 0.01
+				temp = 287.959630355876
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = batteryBankMini
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				RESOURCE
+				{
+					name = ElectricCharge
+					amount = 199.953466667707
+					maxAmount = 200
+					flowState = True
+					isTweakable = True
+					hideFlow = False
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = batteryBankMini
+				cid = 4294862230
+				uid = 1154181034
+				mid = 3023447419
+				launchID = 16
+				parent = 2
+				position = 0,-0.669300079345703,0
+				rotation = 0,0,0,1
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sepI = 0
+				sidx = -1
+				attm = 0
+				srfN = None, -1
+				attN = top, 2
+				attN = bottom, 4
+				mass = 0.01
+				temp = 287.958522236301
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = batteryBankMini
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				RESOURCE
+				{
+					name = ElectricCharge
+					amount = 199.953466667707
+					maxAmount = 200
+					flowState = True
+					isTweakable = True
+					hideFlow = False
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = fuelTank.long
+				cid = 4294875526
+				uid = 3284243822
+				mid = 3023447419
+				launchID = 16
+				parent = 3
+				position = 0,-2.64430999755859,0
+				rotation = 0,0,0,1
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sepI = 0
+				sidx = -1
+				attm = 0
+				srfN = None, -1
+				attN = top, 3
+				attN = bottom, 5
+				mass = 0.5
+				temp = 287.504341173251
+				expt = 0.5
+				state = 0
 				connected = True
 				attached = True
 				flag = 
@@ -333,7 +726,7 @@ GAME
 				RESOURCE
 				{
 					name = LiquidFuel
-					amount = 269.062071293361
+					amount = 360
 					maxAmount = 360
 					flowState = True
 					isTweakable = True
@@ -343,7 +736,7 @@ GAME
 				RESOURCE
 				{
 					name = Oxidizer
-					amount = 328.853637338489
+					amount = 440
 					maxAmount = 440
 					flowState = True
 					isTweakable = True
@@ -354,12 +747,12 @@ GAME
 			PART
 			{
 				name = liquidEngine2
-				cid = 4294873474
-				uid = 865405798
-				mid = 1151828181
-				launchID = 12
-				parent = 1
-				position = 0,-4.85140991210938,0
+				cid = 4294871188
+				uid = 3580171032
+				mid = 3023447419
+				launchID = 16
+				parent = 4
+				position = 0,-5.43362903594971,0
 				rotation = 0,0,0,1
 				mirror = 1,1,1
 				symMethod = Radial
@@ -370,12 +763,12 @@ GAME
 				sidx = 0
 				attm = 0
 				srfN = None, -1
-				attN = top, 1
-				attN = None, -1
+				attN = top, 4
+				attN = bottom, 6
 				mass = 1.5
-				temp = 304.250386606012
+				temp = 287.54042774331
 				expt = 0.5
-				state = 1
+				state = 0
 				connected = True
 				attached = True
 				flag = 
@@ -394,9 +787,9 @@ GAME
 				{
 					name = ModuleEngines
 					isEnabled = True
-					staged = True
+					staged = False
 					flameout = False
-					EngineIgnited = True
+					EngineIgnited = False
 					engineShutdown = False
 					currentThrottle = 0
 					thrustPercentage = 100
@@ -412,7 +805,7 @@ GAME
 					{
 						Activate
 						{
-							active = False
+							active = True
 							guiActive = True
 							guiIcon = Activate Engine
 							guiName = Activate Engine
@@ -423,7 +816,7 @@ GAME
 						}
 						Shutdown
 						{
-							active = True
+							active = False
 							guiActive = True
 							guiIcon = Shutdown Engine
 							guiName = Shutdown Engine
@@ -453,12 +846,12 @@ GAME
 				{
 					name = ModuleJettison
 					isEnabled = True
-					isJettisoned = True
+					isJettisoned = False
 					EVENTS
 					{
 						Jettison
 						{
-							active = False
+							active = True
 							guiActive = True
 							guiIcon = Jettison
 							guiName = Jettison
@@ -570,1365 +963,41 @@ GAME
 				RESOURCE
 				{
 					name = ElectricCharge
-					amount = 0.000932136589807619
+					amount = 0
 					maxAmount = 0.119999997317791
 					flowState = True
 					isTweakable = False
 					hideFlow = True
 					flowMode = Both
 				}
-			}
-			PART
-			{
-				name = solarPanels5
-				cid = 4294872384
-				uid = 2518920239
-				mid = 1151828181
-				launchID = 12
-				parent = 1
-				position = -0.621082484722137,-0.538280487060547,0
-				rotation = -1.302701E-15,-0.7071068,-1.302701E-15,0.7071068
-				mirror = 1,1,1
-				symMethod = Radial
-				istg = 0
-				dstg = 0
-				sqor = -1
-				sepI = 0
-				sidx = -1
-				attm = 1
-				sym = 4
-				sym = 5
-				sym = 6
-				srfN = srfAttach, 1
-				mass = 0.005
-				temp = 302.347645141751
-				expt = 0.5
-				state = 1
-				connected = True
-				attached = True
-				flag = 
-				rTrf = solarPanels5
-				modCost = 0
-				EVENTS
-				{
-				}
-				ACTIONS
-				{
-				}
-				PARTDATA
-				{
-				}
-				MODULE
-				{
-					name = ModuleDeployableSolarPanel
-					isEnabled = True
-					currentRotation = (0, 0, 0, 1)
-					stateString = EXTENDED
-					storedAnimationTime = 0
-					storedAnimationSpeed = 0
-					EVENTS
-					{
-						Extend
-						{
-							active = False
-							guiActive = True
-							guiIcon = Extend Panels
-							guiName = Extend Panels
-							category = Extend Panels
-							guiActiveUnfocused = True
-							unfocusedRange = 4
-							externalToEVAOnly = True
-						}
-						Retract
-						{
-							active = False
-							guiActive = True
-							guiIcon = Retract Panels
-							guiName = Retract Panels
-							category = Retract Panels
-							guiActiveUnfocused = True
-							unfocusedRange = 4
-							externalToEVAOnly = True
-						}
-					}
-					ACTIONS
-					{
-						ExtendPanelsAction
-						{
-							actionGroup = None
-						}
-						ExtendAction
-						{
-							actionGroup = None
-						}
-						RetractAction
-						{
-							actionGroup = None
-						}
-					}
-				}
-			}
-			PART
-			{
-				name = solarPanels5
-				cid = 4294871662
-				uid = 790269562
-				mid = 1151828181
-				launchID = 12
-				parent = 1
-				position = -7.45058059692383E-09,-0.538280487060547,0.621082484722137
-				rotation = -1.842297E-15,0,7.486784E-23,1
-				mirror = 1,1,1
-				symMethod = Radial
-				istg = 0
-				dstg = 0
-				sqor = -1
-				sepI = 0
-				sidx = -1
-				attm = 1
-				sym = 3
-				sym = 5
-				sym = 6
-				srfN = srfAttach, 1
-				mass = 0.005
-				temp = 304.251730632433
-				expt = 0.5
-				state = 1
-				connected = True
-				attached = True
-				flag = 
-				rTrf = solarPanels5
-				modCost = 0
-				EVENTS
-				{
-				}
-				ACTIONS
-				{
-				}
-				PARTDATA
-				{
-				}
-				MODULE
-				{
-					name = ModuleDeployableSolarPanel
-					isEnabled = True
-					currentRotation = (0, 0, 0, 1)
-					stateString = EXTENDED
-					storedAnimationTime = 0
-					storedAnimationSpeed = 0
-					EVENTS
-					{
-						Extend
-						{
-							active = False
-							guiActive = True
-							guiIcon = Extend Panels
-							guiName = Extend Panels
-							category = Extend Panels
-							guiActiveUnfocused = True
-							unfocusedRange = 4
-							externalToEVAOnly = True
-						}
-						Retract
-						{
-							active = False
-							guiActive = True
-							guiIcon = Retract Panels
-							guiName = Retract Panels
-							category = Retract Panels
-							guiActiveUnfocused = True
-							unfocusedRange = 4
-							externalToEVAOnly = True
-						}
-					}
-					ACTIONS
-					{
-						ExtendPanelsAction
-						{
-							actionGroup = None
-						}
-						ExtendAction
-						{
-							actionGroup = None
-						}
-						RetractAction
-						{
-							actionGroup = None
-						}
-					}
-				}
-			}
-			PART
-			{
-				name = solarPanels5
-				cid = 4294871630
-				uid = 2485534422
-				mid = 1151828181
-				launchID = 12
-				parent = 1
-				position = 0.621082484722137,-0.538280487060547,-8.94069671630859E-08
-				rotation = -1.302701E-15,0.7071068,1.302701E-15,0.7071068
-				mirror = 1,1,1
-				symMethod = Radial
-				istg = 0
-				dstg = 0
-				sqor = -1
-				sepI = 0
-				sidx = -1
-				attm = 1
-				sym = 3
-				sym = 4
-				sym = 6
-				srfN = srfAttach, 1
-				mass = 0.005
-				temp = 302.3323172687
-				expt = 0.5
-				state = 1
-				connected = True
-				attached = True
-				flag = 
-				rTrf = solarPanels5
-				modCost = 0
-				EVENTS
-				{
-				}
-				ACTIONS
-				{
-				}
-				PARTDATA
-				{
-				}
-				MODULE
-				{
-					name = ModuleDeployableSolarPanel
-					isEnabled = True
-					currentRotation = (0, 0, 0, 1)
-					stateString = EXTENDED
-					storedAnimationTime = 0
-					storedAnimationSpeed = 0
-					EVENTS
-					{
-						Extend
-						{
-							active = False
-							guiActive = True
-							guiIcon = Extend Panels
-							guiName = Extend Panels
-							category = Extend Panels
-							guiActiveUnfocused = True
-							unfocusedRange = 4
-							externalToEVAOnly = True
-						}
-						Retract
-						{
-							active = False
-							guiActive = True
-							guiIcon = Retract Panels
-							guiName = Retract Panels
-							category = Retract Panels
-							guiActiveUnfocused = True
-							unfocusedRange = 4
-							externalToEVAOnly = True
-						}
-					}
-					ACTIONS
-					{
-						ExtendPanelsAction
-						{
-							actionGroup = None
-						}
-						ExtendAction
-						{
-							actionGroup = None
-						}
-						RetractAction
-						{
-							actionGroup = None
-						}
-					}
-				}
-			}
-			PART
-			{
-				name = solarPanels5
-				cid = 4294871598
-				uid = 907545282
-				mid = 1151828181
-				launchID = 12
-				parent = 1
-				position = -7.45058059692383E-08,-0.538280487060547,-0.621082484722137
-				rotation = 7.486784E-23,1,1.842297E-15,0
-				mirror = 1,1,1
-				symMethod = Radial
-				istg = 0
-				dstg = 0
-				sqor = -1
-				sepI = 0
-				sidx = -1
-				attm = 1
-				sym = 3
-				sym = 4
-				sym = 5
-				srfN = srfAttach, 1
-				mass = 0.005
-				temp = 301.646067514262
-				expt = 0.5
-				state = 1
-				connected = True
-				attached = True
-				flag = 
-				rTrf = solarPanels5
-				modCost = 0
-				EVENTS
-				{
-				}
-				ACTIONS
-				{
-				}
-				PARTDATA
-				{
-				}
-				MODULE
-				{
-					name = ModuleDeployableSolarPanel
-					isEnabled = True
-					currentRotation = (0, 0, 0, 1)
-					stateString = EXTENDED
-					storedAnimationTime = 0
-					storedAnimationSpeed = 0
-					EVENTS
-					{
-						Extend
-						{
-							active = False
-							guiActive = True
-							guiIcon = Extend Panels
-							guiName = Extend Panels
-							category = Extend Panels
-							guiActiveUnfocused = True
-							unfocusedRange = 4
-							externalToEVAOnly = True
-						}
-						Retract
-						{
-							active = False
-							guiActive = True
-							guiIcon = Retract Panels
-							guiName = Retract Panels
-							category = Retract Panels
-							guiActiveUnfocused = True
-							unfocusedRange = 4
-							externalToEVAOnly = True
-						}
-					}
-					ACTIONS
-					{
-						ExtendPanelsAction
-						{
-							actionGroup = None
-						}
-						ExtendAction
-						{
-							actionGroup = None
-						}
-						RetractAction
-						{
-							actionGroup = None
-						}
-					}
-				}
-			}
-			ACTIONGROUPS
-			{
-				Stage = False, 0
-				Gear = True, 0
-				Light = False, 0
-				RCS = True, 2628.35504175571
-				SAS = True, 2628.35504175571
-				Brakes = False, 0
-				Abort = False, 0
-				Custom01 = False, 0
-				Custom02 = False, 0
-				Custom03 = False, 0
-				Custom04 = False, 0
-				Custom05 = False, 0
-				Custom06 = False, 0
-				Custom07 = False, 0
-				Custom08 = False, 0
-				Custom09 = False, 0
-				Custom10 = False, 0
-			}
-			DISCOVERY
-			{
-				state = -1
-				lastObservedTime = 0
-				lifetime = Infinity
-				refTime = Infinity
-				size = 2
-			}
-			FLIGHTPLAN
-			{
-				MANEUVER
-				{
-					UT = 3011.46272503969
-					dV = 0,0,182.944815959449
-				}
-			}
-			CTRLSTATE
-			{
-				pitch = -1
-				yaw = 0.0009494419
-				roll = -7.880527E-07
-				trimPitch = 0
-				trimYaw = 0
-				trimRoll = 0
-				mainThrottle = 0
-			}
-		}
-		VESSEL
-		{
-			pid = 27931e56418d4ae8bf9058c7dd94cf67
-			name = SC4
-			type = Probe
-			sit = FLYING
-			landed = False
-			landedAt = 
-			splashed = False
-			met = 251.219999999772
-			lct = 2975.83583036652
-			root = 0
-			lat = -0.0844754706168478
-			lon = 312.841457874434
-			alt = 68266.5541534602
-			hgt = -1
-			nrm = -5.059044E-07,0.0007808813,-0.9999999
-			rot = 0.2575023,-0.2584735,-0.6585532,0.658173
-			CoM = -6.450549E-07,-2.806651,-0.0001030549
-			stg = 0
-			prst = False
-			ref = 4097443611
-			ctrl = True
-			cPch = 0.2
-			cHdg = 0.3
-			cMod = 0
-			ORBIT
-			{
-				SMA = 575122.770870539
-				ECC = 0.177140269566294
-				INC = 0.0961008749248127
-				LPE = 138.541693796064
-				LAN = 158.151812992675
-				MNA = 2.65283345560571
-				EPH = 3227.09583036629
-				REF = 1
-			}
-			PART
-			{
-				name = probeCoreOcto
-				cid = 4294875592
-				uid = 4097443611
-				mid = 3895037279
-				launchID = 13
-				parent = 0
-				position = 0,0,0
-				rotation = 0,0,0,1
-				mirror = 1,1,1
-				symMethod = Radial
-				istg = 0
-				dstg = 0
-				sqor = -1
-				sepI = 0
-				sidx = -1
-				attm = 0
-				srfN = None, -1
-				attN = bottom, 1
-				attN = None, -1
-				mass = 0.1
-				temp = 301.246022552765
-				expt = 0
-				state = 1
-				connected = True
-				attached = True
-				flag = 
-				rTrf = probeCoreOcto (SC4)
-				modCost = 0
-				EVENTS
-				{
-				}
-				ACTIONS
-				{
-				}
-				PARTDATA
-				{
-				}
-				MODULE
-				{
-					name = ModuleCommand
-					isEnabled = True
-					controlSrcStatusText = Operational
-					EVENTS
-					{
-						MakeReference
-						{
-							active = True
-							guiActive = True
-							guiIcon = Control From Here
-							guiName = Control From Here
-							category = Control From Here
-							guiActiveUnfocused = False
-							unfocusedRange = 2
-							externalToEVAOnly = True
-						}
-						RenameVessel
-						{
-							active = True
-							guiActive = True
-							guiIcon = Rename Vessel
-							guiName = Rename Vessel
-							category = Rename Vessel
-							guiActiveUnfocused = False
-							unfocusedRange = 2
-							externalToEVAOnly = True
-						}
-					}
-					ACTIONS
-					{
-					}
-				}
-				MODULE
-				{
-					name = ModuleReactionWheel
-					isEnabled = True
-					stateString = Running
-					WheelState = Active
-					EVENTS
-					{
-						OnToggle
-						{
-							active = True
-							guiActive = True
-							guiActiveEditor = True
-							guiIcon = Toggle Torque
-							guiName = Toggle Torque
-							category = Toggle Torque
-							guiActiveUnfocused = False
-							unfocusedRange = 2
-							externalToEVAOnly = True
-						}
-					}
-					ACTIONS
-					{
-						Activate
-						{
-							actionGroup = None
-						}
-						Deactivate
-						{
-							actionGroup = None
-						}
-						Toggle
-						{
-							actionGroup = None
-						}
-					}
-				}
-				MODULE
-				{
-					name = ModuleSAS
-					isEnabled = True
-					standaloneToggle = True
-					standaloneToggle_UIFlight
-					{
-						controlEnabled = True
-					}
-					EVENTS
-					{
-					}
-					ACTIONS
-					{
-					}
-				}
-				MODULE
-				{
-					name = ModuleTripLogger
-					isEnabled = True
-					EVENTS
-					{
-					}
-					ACTIONS
-					{
-					}
-					Log
-					{
-						flight = 0
-						0 = Land,Kerbin
-						0 = Flight,Kerbin
-					}
-				}
-				RESOURCE
-				{
-					name = ElectricCharge
-					amount = 8.98743808481422
-					maxAmount = 10
-					flowState = True
-					isTweakable = True
-					hideFlow = False
-					flowMode = Both
-				}
-			}
-			PART
-			{
-				name = fuelTank.long
-				cid = 4294874826
-				uid = 4244818026
-				mid = 3895037279
-				launchID = 13
-				parent = 0
-				position = 0,-2.06208038330078,0
-				rotation = 0,0,0,1
-				mirror = 1,1,1
-				symMethod = Radial
-				istg = 0
-				dstg = 0
-				sqor = -1
-				sepI = 0
-				sidx = -1
-				attm = 0
-				srfN = None, -1
-				attN = top, 0
-				attN = bottom, 2
-				mass = 0.5
-				temp = 301.263766041524
-				expt = 0.5
-				state = 1
-				connected = True
-				attached = True
-				flag = 
-				rTrf = fuelTank.long
-				modCost = 0
-				EVENTS
-				{
-				}
-				ACTIONS
-				{
-				}
-				PARTDATA
-				{
-				}
-				RESOURCE
-				{
-					name = LiquidFuel
-					amount = 284.559747349482
-					maxAmount = 360
-					flowState = True
-					isTweakable = True
-					hideFlow = False
-					flowMode = Both
-				}
-				RESOURCE
-				{
-					name = Oxidizer
-					amount = 347.795242319402
-					maxAmount = 440
-					flowState = True
-					isTweakable = True
-					hideFlow = False
-					flowMode = Both
-				}
-			}
-			PART
-			{
-				name = liquidEngine2
-				cid = 4294873474
-				uid = 1918286792
-				mid = 3895037279
-				launchID = 13
-				parent = 1
-				position = 0,-4.85140991210938,0
-				rotation = 0,0,0,1
-				mirror = 1,1,1
-				symMethod = Radial
-				istg = 0
-				dstg = 0
-				sqor = 0
-				sepI = 0
-				sidx = 0
-				attm = 0
-				srfN = None, -1
-				attN = top, 1
-				attN = None, -1
-				mass = 1.5
-				temp = 301.268558852122
-				expt = 0.5
-				state = 1
-				connected = True
-				attached = True
-				flag = 
-				rTrf = liquidEngine2
-				modCost = 0
-				EVENTS
-				{
-				}
-				ACTIONS
-				{
-				}
-				PARTDATA
-				{
-				}
-				MODULE
-				{
-					name = ModuleEngines
-					isEnabled = True
-					staged = True
-					flameout = False
-					EngineIgnited = True
-					engineShutdown = False
-					currentThrottle = 0.0004800558
-					thrustPercentage = 100
-					manuallyOverridden = False
-					thrustPercentage_UIFlight
-					{
-						controlEnabled = True
-						minValue = 0
-						maxValue = 100
-						stepIncrement = 0.5
-					}
-					EVENTS
-					{
-						Activate
-						{
-							active = False
-							guiActive = True
-							guiIcon = Activate Engine
-							guiName = Activate Engine
-							category = Activate Engine
-							guiActiveUnfocused = False
-							unfocusedRange = 2
-							externalToEVAOnly = True
-						}
-						Shutdown
-						{
-							active = True
-							guiActive = True
-							guiIcon = Shutdown Engine
-							guiName = Shutdown Engine
-							category = Shutdown Engine
-							guiActiveUnfocused = False
-							unfocusedRange = 2
-							externalToEVAOnly = True
-						}
-					}
-					ACTIONS
-					{
-						OnAction
-						{
-							actionGroup = None
-						}
-						ShutdownAction
-						{
-							actionGroup = None
-						}
-						ActivateAction
-						{
-							actionGroup = None
-						}
-					}
-				}
-				MODULE
-				{
-					name = ModuleJettison
-					isEnabled = True
-					isJettisoned = True
-					EVENTS
-					{
-						Jettison
-						{
-							active = False
-							guiActive = True
-							guiIcon = Jettison
-							guiName = Jettison
-							category = Jettison
-							guiActiveUnfocused = False
-							unfocusedRange = 2
-							externalToEVAOnly = True
-						}
-					}
-					ACTIONS
-					{
-						JettisonAction
-						{
-							actionGroup = None
-						}
-					}
-				}
-				MODULE
-				{
-					name = ModuleGimbal
-					isEnabled = True
-					gimbalLock = False
-					gimbalLimiter = 100
-					gimbalLock_UIFlight
-					{
-						controlEnabled = True
-					}
-					gimbalLimiter_UIFlight
-					{
-						controlEnabled = True
-						minValue = 0
-						maxValue = 100
-						stepIncrement = 1
-					}
-					EVENTS
-					{
-					}
-					ACTIONS
-					{
-						ToggleAction
-						{
-							actionGroup = None
-						}
-						LockAction
-						{
-							actionGroup = None
-						}
-						FreeAction
-						{
-							actionGroup = None
-						}
-					}
-				}
-				MODULE
-				{
-					name = ModuleAnimateHeat
-					isEnabled = True
-					EVENTS
-					{
-					}
-					ACTIONS
-					{
-					}
-				}
-				MODULE
-				{
-					name = ModuleAlternator
-					isEnabled = True
-					EVENTS
-					{
-					}
-					ACTIONS
-					{
-					}
-				}
-				MODULE
-				{
-					name = ModuleSurfaceFX
-					isEnabled = True
-					EVENTS
-					{
-					}
-					ACTIONS
-					{
-					}
-				}
-				MODULE
-				{
-					name = ModuleTestSubject
-					isEnabled = True
-					EVENTS
-					{
-						RunTestEvent
-						{
-							active = False
-							guiActive = True
-							guiIcon = Run Test
-							guiName = Run Test
-							category = Run Test
-							guiActiveUnfocused = False
-							unfocusedRange = 2
-							externalToEVAOnly = True
-						}
-					}
-					ACTIONS
-					{
-					}
-				}
-				RESOURCE
-				{
-					name = ElectricCharge
-					amount = 8.43912520998077E-05
-					maxAmount = 0.119999997317791
-					flowState = True
-					isTweakable = False
-					hideFlow = True
-					flowMode = Both
-				}
-			}
-			PART
-			{
-				name = solarPanels5
-				cid = 4294872384
-				uid = 4196949535
-				mid = 3895037279
-				launchID = 13
-				parent = 1
-				position = -0.621082484722137,-0.538280487060547,0
-				rotation = -1.302701E-15,-0.7071068,-1.302701E-15,0.7071068
-				mirror = 1,1,1
-				symMethod = Radial
-				istg = 0
-				dstg = 0
-				sqor = -1
-				sepI = 0
-				sidx = -1
-				attm = 1
-				sym = 4
-				sym = 5
-				sym = 6
-				srfN = srfAttach, 1
-				mass = 0.005
-				temp = 299.37058982068
-				expt = 0.5
-				state = 1
-				connected = True
-				attached = True
-				flag = 
-				rTrf = solarPanels5
-				modCost = 0
-				EVENTS
-				{
-				}
-				ACTIONS
-				{
-				}
-				PARTDATA
-				{
-				}
-				MODULE
-				{
-					name = ModuleDeployableSolarPanel
-					isEnabled = True
-					currentRotation = (0, 0, 0, 1)
-					stateString = EXTENDED
-					storedAnimationTime = 0
-					storedAnimationSpeed = 0
-					EVENTS
-					{
-						Extend
-						{
-							active = False
-							guiActive = True
-							guiIcon = Extend Panels
-							guiName = Extend Panels
-							category = Extend Panels
-							guiActiveUnfocused = True
-							unfocusedRange = 4
-							externalToEVAOnly = True
-						}
-						Retract
-						{
-							active = False
-							guiActive = True
-							guiIcon = Retract Panels
-							guiName = Retract Panels
-							category = Retract Panels
-							guiActiveUnfocused = True
-							unfocusedRange = 4
-							externalToEVAOnly = True
-						}
-					}
-					ACTIONS
-					{
-						ExtendPanelsAction
-						{
-							actionGroup = None
-						}
-						ExtendAction
-						{
-							actionGroup = None
-						}
-						RetractAction
-						{
-							actionGroup = None
-						}
-					}
-				}
-			}
-			PART
-			{
-				name = solarPanels5
-				cid = 4294871662
-				uid = 4064858064
-				mid = 3895037279
-				launchID = 13
-				parent = 1
-				position = -7.45058059692383E-09,-0.538280487060547,0.621082484722137
-				rotation = -1.842297E-15,0,7.486784E-23,1
-				mirror = 1,1,1
-				symMethod = Radial
-				istg = 0
-				dstg = 0
-				sqor = -1
-				sepI = 0
-				sidx = -1
-				attm = 1
-				sym = 3
-				sym = 5
-				sym = 6
-				srfN = srfAttach, 1
-				mass = 0.005
-				temp = 303.526128835861
-				expt = 0.5
-				state = 1
-				connected = True
-				attached = True
-				flag = 
-				rTrf = solarPanels5
-				modCost = 0
-				EVENTS
-				{
-				}
-				ACTIONS
-				{
-				}
-				PARTDATA
-				{
-				}
-				MODULE
-				{
-					name = ModuleDeployableSolarPanel
-					isEnabled = True
-					currentRotation = (0, 0, 0, 1)
-					stateString = EXTENDED
-					storedAnimationTime = 0
-					storedAnimationSpeed = 0
-					EVENTS
-					{
-						Extend
-						{
-							active = False
-							guiActive = True
-							guiIcon = Extend Panels
-							guiName = Extend Panels
-							category = Extend Panels
-							guiActiveUnfocused = True
-							unfocusedRange = 4
-							externalToEVAOnly = True
-						}
-						Retract
-						{
-							active = False
-							guiActive = True
-							guiIcon = Retract Panels
-							guiName = Retract Panels
-							category = Retract Panels
-							guiActiveUnfocused = True
-							unfocusedRange = 4
-							externalToEVAOnly = True
-						}
-					}
-					ACTIONS
-					{
-						ExtendPanelsAction
-						{
-							actionGroup = None
-						}
-						ExtendAction
-						{
-							actionGroup = None
-						}
-						RetractAction
-						{
-							actionGroup = None
-						}
-					}
-				}
-			}
-			PART
-			{
-				name = solarPanels5
-				cid = 4294871630
-				uid = 2412808562
-				mid = 3895037279
-				launchID = 13
-				parent = 1
-				position = 0.621082484722137,-0.538280487060547,-8.94069671630859E-08
-				rotation = -1.302701E-15,0.7071068,1.302701E-15,0.7071068
-				mirror = 1,1,1
-				symMethod = Radial
-				istg = 0
-				dstg = 0
-				sqor = -1
-				sepI = 0
-				sidx = -1
-				attm = 1
-				sym = 3
-				sym = 4
-				sym = 6
-				srfN = srfAttach, 1
-				mass = 0.005
-				temp = 299.371385576434
-				expt = 0.5
-				state = 1
-				connected = True
-				attached = True
-				flag = 
-				rTrf = solarPanels5
-				modCost = 0
-				EVENTS
-				{
-				}
-				ACTIONS
-				{
-				}
-				PARTDATA
-				{
-				}
-				MODULE
-				{
-					name = ModuleDeployableSolarPanel
-					isEnabled = True
-					currentRotation = (0, 0, 0, 1)
-					stateString = EXTENDED
-					storedAnimationTime = 0
-					storedAnimationSpeed = 0
-					EVENTS
-					{
-						Extend
-						{
-							active = False
-							guiActive = True
-							guiIcon = Extend Panels
-							guiName = Extend Panels
-							category = Extend Panels
-							guiActiveUnfocused = True
-							unfocusedRange = 4
-							externalToEVAOnly = True
-						}
-						Retract
-						{
-							active = False
-							guiActive = True
-							guiIcon = Retract Panels
-							guiName = Retract Panels
-							category = Retract Panels
-							guiActiveUnfocused = True
-							unfocusedRange = 4
-							externalToEVAOnly = True
-						}
-					}
-					ACTIONS
-					{
-						ExtendPanelsAction
-						{
-							actionGroup = None
-						}
-						ExtendAction
-						{
-							actionGroup = None
-						}
-						RetractAction
-						{
-							actionGroup = None
-						}
-					}
-				}
-			}
-			PART
-			{
-				name = solarPanels5
-				cid = 4294871598
-				uid = 1116011664
-				mid = 3895037279
-				launchID = 13
-				parent = 1
-				position = -7.45058059692383E-08,-0.538280487060547,-0.621082484722137
-				rotation = 7.486784E-23,1,1.842297E-15,0
-				mirror = 1,1,1
-				symMethod = Radial
-				istg = 0
-				dstg = 0
-				sqor = -1
-				sepI = 0
-				sidx = -1
-				attm = 1
-				sym = 3
-				sym = 4
-				sym = 5
-				srfN = srfAttach, 1
-				mass = 0.005
-				temp = 296.749564762667
-				expt = 0.5
-				state = 1
-				connected = True
-				attached = True
-				flag = 
-				rTrf = solarPanels5
-				modCost = 0
-				EVENTS
-				{
-				}
-				ACTIONS
-				{
-				}
-				PARTDATA
-				{
-				}
-				MODULE
-				{
-					name = ModuleDeployableSolarPanel
-					isEnabled = True
-					currentRotation = (0, 0, 0, 1)
-					stateString = EXTENDED
-					storedAnimationTime = 0
-					storedAnimationSpeed = 0
-					EVENTS
-					{
-						Extend
-						{
-							active = False
-							guiActive = True
-							guiIcon = Extend Panels
-							guiName = Extend Panels
-							category = Extend Panels
-							guiActiveUnfocused = True
-							unfocusedRange = 4
-							externalToEVAOnly = True
-						}
-						Retract
-						{
-							active = False
-							guiActive = True
-							guiIcon = Retract Panels
-							guiName = Retract Panels
-							category = Retract Panels
-							guiActiveUnfocused = True
-							unfocusedRange = 4
-							externalToEVAOnly = True
-						}
-					}
-					ACTIONS
-					{
-						ExtendPanelsAction
-						{
-							actionGroup = None
-						}
-						ExtendAction
-						{
-							actionGroup = None
-						}
-						RetractAction
-						{
-							actionGroup = None
-						}
-					}
-				}
-			}
-			ACTIONGROUPS
-			{
-				Stage = False, 0
-				Gear = True, 0
-				Light = False, 0
-				RCS = True, 2975.09583036652
-				SAS = True, 2975.09583036652
-				Brakes = False, 0
-				Abort = False, 0
-				Custom01 = False, 0
-				Custom02 = False, 0
-				Custom03 = False, 0
-				Custom04 = False, 0
-				Custom05 = False, 0
-				Custom06 = False, 0
-				Custom07 = False, 0
-				Custom08 = False, 0
-				Custom09 = False, 0
-				Custom10 = False, 0
-			}
-			DISCOVERY
-			{
-				state = -1
-				lastObservedTime = 0
-				lifetime = Infinity
-				refTime = Infinity
-				size = 2
-			}
-			FLIGHTPLAN
-			{
-			}
-			CTRLSTATE
-			{
-				pitch = 0.0293162
-				yaw = -2.3611E-05
-				roll = 8.439445E-06
-				trimPitch = 0
-				trimYaw = 0
-				trimRoll = 0
-				mainThrottle = 0
-			}
-		}
-		VESSEL
-		{
-			pid = 363c3eddbb834fd8bda273a8726b8b24
-			name = SC4 Debris
-			type = Debris
-			sit = FLYING
-			landed = False
-			landedAt = 
-			splashed = False
-			met = 50.2199999999543
-			lct = 3100.7558303664
-			root = 0
-			lat = -0.0934846600086768
-			lon = 298.179249187857
-			alt = 48157.2212255497
-			hgt = -1
-			nrm = 0.000967557,-0.7035763,-0.7106194
-			rot = -0.4198156,0.4203383,0.568967,-0.5686362
-			CoM = 6.129644E-07,-3.998349,-7.444702E-05
-			stg = 2
-			prst = False
-			ref = 0
-			ctrl = False
-			cPch = 0
-			cHdg = 0
-			cMod = -1
-			ORBIT
-			{
-				SMA = 431439.121620957
-				ECC = 0.503930798237565
-				INC = 0.0964604231689915
-				LPE = 106.90155757619
-				LAN = 156.425811393969
-				MNA = 3.021523827194
-				EPH = 3150.97583036636
-				REF = 1
 			}
 			PART
 			{
 				name = stackDecoupler
-				cid = 4294872900
-				uid = 880234119
-				mid = 3895037279
-				launchID = 13
-				parent = 0
-				position = 0,0,0
+				cid = 4294871880
+				uid = 291786764
+				mid = 3023447419
+				launchID = 16
+				parent = 5
+				position = 0,-6.21660900115967,0
 				rotation = 0,0,0,1
 				mirror = 1,1,1
 				symMethod = Radial
 				istg = 0
 				dstg = 1
 				sqor = 0
-				sepI = 1
+				sepI = 0
 				sidx = 1
 				attm = 0
 				srfN = None, -1
-				attN = bottom, 1
-				attN = None, -1
+				attN = bottom, 7
+				attN = top, 5
 				mass = 0.05
-				temp = 425.542696327624
+				temp = 287.710336291527
 				expt = 0.5
-				state = 1
-				connected = False
-				attached = False
+				state = 0
+				connected = True
+				attached = True
 				flag = 
 				rTrf = stackDecoupler
 				modCost = 0
@@ -1946,7 +1015,7 @@ GAME
 					name = ModuleDecouple
 					isEnabled = True
 					ejectionForcePercent = 100
-					isDecoupled = True
+					isDecoupled = False
 					ejectionForcePercent_UIFlight
 					{
 						controlEnabled = True
@@ -1958,7 +1027,7 @@ GAME
 					{
 						Decouple
 						{
-							active = False
+							active = True
 							guiActive = True
 							guiIcon = Decouple
 							guiName = Decouple
@@ -2002,29 +1071,29 @@ GAME
 			PART
 			{
 				name = fuelTank.long
-				cid = 4294796976
-				uid = 4184715700
-				mid = 3895037279
-				launchID = 13
-				parent = 0
-				position = 0,-2.00799942016602,0
+				cid = 4294874850
+				uid = 891902822
+				mid = 3023447419
+				launchID = 16
+				parent = 6
+				position = 0,-8.22458934783936,0
 				rotation = 0,0,0,1
 				mirror = 1,1,1
 				symMethod = Radial
 				istg = 2
 				dstg = 2
 				sqor = -1
-				sepI = 1
+				sepI = 0
 				sidx = -1
 				attm = 0
 				srfN = None, -1
-				attN = top, 0
-				attN = bottom, 2
+				attN = top, 6
+				attN = bottom, 8
 				mass = 0.5
-				temp = 425.379889656766
+				temp = 287.553597326352
 				expt = 0.5
-				state = 1
-				connected = False
+				state = 0
+				connected = True
 				attached = True
 				flag = 
 				rTrf = fuelTank.long
@@ -2041,7 +1110,7 @@ GAME
 				RESOURCE
 				{
 					name = LiquidFuel
-					amount = 0
+					amount = 360
 					maxAmount = 360
 					flowState = True
 					isTweakable = True
@@ -2051,7 +1120,7 @@ GAME
 				RESOURCE
 				{
 					name = Oxidizer
-					amount = 0
+					amount = 440
 					maxAmount = 440
 					flowState = True
 					isTweakable = True
@@ -2062,29 +1131,29 @@ GAME
 			PART
 			{
 				name = liquidEngine2
-				cid = 4294796938
-				uid = 4092282032
-				mid = 3895037279
-				launchID = 13
-				parent = 1
-				position = 0,-4.79731941223145,0
+				cid = 4294872304
+				uid = 1725150968
+				mid = 3023447419
+				launchID = 16
+				parent = 7
+				position = 0,-11.0139322280884,0
 				rotation = 0,0,0,1
 				mirror = 1,1,1
 				symMethod = Radial
-				istg = 0
+				istg = 1
 				dstg = 2
-				sqor = 0
-				sepI = 1
-				sidx = 2
+				sqor = 1
+				sepI = 0
+				sidx = 0
 				attm = 0
 				srfN = None, -1
-				attN = top, 1
+				attN = top, 7
 				attN = None, -1
 				mass = 1.5
-				temp = 424.620267746763
+				temp = 287.571738442443
 				expt = 0.5
-				state = 1
-				connected = False
+				state = 0
+				connected = True
 				attached = True
 				flag = 
 				rTrf = liquidEngine2
@@ -2102,11 +1171,11 @@ GAME
 				{
 					name = ModuleEngines
 					isEnabled = True
-					staged = True
-					flameout = True
-					EngineIgnited = True
+					staged = False
+					flameout = False
+					EngineIgnited = False
 					engineShutdown = False
-					currentThrottle = 1
+					currentThrottle = 0
 					thrustPercentage = 100
 					manuallyOverridden = False
 					thrustPercentage_UIFlight
@@ -2120,7 +1189,7 @@ GAME
 					{
 						Activate
 						{
-							active = False
+							active = True
 							guiActive = True
 							guiIcon = Activate Engine
 							guiName = Activate Engine
@@ -2131,7 +1200,7 @@ GAME
 						}
 						Shutdown
 						{
-							active = True
+							active = False
 							guiActive = True
 							guiIcon = Shutdown Engine
 							guiName = Shutdown Engine
@@ -2286,13 +1355,2145 @@ GAME
 					flowMode = Both
 				}
 			}
+			PART
+			{
+				name = fuelTank.long
+				cid = 4294874372
+				uid = 1768147869
+				mid = 3023447419
+				launchID = 16
+				parent = 7
+				position = -0.624382555484772,-8.93038463592529,-1.08146178722382
+				rotation = 7.410693E-09,0.5,-1.28357E-08,-0.8660254
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 2
+				dstg = 2
+				sqor = -1
+				sepI = 0
+				sidx = -1
+				attm = 1
+				sym = 12
+				sym = 15
+				sym = 18
+				srfN = srfAttach, 7
+				attN = None, -1
+				attN = bottom, 10
+				mass = 0.5
+				temp = 287.55371861525
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = fuelTank.long
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				RESOURCE
+				{
+					name = LiquidFuel
+					amount = 360
+					maxAmount = 360
+					flowState = True
+					isTweakable = True
+					hideFlow = False
+					flowMode = Both
+				}
+				RESOURCE
+				{
+					name = Oxidizer
+					amount = 440
+					maxAmount = 440
+					flowState = True
+					isTweakable = True
+					hideFlow = False
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = liquidEngine2
+				cid = 4294873718
+				uid = 309546240
+				mid = 3023447419
+				launchID = 16
+				parent = 9
+				position = -0.624382436275482,-11.7197132110596,-1.08146178722382
+				rotation = -1.621317E-09,0.965926,-6.050816E-09,-0.2588187
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 1
+				dstg = 2
+				sqor = 1
+				sepI = 0
+				sidx = 1
+				attm = 0
+				sym = 13
+				sym = 16
+				sym = 19
+				srfN = None, -1
+				attN = top, 9
+				attN = None, -1
+				mass = 1.5
+				temp = 287.575089295447
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = liquidEngine2
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleEngines
+					isEnabled = True
+					staged = False
+					flameout = False
+					EngineIgnited = False
+					engineShutdown = False
+					currentThrottle = 0
+					thrustPercentage = 100
+					manuallyOverridden = False
+					thrustPercentage_UIFlight
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 100
+						stepIncrement = 0.5
+					}
+					EVENTS
+					{
+						Activate
+						{
+							active = True
+							guiActive = True
+							guiIcon = Activate Engine
+							guiName = Activate Engine
+							category = Activate Engine
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+						Shutdown
+						{
+							active = False
+							guiActive = True
+							guiIcon = Shutdown Engine
+							guiName = Shutdown Engine
+							category = Shutdown Engine
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						OnAction
+						{
+							actionGroup = None
+						}
+						ShutdownAction
+						{
+							actionGroup = None
+						}
+						ActivateAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = ModuleJettison
+					isEnabled = True
+					isJettisoned = True
+					EVENTS
+					{
+						Jettison
+						{
+							active = False
+							guiActive = True
+							guiIcon = Jettison
+							guiName = Jettison
+							category = Jettison
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						JettisonAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = ModuleGimbal
+					isEnabled = True
+					gimbalLock = False
+					gimbalLimiter = 100
+					gimbalLock_UIFlight
+					{
+						controlEnabled = True
+					}
+					gimbalLimiter_UIFlight
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 100
+						stepIncrement = 1
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+						ToggleAction
+						{
+							actionGroup = None
+						}
+						LockAction
+						{
+							actionGroup = None
+						}
+						FreeAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = ModuleAnimateHeat
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleAlternator
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleSurfaceFX
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleTestSubject
+					isEnabled = True
+					EVENTS
+					{
+						RunTestEvent
+						{
+							active = False
+							guiActive = True
+							guiIcon = Run Test
+							guiName = Run Test
+							category = Run Test
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+					}
+				}
+				RESOURCE
+				{
+					name = ElectricCharge
+					amount = 0
+					maxAmount = 0.119999997317791
+					flowState = True
+					isTweakable = False
+					hideFlow = True
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = winglet
+				cid = 4294870276
+				uid = 1281278855
+				mid = 3023447419
+				launchID = 16
+				parent = 9
+				position = -1.25329327583313,-9.85132694244385,-2.17076778411865
+				rotation = 1.016133E-08,0.4999999,-1.759995E-08,-0.8660254
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 2
+				dstg = 2
+				sqor = -1
+				sepI = 0
+				sidx = -1
+				attm = 1
+				sym = 14
+				sym = 17
+				sym = 20
+				srfN = srfAttach, 9
+				mass = 0.037
+				temp = 287.759793052244
+				expt = 0.1
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = winglet
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleLiftingSurface
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = fuelTank.long
+				cid = 4294869484
+				uid = 451608537
+				mid = 3023447419
+				launchID = 16
+				parent = 7
+				position = -1.08146238327026,-8.93038463592529,0.624382436275482
+				rotation = -3.836059E-09,-0.2588191,-1.431636E-08,-0.9659259
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 2
+				dstg = 2
+				sqor = -1
+				sepI = 0
+				sidx = -1
+				attm = 1
+				sym = 9
+				sym = 15
+				sym = 18
+				srfN = srfAttach, 7
+				attN = None, -1
+				attN = bottom, 13
+				mass = 0.5
+				temp = 287.553718423602
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = fuelTank.long
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				RESOURCE
+				{
+					name = LiquidFuel
+					amount = 360
+					maxAmount = 360
+					flowState = True
+					isTweakable = True
+					hideFlow = False
+					flowMode = Both
+				}
+				RESOURCE
+				{
+					name = Oxidizer
+					amount = 440
+					maxAmount = 440
+					flowState = True
+					isTweakable = True
+					hideFlow = False
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = liquidEngine2
+				cid = 4294869446
+				uid = 2723407370
+				mid = 3023447419
+				launchID = 16
+				parent = 12
+				position = -1.08146238327026,-11.7197132110596,0.624382317066193
+				rotation = -5.425016E-09,0.5000004,-3.132129E-09,-0.8660253
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 1
+				dstg = 2
+				sqor = 1
+				sepI = 0
+				sidx = 2
+				attm = 0
+				sym = 10
+				sym = 16
+				sym = 19
+				srfN = None, -1
+				attN = top, 12
+				attN = None, -1
+				mass = 1.5
+				temp = 287.575089296284
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = liquidEngine2
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleEngines
+					isEnabled = True
+					staged = False
+					flameout = False
+					EngineIgnited = False
+					engineShutdown = False
+					currentThrottle = 0
+					thrustPercentage = 100
+					manuallyOverridden = False
+					thrustPercentage_UIFlight
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 100
+						stepIncrement = 0.5
+					}
+					EVENTS
+					{
+						Activate
+						{
+							active = True
+							guiActive = True
+							guiIcon = Activate Engine
+							guiName = Activate Engine
+							category = Activate Engine
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+						Shutdown
+						{
+							active = False
+							guiActive = True
+							guiIcon = Shutdown Engine
+							guiName = Shutdown Engine
+							category = Shutdown Engine
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						OnAction
+						{
+							actionGroup = None
+						}
+						ShutdownAction
+						{
+							actionGroup = None
+						}
+						ActivateAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = ModuleJettison
+					isEnabled = True
+					isJettisoned = True
+					EVENTS
+					{
+						Jettison
+						{
+							active = False
+							guiActive = True
+							guiIcon = Jettison
+							guiName = Jettison
+							category = Jettison
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						JettisonAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = ModuleGimbal
+					isEnabled = True
+					gimbalLock = False
+					gimbalLimiter = 100
+					gimbalLock_UIFlight
+					{
+						controlEnabled = True
+					}
+					gimbalLimiter_UIFlight
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 100
+						stepIncrement = 1
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+						ToggleAction
+						{
+							actionGroup = None
+						}
+						LockAction
+						{
+							actionGroup = None
+						}
+						FreeAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = ModuleAnimateHeat
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleAlternator
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleSurfaceFX
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleTestSubject
+					isEnabled = True
+					EVENTS
+					{
+						RunTestEvent
+						{
+							active = False
+							guiActive = True
+							guiIcon = Run Test
+							guiName = Run Test
+							category = Run Test
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+					}
+				}
+				RESOURCE
+				{
+					name = ElectricCharge
+					amount = 0
+					maxAmount = 0.119999997317791
+					flowState = True
+					isTweakable = False
+					hideFlow = True
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = winglet
+				cid = 4294869294
+				uid = 2167690995
+				mid = 3023447419
+				launchID = 16
+				parent = 12
+				position = -2.17076730728149,-9.85132694244385,1.25329327583313
+				rotation = -5.259895E-09,-0.2588192,-1.963019E-08,-0.9659259
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 2
+				dstg = 2
+				sqor = -1
+				sepI = 0
+				sidx = -1
+				attm = 1
+				sym = 11
+				sym = 17
+				sym = 20
+				srfN = srfAttach, 12
+				mass = 0.037
+				temp = 287.759293222608
+				expt = 0.1
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = winglet
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleLiftingSurface
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = fuelTank.long
+				cid = 4294869258
+				uid = 3382933019
+				mid = 3023447419
+				launchID = 16
+				parent = 7
+				position = 0.624382674694061,-8.93038463592529,1.08146214485168
+				rotation = -1.28357E-08,-0.8660255,-7.410693E-09,-0.4999999
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 2
+				dstg = 2
+				sqor = -1
+				sepI = 0
+				sidx = -1
+				attm = 1
+				sym = 9
+				sym = 12
+				sym = 18
+				srfN = srfAttach, 7
+				attN = None, -1
+				attN = bottom, 16
+				mass = 0.5
+				temp = 287.553718610369
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = fuelTank.long
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				RESOURCE
+				{
+					name = LiquidFuel
+					amount = 360
+					maxAmount = 360
+					flowState = True
+					isTweakable = True
+					hideFlow = False
+					flowMode = Both
+				}
+				RESOURCE
+				{
+					name = Oxidizer
+					amount = 440
+					maxAmount = 440
+					flowState = True
+					isTweakable = True
+					hideFlow = False
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = liquidEngine2
+				cid = 4294869220
+				uid = 166593895
+				mid = 3023447419
+				launchID = 16
+				parent = 15
+				position = 0.624382555484772,-11.7197132110596,1.0814620256424
+				rotation = -6.050815E-09,-0.2588187,1.621321E-09,-0.965926
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 1
+				dstg = 2
+				sqor = 1
+				sepI = 0
+				sidx = 3
+				attm = 0
+				sym = 10
+				sym = 13
+				sym = 19
+				srfN = None, -1
+				attN = top, 15
+				attN = None, -1
+				mass = 1.5
+				temp = 287.575089101219
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = liquidEngine2
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleEngines
+					isEnabled = True
+					staged = False
+					flameout = False
+					EngineIgnited = False
+					engineShutdown = False
+					currentThrottle = 0
+					thrustPercentage = 100
+					manuallyOverridden = False
+					thrustPercentage_UIFlight
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 100
+						stepIncrement = 0.5
+					}
+					EVENTS
+					{
+						Activate
+						{
+							active = True
+							guiActive = True
+							guiIcon = Activate Engine
+							guiName = Activate Engine
+							category = Activate Engine
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+						Shutdown
+						{
+							active = False
+							guiActive = True
+							guiIcon = Shutdown Engine
+							guiName = Shutdown Engine
+							category = Shutdown Engine
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						OnAction
+						{
+							actionGroup = None
+						}
+						ShutdownAction
+						{
+							actionGroup = None
+						}
+						ActivateAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = ModuleJettison
+					isEnabled = True
+					isJettisoned = True
+					EVENTS
+					{
+						Jettison
+						{
+							active = False
+							guiActive = True
+							guiIcon = Jettison
+							guiName = Jettison
+							category = Jettison
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						JettisonAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = ModuleGimbal
+					isEnabled = True
+					gimbalLock = False
+					gimbalLimiter = 100
+					gimbalLock_UIFlight
+					{
+						controlEnabled = True
+					}
+					gimbalLimiter_UIFlight
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 100
+						stepIncrement = 1
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+						ToggleAction
+						{
+							actionGroup = None
+						}
+						LockAction
+						{
+							actionGroup = None
+						}
+						FreeAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = ModuleAnimateHeat
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleAlternator
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleSurfaceFX
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleTestSubject
+					isEnabled = True
+					EVENTS
+					{
+						RunTestEvent
+						{
+							active = False
+							guiActive = True
+							guiIcon = Run Test
+							guiName = Run Test
+							category = Run Test
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+					}
+				}
+				RESOURCE
+				{
+					name = ElectricCharge
+					amount = 0
+					maxAmount = 0.119999997317791
+					flowState = True
+					isTweakable = False
+					hideFlow = True
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = winglet
+				cid = 4294869068
+				uid = 4128676467
+				mid = 3023447419
+				launchID = 16
+				parent = 15
+				position = 1.25329375267029,-9.85132694244385,2.17076754570007
+				rotation = -1.759995E-08,-0.8660255,-1.016133E-08,-0.4999999
+				mirror = 1,1,-1
+				symMethod = Radial
+				istg = 2
+				dstg = 2
+				sqor = -1
+				sepI = 0
+				sidx = -1
+				attm = 1
+				sym = 11
+				sym = 14
+				sym = 20
+				srfN = srfAttach, 15
+				mass = 0.037
+				temp = 287.759764731647
+				expt = 0.1
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = winglet
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleLiftingSurface
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = fuelTank.long
+				cid = 4294869032
+				uid = 3220198376
+				mid = 3023447419
+				launchID = 16
+				parent = 7
+				position = 1.08146154880524,-8.93038463592529,-0.624382495880127
+				rotation = -1.431636E-08,-0.9659259,3.836059E-09,0.2588191
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 2
+				dstg = 2
+				sqor = -1
+				sepI = 0
+				sidx = -1
+				attm = 1
+				sym = 9
+				sym = 12
+				sym = 15
+				srfN = srfAttach, 7
+				attN = None, -1
+				attN = bottom, 19
+				mass = 0.5
+				temp = 287.553718417463
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = fuelTank.long
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				RESOURCE
+				{
+					name = LiquidFuel
+					amount = 360
+					maxAmount = 360
+					flowState = True
+					isTweakable = True
+					hideFlow = False
+					flowMode = Both
+				}
+				RESOURCE
+				{
+					name = Oxidizer
+					amount = 440
+					maxAmount = 440
+					flowState = True
+					isTweakable = True
+					hideFlow = False
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = liquidEngine2
+				cid = 4294868994
+				uid = 4122793814
+				mid = 3023447419
+				launchID = 16
+				parent = 18
+				position = 1.08146154880524,-11.7197132110596,-0.624382495880127
+				rotation = -3.132129E-09,-0.8660253,5.425016E-09,-0.5000004
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 1
+				dstg = 2
+				sqor = 1
+				sepI = 0
+				sidx = 4
+				attm = 0
+				sym = 10
+				sym = 13
+				sym = 16
+				srfN = None, -1
+				attN = top, 18
+				attN = None, -1
+				mass = 1.5
+				temp = 287.575089061351
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = liquidEngine2
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleEngines
+					isEnabled = True
+					staged = False
+					flameout = False
+					EngineIgnited = False
+					engineShutdown = False
+					currentThrottle = 0
+					thrustPercentage = 100
+					manuallyOverridden = False
+					thrustPercentage_UIFlight
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 100
+						stepIncrement = 0.5
+					}
+					EVENTS
+					{
+						Activate
+						{
+							active = True
+							guiActive = True
+							guiIcon = Activate Engine
+							guiName = Activate Engine
+							category = Activate Engine
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+						Shutdown
+						{
+							active = False
+							guiActive = True
+							guiIcon = Shutdown Engine
+							guiName = Shutdown Engine
+							category = Shutdown Engine
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						OnAction
+						{
+							actionGroup = None
+						}
+						ShutdownAction
+						{
+							actionGroup = None
+						}
+						ActivateAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = ModuleJettison
+					isEnabled = True
+					isJettisoned = True
+					EVENTS
+					{
+						Jettison
+						{
+							active = False
+							guiActive = True
+							guiIcon = Jettison
+							guiName = Jettison
+							category = Jettison
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						JettisonAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = ModuleGimbal
+					isEnabled = True
+					gimbalLock = False
+					gimbalLimiter = 100
+					gimbalLock_UIFlight
+					{
+						controlEnabled = True
+					}
+					gimbalLimiter_UIFlight
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 100
+						stepIncrement = 1
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+						ToggleAction
+						{
+							actionGroup = None
+						}
+						LockAction
+						{
+							actionGroup = None
+						}
+						FreeAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = ModuleAnimateHeat
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleAlternator
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleSurfaceFX
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleTestSubject
+					isEnabled = True
+					EVENTS
+					{
+						RunTestEvent
+						{
+							active = False
+							guiActive = True
+							guiIcon = Run Test
+							guiName = Run Test
+							category = Run Test
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+					}
+				}
+				RESOURCE
+				{
+					name = ElectricCharge
+					amount = 0
+					maxAmount = 0.119999997317791
+					flowState = True
+					isTweakable = False
+					hideFlow = True
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = winglet
+				cid = 4294868842
+				uid = 1315856456
+				mid = 3023447419
+				launchID = 16
+				parent = 18
+				position = 2.17077016830444,-9.85132694244385,-1.25329399108887
+				rotation = -1.963019E-08,-0.9659259,5.259895E-09,0.2588192
+				mirror = 1,1,-1
+				symMethod = Radial
+				istg = 2
+				dstg = 2
+				sqor = -1
+				sepI = 0
+				sidx = -1
+				attm = 1
+				sym = 11
+				sym = 14
+				sym = 17
+				srfN = srfAttach, 18
+				mass = 0.037
+				temp = 287.759323678909
+				expt = 0.1
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = winglet
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleLiftingSurface
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = solarPanels5
+				cid = 4294861394
+				uid = 413935550
+				mid = 3023447419
+				launchID = 16
+				parent = 0
+				position = -0.242796942591667,0.000650405883789063,-0.242796897888184
+				rotation = 0,0.9238798,0,-0.3826828
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sepI = 0
+				sidx = -1
+				attm = 1
+				sym = 22
+				sym = 23
+				sym = 24
+				sym = 25
+				sym = 26
+				sym = 27
+				sym = 28
+				srfN = srfAttach, 0
+				mass = 0.005
+				temp = 288.153202437901
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = solarPanels5
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleDeployableSolarPanel
+					isEnabled = True
+					currentRotation = (0, 0, 0, 1)
+					stateString = EXTENDED
+					storedAnimationTime = 0
+					storedAnimationSpeed = 0
+					EVENTS
+					{
+						Extend
+						{
+							active = False
+							guiActive = True
+							guiIcon = Extend Panels
+							guiName = Extend Panels
+							category = Extend Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						Retract
+						{
+							active = False
+							guiActive = True
+							guiIcon = Retract Panels
+							guiName = Retract Panels
+							category = Retract Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ExtendPanelsAction
+						{
+							actionGroup = None
+						}
+						ExtendAction
+						{
+							actionGroup = None
+						}
+						RetractAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+			}
+			PART
+			{
+				name = solarPanels5
+				cid = 4294856884
+				uid = 1373780967
+				mid = 3023447419
+				launchID = 16
+				parent = 0
+				position = -0.343366652727127,0.000650405883789063,0
+				rotation = 0,0.7071072,0,-0.7071064
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sepI = 0
+				sidx = -1
+				attm = 1
+				sym = 21
+				sym = 23
+				sym = 24
+				sym = 25
+				sym = 26
+				sym = 27
+				sym = 28
+				srfN = srfAttach, 0
+				mass = 0.005
+				temp = 288.152754853772
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = solarPanels5
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleDeployableSolarPanel
+					isEnabled = True
+					currentRotation = (0, 0, 0, 1)
+					stateString = EXTENDED
+					storedAnimationTime = 0
+					storedAnimationSpeed = 0
+					EVENTS
+					{
+						Extend
+						{
+							active = False
+							guiActive = True
+							guiIcon = Extend Panels
+							guiName = Extend Panels
+							category = Extend Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						Retract
+						{
+							active = False
+							guiActive = True
+							guiIcon = Retract Panels
+							guiName = Retract Panels
+							category = Retract Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ExtendPanelsAction
+						{
+							actionGroup = None
+						}
+						ExtendAction
+						{
+							actionGroup = None
+						}
+						RetractAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+			}
+			PART
+			{
+				name = solarPanels5
+				cid = 4294856852
+				uid = 2355955189
+				mid = 3023447419
+				launchID = 16
+				parent = 0
+				position = -0.242796942591667,0.000650405883789063,0.242796897888184
+				rotation = 0,0.3826841,0,-0.9238793
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sepI = 0
+				sidx = -1
+				attm = 1
+				sym = 21
+				sym = 22
+				sym = 24
+				sym = 25
+				sym = 26
+				sym = 27
+				sym = 28
+				srfN = srfAttach, 0
+				mass = 0.005
+				temp = 288.15320125406
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = solarPanels5
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleDeployableSolarPanel
+					isEnabled = True
+					currentRotation = (0, 0, 0, 1)
+					stateString = EXTENDED
+					storedAnimationTime = 0
+					storedAnimationSpeed = 0
+					EVENTS
+					{
+						Extend
+						{
+							active = False
+							guiActive = True
+							guiIcon = Extend Panels
+							guiName = Extend Panels
+							category = Extend Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						Retract
+						{
+							active = False
+							guiActive = True
+							guiIcon = Retract Panels
+							guiName = Retract Panels
+							category = Retract Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ExtendPanelsAction
+						{
+							actionGroup = None
+						}
+						ExtendAction
+						{
+							actionGroup = None
+						}
+						RetractAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+			}
+			PART
+			{
+				name = solarPanels5
+				cid = 4294856820
+				uid = 2719292606
+				mid = 3023447419
+				launchID = 16
+				parent = 0
+				position = 0,0.000650405883789063,0.343366712331772
+				rotation = 0,6.922574E-07,0,-1
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sepI = 0
+				sidx = -1
+				attm = 1
+				sym = 21
+				sym = 22
+				sym = 23
+				sym = 25
+				sym = 26
+				sym = 27
+				sym = 28
+				srfN = srfAttach, 0
+				mass = 0.005
+				temp = 288.152753476072
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = solarPanels5
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleDeployableSolarPanel
+					isEnabled = True
+					currentRotation = (0, 0, 0, 1)
+					stateString = EXTENDED
+					storedAnimationTime = 0
+					storedAnimationSpeed = 0
+					EVENTS
+					{
+						Extend
+						{
+							active = False
+							guiActive = True
+							guiIcon = Extend Panels
+							guiName = Extend Panels
+							category = Extend Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						Retract
+						{
+							active = False
+							guiActive = True
+							guiIcon = Retract Panels
+							guiName = Retract Panels
+							category = Retract Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ExtendPanelsAction
+						{
+							actionGroup = None
+						}
+						ExtendAction
+						{
+							actionGroup = None
+						}
+						RetractAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+			}
+			PART
+			{
+				name = solarPanels5
+				cid = 4294856788
+				uid = 1302852853
+				mid = 3023447419
+				launchID = 16
+				parent = 0
+				position = 0.242796957492828,0.000650405883789063,0.242796897888184
+				rotation = 0,-0.3826828,0,-0.9238798
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sepI = 0
+				sidx = -1
+				attm = 1
+				sym = 21
+				sym = 22
+				sym = 23
+				sym = 24
+				sym = 26
+				sym = 27
+				sym = 28
+				srfN = srfAttach, 0
+				mass = 0.005
+				temp = 288.153201253097
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = solarPanels5
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleDeployableSolarPanel
+					isEnabled = True
+					currentRotation = (0, 0, 0, 1)
+					stateString = EXTENDED
+					storedAnimationTime = 0
+					storedAnimationSpeed = 0
+					EVENTS
+					{
+						Extend
+						{
+							active = False
+							guiActive = True
+							guiIcon = Extend Panels
+							guiName = Extend Panels
+							category = Extend Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						Retract
+						{
+							active = False
+							guiActive = True
+							guiIcon = Retract Panels
+							guiName = Retract Panels
+							category = Retract Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ExtendPanelsAction
+						{
+							actionGroup = None
+						}
+						ExtendAction
+						{
+							actionGroup = None
+						}
+						RetractAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+			}
+			PART
+			{
+				name = solarPanels5
+				cid = 4294856756
+				uid = 2351631561
+				mid = 3023447419
+				launchID = 16
+				parent = 0
+				position = 0.343366652727127,0.000650405883789063,-9.68575477600098E-08
+				rotation = 0,-0.7071064,0,-0.7071072
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sepI = 0
+				sidx = -1
+				attm = 1
+				sym = 21
+				sym = 22
+				sym = 23
+				sym = 24
+				sym = 25
+				sym = 27
+				sym = 28
+				srfN = srfAttach, 0
+				mass = 0.005
+				temp = 288.153201587584
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = solarPanels5
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleDeployableSolarPanel
+					isEnabled = True
+					currentRotation = (0, 0, 0, 1)
+					stateString = EXTENDED
+					storedAnimationTime = 0
+					storedAnimationSpeed = 0
+					EVENTS
+					{
+						Extend
+						{
+							active = False
+							guiActive = True
+							guiIcon = Extend Panels
+							guiName = Extend Panels
+							category = Extend Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						Retract
+						{
+							active = False
+							guiActive = True
+							guiIcon = Retract Panels
+							guiName = Retract Panels
+							category = Retract Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ExtendPanelsAction
+						{
+							actionGroup = None
+						}
+						ExtendAction
+						{
+							actionGroup = None
+						}
+						RetractAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+			}
+			PART
+			{
+				name = solarPanels5
+				cid = 4294856724
+				uid = 3250954388
+				mid = 3023447419
+				launchID = 16
+				parent = 0
+				position = 0.242796868085861,0.000650405883789063,-0.242796897888184
+				rotation = 0,-0.9238793,0,-0.3826841
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sepI = 0
+				sidx = -1
+				attm = 1
+				sym = 21
+				sym = 22
+				sym = 23
+				sym = 24
+				sym = 25
+				sym = 26
+				sym = 28
+				srfN = srfAttach, 0
+				mass = 0.005
+				temp = 288.153201253365
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = solarPanels5
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleDeployableSolarPanel
+					isEnabled = True
+					currentRotation = (0, 0, 0, 1)
+					stateString = EXTENDED
+					storedAnimationTime = 0
+					storedAnimationSpeed = 0
+					EVENTS
+					{
+						Extend
+						{
+							active = False
+							guiActive = True
+							guiIcon = Extend Panels
+							guiName = Extend Panels
+							category = Extend Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						Retract
+						{
+							active = False
+							guiActive = True
+							guiIcon = Retract Panels
+							guiName = Retract Panels
+							category = Retract Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ExtendPanelsAction
+						{
+							actionGroup = None
+						}
+						ExtendAction
+						{
+							actionGroup = None
+						}
+						RetractAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+			}
+			PART
+			{
+				name = solarPanels5
+				cid = 4294856692
+				uid = 1731751327
+				mid = 3023447419
+				launchID = 16
+				parent = 0
+				position = -1.08033418655396E-07,0.000650405883789063,-0.343366712331772
+				rotation = 0,-1,0,-5.089693E-07
+				mirror = 1,1,1
+				symMethod = Radial
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sepI = 0
+				sidx = -1
+				attm = 1
+				sym = 21
+				sym = 22
+				sym = 23
+				sym = 24
+				sym = 25
+				sym = 26
+				sym = 27
+				srfN = srfAttach, 0
+				mass = 0.005
+				temp = 288.152754470282
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = 
+				rTrf = solarPanels5
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleDeployableSolarPanel
+					isEnabled = True
+					currentRotation = (0, 0, 0, 1)
+					stateString = EXTENDED
+					storedAnimationTime = 0
+					storedAnimationSpeed = 0
+					EVENTS
+					{
+						Extend
+						{
+							active = False
+							guiActive = True
+							guiIcon = Extend Panels
+							guiName = Extend Panels
+							category = Extend Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						Retract
+						{
+							active = False
+							guiActive = True
+							guiIcon = Retract Panels
+							guiName = Retract Panels
+							category = Retract Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ExtendPanelsAction
+						{
+							actionGroup = None
+						}
+						ExtendAction
+						{
+							actionGroup = None
+						}
+						RetractAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+			}
 			ACTIONGROUPS
 			{
 				Stage = False, 0
 				Gear = True, 0
 				Light = False, 0
-				RCS = True, 2975.09583036652
-				SAS = True, 2975.09583036652
+				RCS = False, 0
+				SAS = False, 0
 				Brakes = False, 0
 				Abort = False, 0
 				Custom01 = False, 0
@@ -2325,7 +3526,7 @@ GAME
 				trimPitch = 0
 				trimYaw = 0
 				trimRoll = 0
-				mainThrottle = 1
+				mainThrottle = 0.5
 			}
 		}
 	}

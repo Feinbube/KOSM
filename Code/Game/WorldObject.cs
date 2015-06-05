@@ -21,7 +21,7 @@ namespace KOSM.Game
 
         protected void dLog(string message)
         {
-            world.DebugLog.Add(message);
+            world.LiveDebugLog.Add(message);
         }
         protected void mLog(string message)
         {
