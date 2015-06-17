@@ -13,6 +13,9 @@ namespace KOSM.Examples
     {
         Random random = new Random();
 
+        int maxRuntime = 3600;
+
+        DateTime start = DateTime.Now;
         bool first = true;
 
         public override void Update(IWorld world)
@@ -20,9 +23,12 @@ namespace KOSM.Examples
             base.Update(world);
 
             if (first && world.Rockets.Count > 0)
+            {
+                start = DateTime.Now;
                 first = false;
+            }
 
-            if (!first && world.Rockets.Count == 0)
+            if (!first && (world.Rockets.Count == 0 || start.AddSeconds(maxRuntime) < DateTime.Now))
                 world.QuickLoad();
         }
 
