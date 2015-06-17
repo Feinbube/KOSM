@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Release\Plugins\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectGuid>{1ECC4DF7-35E2-481A-AA92-30402B981FCC}</ProjectGuid>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>KOSM</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\Libraries\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\Libraries\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Immortal.cs" />
+    <Compile Include="KOSMBehaviour.cs" />
+    <Compile Include="KOSMModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Windows\ButtonBarWindow.cs" />
+    <Compile Include="Windows\LogWindow.cs" />
+    <Compile Include="Windows\Window.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KOSM.Examples\KOSM.Examples.csproj">
+      <Project>{246ca147-8c8c-4878-a109-b97193606410}</Project>
+      <Name>KOSM.Examples</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KOSM.Game\KOSM.Game.csproj">
+      <Project>{9919a784-3983-4ded-b9a9-f819b75a07c1}</Project>
+      <Name>KOSM.Game</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KOSM.Interfaces\KOSM.Interfaces.csproj">
+      <Project>{f760aefc-3e1b-4767-98f9-cf6e16a6ada1}</Project>
+      <Name>KOSM.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KOSM.Tasks\KOSM.Tasks.csproj">
+      <Project>{e2ffde91-9a8a-4fa8-b656-9fddbe5e8d7a}</Project>
+      <Name>KOSM.Tasks</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KOSM.Common\KOSM.Common.csproj">
+      <Project>{932a88df-f3be-4a11-8cad-19d99bdef92c}</Project>
+      <Name>KOSM.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

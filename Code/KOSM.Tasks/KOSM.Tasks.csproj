@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E2FFDE91-9A8A-4FA8-B656-9FDDBE5E8D7A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KOSM.Tasks</RootNamespace>
+    <AssemblyName>KOSM.Tasks</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdjustOrbit\CheckAndRepairOrbitTask.cs" />
+    <Compile Include="AdjustOrbit\CircularizeOrbitTask.cs" />
+    <Compile Include="AdjustOrbit\InclinationChangeTask.cs" />
+    <Compile Include="AdjustOrbit\StabilizeOrbitTask.cs" />
+    <Compile Include="Misc\ExecuteManeuverTask.cs" />
+    <Compile Include="Land\DeOrbitTask.cs" />
+    <Compile Include="Land\DescentToHoverTask.cs" />
+    <Compile Include="Land\FinalDescentTask.cs" />
+    <Compile Include="Land\LandAtTask.cs" />
+    <Compile Include="Launch\RaiseToLowOrbitTask.cs" />
+    <Compile Include="Mission\Mission.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Misc\QuickLoadTask.cs" />
+    <Compile Include="RocketTask.cs" />
+    <Compile Include="Mission\RunMissionTask.cs" />
+    <Compile Include="Scripts\MultiRocketMissionScript.cs" />
+    <Compile Include="Scripts\RocketMissionScript.cs" />
+    <Compile Include="Task.cs" />
+    <Compile Include="Time\WaitForRealTimeTask.cs" />
+    <Compile Include="Time\WaitTask.cs" />
+    <Compile Include="Time\WarpTask.cs" />
+    <Compile Include="Transfer\HohmannTransferTask.cs" />
+    <Compile Include="Transfer\LeaveSphereOfInfluenceTask.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KOSM.Interfaces\KOSM.Interfaces.csproj">
+      <Project>{f760aefc-3e1b-4767-98f9-cf6e16a6ada1}</Project>
+      <Name>KOSM.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KOSM.Common\KOSM.Common.csproj">
+      <Project>{932a88df-f3be-4a11-8cad-19d99bdef92c}</Project>
+      <Name>KOSM.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
