@@ -1,3 +1,33 @@
 /Code/*.suo
 /Code/obj/Release
 /Code/obj
+/Code/KOSM.Common/obj/Debug/*.cache
+/Code/KOSM.Common/obj/Release/*.cache
+/Code/KOSM.Examples/obj/Debug/*.cache
+/Code/KOSM.Examples/obj/Release/*.cache
+/Code/KOSM.Game/obj/Debug/*.cache
+/Code/KOSM.Game/obj/Release/*.cache
+/Code/KOSM.Interfaces/obj/Debug/*.cache
+/Code/KOSM.Interfaces/obj/Release/*.cache
+/Code/KOSM.Plugin/obj/Release/*.cache
+/Code/KOSM.RelatedWork/obj/Debug/*.cache
+/Code/KOSM.RelatedWork/obj/Release/*.cache
+/Code/KOSM.Tasks/obj/Debug/*.cache
+/Code/KOSM.Tasks/obj/Release/*.cache
+/Related Work/obj/Release/*.cache
+/Related Work/obj/Release/*.Cache
+/Code/KOSM.Common/bin/Release/*.pdb
+/Code/KOSM.Common/obj/Release/*.pdb
+/Code/KOSM.Examples/bin/Release/*.pdb
+/Code/KOSM.Examples/obj/Release/*.pdb
+/Code/KOSM.Game/bin/Release/*.pdb
+/Code/KOSM.Game/obj/Release/*.pdb
+/Code/KOSM.Interfaces/bin/Release/*.pdb
+/Code/KOSM.Interfaces/obj/Release/*.pdb
+/Code/KOSM.RelatedWork/bin/Release/*.pdb
+/Code/KOSM.RelatedWork/obj/Release/*.pdb
+/Code/KOSM.Tasks/bin/Release/*.pdb
+/Code/KOSM.Tasks/obj/Release/*.pdb
+/Release/Plugins/*.pdb
+/Related Work/obj
+/Related Work/*.suo

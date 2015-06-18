@@ -25,3 +25,6 @@
 [submodule "Related Work/CameraTools"]
 	path = Related Work/CameraTools
 	url = https://github.com/BahamutoD/CameraTools
+[submodule "Related Work/DarkMultiPlayer"]
+	path = Related Work/DarkMultiPlayer
+	url = https://github.com/godarklight/DarkMultiPlayer.git
