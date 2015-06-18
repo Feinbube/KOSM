@@ -31,3 +31,24 @@
 /Release/Plugins/*.pdb
 /Related Work/obj
 /Related Work/*.suo
+/Code/KOSM.Common/bin
+/Code/KOSM.Common/obj
+/Code/KOSM.Examples/obj
+/Code/KOSM.Examples/bin
+/Code/KOSM.Game/bin
+/Code/KOSM.Game/obj
+/Code/KOSM.Interfaces/bin
+/Code/KOSM.Interfaces/obj
+/Code/KOSM.RelatedWork/bin
+/Code/KOSM.RelatedWork/obj
+/Code/KOSM.Tasks/bin
+/Code/KOSM.Tasks/obj
+/Code/KOSM.Plugin/obj
+/Release/Plugins/Assembly-CSharp.dll
+/Release/Plugins/KOSM.Examples.dll
+/Release/Plugins/KOSM.Game.dll
+/Release/Plugins/KOSM.Interfaces.dll
+/Release/Plugins/KOSM.Plugin.dll
+/Release/Plugins/KOSM.Tasks.dll
+/Release/Plugins/KOSM.Utility.dll
+/Release/Plugins/UnityEngine.dll
