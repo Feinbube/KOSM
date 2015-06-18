@@ -22,3 +22,6 @@
 [submodule "Related Work/Pilot-Assistant"]
 	path = Related Work/Pilot-Assistant
 	url = https://github.com/Crzyrndm/Pilot-Assistant.git
+[submodule "Related Work/CameraTools"]
+	path = Related Work/CameraTools
+	url = https://github.com/BahamutoD/CameraTools
