@@ -22,6 +22,7 @@ namespace KOSM.Tasks
         {
             if (rocket.Orbit.PeriapsisAltitude > targetAltitude * 0.95)
             {
+                rocket.Throttle = 0;
                 mission.Complete(world, this);
                 return;
             }
