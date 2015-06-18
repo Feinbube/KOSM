@@ -42,6 +42,7 @@
     <Compile Include="AdjustOrbit\CircularizeOrbitTask.cs" />
     <Compile Include="AdjustOrbit\InclinationChangeTask.cs" />
     <Compile Include="AdjustOrbit\StabilizeOrbitTask.cs" />
+    <Compile Include="Launch\NewLaunchTask.cs" />
     <Compile Include="Misc\ExecuteManeuverTask.cs" />
     <Compile Include="Land\DeOrbitTask.cs" />
     <Compile Include="Land\DescentToHoverTask.cs" />

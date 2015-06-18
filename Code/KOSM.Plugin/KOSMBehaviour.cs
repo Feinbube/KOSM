@@ -131,12 +131,7 @@ namespace KOSM
             if (button == "Maneuver") script = new ManeuverScript();
             if (button == "Test")
             {
-                foreach (string rocketDesign in world.RocketDesigns)
-                {
-                    world.DebugLog.Add(rocketDesign);
-                    world.ToGameLog(rocketDesign);
-                }
-                world.Launch(world.RocketDesigns[1]);
+                // test stuff here
             }
         }
     }
