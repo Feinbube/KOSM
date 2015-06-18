@@ -9,7 +9,9 @@ namespace KOSM.Interfaces
         ILog MissionPlanLog { get; }
         ILog DebugLog { get; }
         ILog LiveDebugLog { get; }
-        void GameLog(object message);
+        void ToGameLog(object message);
+
+        ICamera Camera { get; }
 
         IRocket ActiveRocket { get; }
         List<IRocket> Rockets { get; }
@@ -25,6 +27,9 @@ namespace KOSM.Interfaces
         void SaveGame(string filename);
         bool QuickLoad();
         bool QuickSave();
+
+        List<string> RocketDesigns { get; }
+        void Launch(string vabName);
 
         double PointInTime { get; }
         double TimeOfNextManeuver { get; }

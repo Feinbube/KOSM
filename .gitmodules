@@ -28,3 +28,6 @@
 [submodule "Related Work/DarkMultiPlayer"]
 	path = Related Work/DarkMultiPlayer
 	url = https://github.com/godarklight/DarkMultiPlayer.git
+[submodule "Related Work/KCT"]
+	path = Related Work/KCT
+	url = https://github.com/magico13/KCT.git

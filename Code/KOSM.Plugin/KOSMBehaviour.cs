@@ -49,7 +49,7 @@ namespace KOSM
             GameEvents.onGameStateLoad.Add(gameReset);
 
             controlBar = new ButtonBarWindow(1, 200, 0, 50, "KOSM Control", new string[] { "SB", "ML", "MP", "LD", "DL" }, a => onClicked(a));
-            scriptBar = new ButtonBarWindow(2, 365, 0, 50, "KOSM Scripts", new string[] { "None", "Present", "Ascend", "Land", "Maneuver" }, a => onClicked(a));
+            scriptBar = new ButtonBarWindow(2, 365, 0, 50, "KOSM Scripts", new string[] { "None", "Present", "Ascend", "Land", "Maneuver", "Test" }, a => onClicked(a));
 
             missionLogWindow = new LogWindow(3, 10, 70, 500, "KOSM Mission Log", 10, world.MissionLog);
             missionPlanWindow = new LogWindow(4, 10, 300, 500, "KOSM Mission Plan", 10, world.MissionPlanLog);
@@ -129,6 +129,15 @@ namespace KOSM
             if (button == "Ascend") script = new AscendToOrbitScript();
             if (button == "Land") script = new LandScript();
             if (button == "Maneuver") script = new ManeuverScript();
+            if (button == "Test")
+            {
+                foreach (string rocketDesign in world.RocketDesigns)
+                {
+                    world.DebugLog.Add(rocketDesign);
+                    world.ToGameLog(rocketDesign);
+                }
+                world.Launch(world.RocketDesigns[1]);
+            }
         }
     }
 }

@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBody.cs" />
+    <Compile Include="ICamera.cs" />
     <Compile Include="IEulerAngles3.cs" />
     <Compile Include="IIdentifiable.cs" />
     <Compile Include="ILog.cs" />

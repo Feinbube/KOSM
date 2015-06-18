@@ -24,6 +24,8 @@ namespace KOSM.Interfaces
         double SphereOfInfluenceRadius { get; }
 
         double GravityParameter { get; }
-        double GravityAtSealevel { get; }        
+        double GravityAtSealevel { get; }
+
+        IVector3 Position { get; }
     }
 }

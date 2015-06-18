@@ -5,6 +5,7 @@ using System.Text;
 
 using KOSM.Interfaces;
 using KOSM.Common;
+using System.IO;
 
 namespace KOSM.Game
 {
@@ -23,6 +24,8 @@ namespace KOSM.Game
             MissionPlanLog = new Log();
             DebugLog = new Log();
             LiveDebugLog = new Log();
+
+            Camera = new Camera(this);
         }
 
         #region IWorld
@@ -32,10 +35,12 @@ namespace KOSM.Game
         public ILog DebugLog { get; private set; }
         public ILog LiveDebugLog { get; private set; }
 
-        public void GameLog(object message)
+        public void ToGameLog(object message)
         {
             UnityEngine.Debug.Log(message);
         }
+
+        public ICamera Camera { get; private set; }
 
         public IRocket ActiveRocket
         {
@@ -106,6 +111,19 @@ namespace KOSM.Game
                 return false;
             QuickSaveLoad.QuickSave();
             return true;
+        }
+
+        public List<string> RocketDesigns
+        {
+            get
+            {
+                return Directory.GetFiles(vabPath).Select(a => Path.GetFileNameWithoutExtension(a)).ToList();
+            }
+        }
+
+        public void Launch(string vabName)
+        {
+            FlightDriver.StartWithNewLaunch(vabPath + vabName + ".craft", HighLogic.CurrentGame.flagURL, "LaunchPad", new VesselCrewManifest());
         }
 
         public double PointInTime
@@ -192,6 +210,14 @@ namespace KOSM.Game
                 TimeWarp.fetch.WarpTo(timeToWarpTo);
             else if (TimeWarp.fetch.current_rate_index > 0)
                 TimeWarp.fetch.WarpTo(PointInTime);
+        }
+
+        private string vabPath
+        {
+            get
+            {
+                return KSPUtil.ApplicationRootPath + "saves/" +  HighLogic.SaveFolder + "/Ships/VAB/";
+            }
         }
     }
 }

@@ -316,6 +316,11 @@ namespace KOSM.Game
             return MissionTime + pointInTime - world.PointInTime;
         }
 
+        public IVector3 Position
+        {
+            get { return v3(raw.transform.position); }
+        }
+
         #endregion IRocket
 
         private void addNode(double pointInTime, IVector3 deltaV)

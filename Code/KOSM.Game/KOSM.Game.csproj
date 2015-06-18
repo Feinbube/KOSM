@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Body.cs" />
+    <Compile Include="Camera.cs" />
     <Compile Include="Maneuver.cs" />
     <Compile Include="Orbit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

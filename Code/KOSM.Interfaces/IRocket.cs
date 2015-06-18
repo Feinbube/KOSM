@@ -58,5 +58,7 @@ namespace KOSM.Interfaces
         IVector3 SurfaceVelocity { get; }
 
         double TimeToMissionTime(double pointInTime);
+
+        IVector3 Position { get; }
     }
 }

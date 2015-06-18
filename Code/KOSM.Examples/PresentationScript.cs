@@ -22,6 +22,9 @@ namespace KOSM.Examples
         {
             base.Update(world);
 
+            if (world.ActiveRocket != null)
+                world.Camera.BodyBehindRocket(world.ActiveRocket.Body, world.ActiveRocket);
+
             if (first && world.Rockets.Count > 0)
             {
                 start = DateTime.Now;

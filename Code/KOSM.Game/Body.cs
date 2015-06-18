@@ -118,6 +118,11 @@ namespace KOSM.Game
             get { return Gravity.GravityAtSealevel(this); }
         }
 
+        public IVector3 Position
+        {
+            get { return v3(raw.position); }
+        }
+
         #endregion IBody
     }
 }
