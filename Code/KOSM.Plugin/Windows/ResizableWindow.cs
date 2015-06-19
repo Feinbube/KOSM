@@ -9,7 +9,13 @@ namespace KOSM.Windows
 {
     public abstract class ResizableWindow : Window
     {
+        public Mouse mouse = new Mouse();
         protected Vector2 scrollPosition = Vector2.zero;
+
+        protected bool currentlyResizingRight = false;
+        protected bool currentlyResizingBottom = false;
+
+        protected bool currentlyResizing { get { return currentlyResizingRight || currentlyResizingBottom; } }
 
         public bool AutoWidth { get; set; }
         public bool AutoHeight { get; set; }
@@ -38,7 +44,8 @@ namespace KOSM.Windows
             AutoHeight = false;
         }
 
-        public ResizableWindow(int index, string title, float x, float y, float w, float h):base(index, title, x, y, w, h)
+        public ResizableWindow(int index, string title, float x, float y, float w, float h)
+            : base(index, title, x, y, w, h)
         {
             AutoWidth = false;
             AutoHeight = false;
@@ -51,11 +58,13 @@ namespace KOSM.Windows
             if (AutoHeight) result.Add(GUILayout.ExpandHeight(true));
             return result.ToArray();
         }
-        
+
         protected override void drawWindow(int windowID)
         {
             if (!shouldBeVisible)
                 return;
+
+            checkResizing();
 
             if (AutoHeight && AutoWidth)
                 buildLayout();
@@ -66,8 +75,46 @@ namespace KOSM.Windows
                 GUILayout.EndScrollView();
             }
 
-            if (Draggable)
+            if (Draggable && !currentlyResizing)
                 GUI.DragWindow();
         }
+
+        private void checkResizing()
+        {
+            mouse.Update();
+
+            if (currentlyResizingRight)
+            {
+                rect.width = mouse.X - rect.x;
+
+                if (!mouse.LeftDown)
+                    currentlyResizingRight = false;
+            }
+
+            if (currentlyResizingBottom)
+            {
+                rect.height = mouse.Y - rect.y;
+
+                if (!mouse.LeftDown)
+                    currentlyResizingBottom = false;
+            }
+
+            if (!currentlyResizing)
+            {
+                if (!mouse.LeftDown || !mouse.Hovering(rect))
+                    return;
+
+                if (mouseOnRightBorder) currentlyResizingRight = true;
+                if (mouseOnBottomBorder) currentlyResizingBottom = true;
+
+                if (currentlyResizingRight)
+                    AutoWidth = false;
+                if (currentlyResizingBottom)
+                    AutoHeight = false;
+            }
+        }
+
+        bool mouseOnRightBorder { get { return mouse.X > rect.x + rect.width - 8; } }
+        bool mouseOnBottomBorder { get { return mouse.Y > rect.y + rect.height - 8; } }
     }
 }

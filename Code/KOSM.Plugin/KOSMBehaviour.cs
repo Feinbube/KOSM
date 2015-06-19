@@ -73,6 +73,11 @@ namespace KOSM
                 world.FinishUpdate();
             }
 
+            world.LiveDebugLog.Add(String.Format("({0:0},{1:0})", Input.mousePosition.x, Screen.height - Input.mousePosition.y));
+            world.LiveDebugLog.Add(String.Format("({0:0},{1:0}) - ({2:0},{3:0})", liveDebugWindow.X, liveDebugWindow.Y, liveDebugWindow.Width + liveDebugWindow.X, liveDebugWindow.Height + liveDebugWindow.Y));
+            world.LiveDebugLog.Add(Input.GetMouseButtonDown(0) ? "Mouse is down" : "Mouse is up");
+            world.LiveDebugLog.Add(liveDebugWindow.mouse.ToString());
+
             checkGUI();
         }
 

@@ -41,6 +41,7 @@
     <Compile Include="Immortal.cs" />
     <Compile Include="KOSMBehaviour.cs" />
     <Compile Include="KOSMModule.cs" />
+    <Compile Include="Mouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Windows\ButtonBarWindow.cs" />
     <Compile Include="Windows\LogWindow.cs" />

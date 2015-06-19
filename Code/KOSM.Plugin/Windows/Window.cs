@@ -112,5 +112,10 @@ namespace KOSM.Windows
         }
 
         protected abstract void buildLayout();
+
+        public override string ToString()
+        {
+            return title;
+        }
     }
 }
