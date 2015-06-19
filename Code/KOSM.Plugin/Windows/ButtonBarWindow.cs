@@ -11,7 +11,15 @@ namespace KOSM.Windows
         Action<string> onClicked;
         string[] buttons;
 
-        public ButtonBarWindow(int index, float x, float y, float w, string title, string[] buttons, Action<string> onClicked) : base(index, x, y, w, title)
+        public ButtonBarWindow(int index, string title, double xRatio, double yRatio, string[] buttons, Action<string> onClicked)
+            : base(index, title, xRatio, yRatio)
+        {
+            this.onClicked = onClicked;
+            this.buttons = buttons;
+        }
+
+        public ButtonBarWindow(int index, string title, float x, float y, string[] buttons, Action<string> onClicked)
+            : base(index, title, x, y)
         {
             this.onClicked = onClicked;
             this.buttons = buttons;
@@ -22,7 +30,7 @@ namespace KOSM.Windows
             GUILayout.BeginHorizontal();
 
             foreach (string button in buttons)
-                if (GUILayout.Button(button, GUI.skin.button, GUILayout.ExpandWidth(true)))
+                if (GUILayout.Button(button, GUI.skin.button))
                     onClicked(button);
 
             GUILayout.EndHorizontal();

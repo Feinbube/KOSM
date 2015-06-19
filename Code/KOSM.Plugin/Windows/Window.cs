@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using UnityEngine;
 
 namespace KOSM.Windows
@@ -9,64 +10,105 @@ namespace KOSM.Windows
     public abstract class Window
     {
         protected int index;
-        protected float x = 0;
-        protected float y = 0;
-        protected float w = 500;
         protected string title = "Window Title";
 
-        protected bool hidden = true;
+        protected Rect rect;
 
-        protected Rect windowPos;
+        private Callback callback;
 
-        public float Height { get { return windowPos.height; } }
+        public double X { get { return rect.x; } set { rect.x = (float)value; } }
+        public double Y { get { return rect.y; } set { rect.y = (float)value; } }
+        public double Width { get { return rect.width; } }
+        public double Height { get { return rect.height; } }
 
-        public Window(int index, float x, float y, float w, string title)
+        protected bool shouldBeVisible = false;
+        protected bool isReallyVisible { get { return RenderingManager.fetch.postDrawQueue.Contains(callback); } }
+
+        public bool Draggable { get; set; }
+
+        public Window(int index, string title, double xRatio, double yRatio)
+            : this(index, title, xRatio * Screen.width, yRatio * Screen.height, 0.0, 0.0)
+        {
+        }
+
+        public Window(int index, string title, float x, float y)
+            : this(index, title, x, y, 0, 0)
+        {
+        }
+
+        public Window(int index, string title, double xRatio, double yRatio, double wRatio, double hRatio)
+            : this(index, title, (float)(xRatio * Screen.width), (float)(yRatio * Screen.height), (float)(wRatio * Screen.width), (float)(hRatio * Screen.height))
+        {
+        }
+
+        public Window(int index, string title, float x, float y, float w, float h)
         {
             this.index = index;
-            this.x = x;
-            this.y = y;
-            this.w = w;
             this.title = title;
+
+            this.rect = new Rect(x, y, w, h);
+            this.callback = drawGUI;
+
+            Draggable = true;
         }
 
         public void Show()
         {
-            if (hidden)
-                RenderingManager.AddToPostDrawQueue(3, new Callback(drawGUI));
-            hidden = false;
+            shouldBeVisible = true;
+
+            if (!isReallyVisible)
+                RenderingManager.AddToPostDrawQueue(3, callback);
         }
 
         public void Hide()
         {
-            if (!hidden)
-                RenderingManager.RemoveFromPostDrawQueue(3, new Callback(drawGUI));
-            hidden = true;
+            shouldBeVisible = false;
+
+            if (isReallyVisible)
+                RenderingManager.RemoveFromPostDrawQueue(3, callback);
+        }
+
+        public void Check()
+        {
+            if (shouldBeVisible) Show();
+            else Hide();
         }
 
         public void ToggleShowHide()
         {
-            if (hidden) Show();
+            if (!shouldBeVisible) Show();
             else Hide();
         }
 
         private void drawGUI()
         {
-            GUI.skin = HighLogic.Skin;
-            windowPos = GUILayout.Window(index, new Rect(x, y, 50, 50), drawWindow, title, GUILayout.MinWidth(w));
+            buildSkin();
+
+            rect = GUILayout.Window(index, rect, drawWindow, title, layoutOptions());
+        }        
+
+        protected virtual GUILayoutOption[] layoutOptions()
+        {
+            return new GUILayoutOption[] { GUILayout.ExpandHeight(true), GUILayout.ExpandWidth(true) };
         }
 
-        private void drawWindow(int windowID)
+        protected virtual void drawWindow(int windowID)
         {
-            if (hidden)
+            if (!shouldBeVisible)
                 return;
-
-            GUI.skin.label.fontSize = 11;
-            GUI.skin.label.margin = new RectOffset(1, 1, 1, 1);
-            GUI.skin.label.padding = new RectOffset(0, 0, 2, 2);
 
             buildLayout();
 
-            GUI.DragWindow();
+            if (Draggable)
+                GUI.DragWindow();
+        }
+
+        private void buildSkin()
+        {
+            GUI.skin = HighLogic.Skin;
+            GUI.skin.label.fontSize = 11;
+            GUI.skin.label.margin = new RectOffset(1, 1, 1, 1);
+            GUI.skin.label.padding = new RectOffset(0, 0, 2, 2);
         }
 
         protected abstract void buildLayout();

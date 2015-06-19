@@ -48,13 +48,13 @@ namespace KOSM
             GameEvents.onGUIApplicationLauncherDestroyed.Add(removeAppLauncher);
             GameEvents.onGameStateLoad.Add(gameReset);
 
-            controlBar = new ButtonBarWindow(1, 200, 0, 50, "KOSM Control", new string[] { "SB", "ML", "MP", "LD", "DL" }, a => onClicked(a));
-            scriptBar = new ButtonBarWindow(2, 365, 0, 50, "KOSM Scripts", new string[] { "None", "Present", "Ascend", "Land", "Maneuver", "Test" }, a => onClicked(a));
+            controlBar = new ButtonBarWindow(1, "KOSM Control", Screen.width / 3 - 100, 0, new string[] { "SB", "ML", "MP", "LD", "DL" }, a => onClicked(a));
+            scriptBar = new ButtonBarWindow(2, "KOSM Scripts", Screen.width - 400, Screen.height - 80, new string[] { "None", "Present", "Ascend", "Land", "Maneuver", "Test" }, a => onClicked(a));
 
-            missionLogWindow = new LogWindow(3, 10, 70, 500, "KOSM Mission Log", 10, world.MissionLog);
-            missionPlanWindow = new LogWindow(4, 10, 300, 500, "KOSM Mission Plan", 10, world.MissionPlanLog);
-            liveDebugWindow = new LogWindow(5, Screen.width - 510, 70, 500, "KOSM Live Debug", 10, world.LiveDebugLog);
-            persistentDebugWindow = new LogWindow(6, Screen.width - 510, 300, 500, "KOSM Debug Log", 10, world.DebugLog);
+            missionLogWindow = new LogWindow(3, "KOSM Mission Log", 0.05, 0.15, 0.3, 0.3, 10, world.MissionLog);
+            missionPlanWindow = new LogWindow(4, "KOSM Mission Plan", 0.05, 0.55, 0.3, 0.3, 10, world.MissionPlanLog);
+            liveDebugWindow = new LogWindow(5, "KOSM Live Debug", 0.65, 0.15, 0.3, 0.3, 10, world.LiveDebugLog);
+            persistentDebugWindow = new LogWindow(6, "KOSM Debug Log", 0.65, 0.55, 0.3, 0.3, 10, world.DebugLog);
         }
 
         bool first = true;
@@ -71,7 +71,9 @@ namespace KOSM
             {
                 script.Update(world);
                 world.FinishUpdate();
-            }            
+            }
+
+            checkGUI();
         }
 
         private void gameReset(ConfigNode game)
@@ -82,13 +84,6 @@ namespace KOSM
             world.MissionLog.Clear();
             world.DebugLog.Clear();
             world.LiveDebugLog.Clear();
-
-            missionLogWindow.Hide();
-            missionPlanWindow.Hide();
-            liveDebugWindow.Hide();
-            persistentDebugWindow.Hide();
-            controlBar.Hide();
-            scriptBar.Hide();
 
             controlBar.Show();
 
@@ -112,6 +107,16 @@ namespace KOSM
 
             ApplicationLauncher.Instance.RemoveModApplication(applicationLauncherButton);
             applicationLauncherButton = null;
+        }
+
+        private void checkGUI()
+        {
+            missionLogWindow.Check();
+            missionPlanWindow.Check();
+            liveDebugWindow.Check();
+            persistentDebugWindow.Check();
+            controlBar.Check();
+            scriptBar.Check();
         }
 
         private void onClicked(string button)

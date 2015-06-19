@@ -31,3 +31,6 @@
 [submodule "Related Work/KCT"]
 	path = Related Work/KCT
 	url = https://github.com/magico13/KCT.git
+[submodule "Related Work/KerbalAlarmClock"]
+	path = Related Work/KerbalAlarmClock
+	url = https://github.com/TriggerAu/KerbalAlarmClock.git
