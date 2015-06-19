@@ -25,6 +25,13 @@ namespace KOSM.Windows
             this.buttons = buttons;
         }
 
+        public ButtonBarWindow(ConfigNode node, string[] buttons, Action<string> onClicked)
+            : base(node)
+        {
+            this.onClicked = onClicked;
+            this.buttons = buttons;
+        }
+
         protected override void buildLayout()
         {
             GUILayout.BeginHorizontal();

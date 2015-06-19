@@ -51,12 +51,26 @@ namespace KOSM.Windows
             AutoHeight = false;
         }
 
+        public ResizableWindow(ConfigNode node) : base(node)
+        {
+            AutoWidth = bool.Parse(node.GetValue("AutoWidth"));
+            AutoHeight = bool.Parse(node.GetValue("AutoHeight"));
+        }
+
         protected override GUILayoutOption[] layoutOptions()
         {
             List<GUILayoutOption> result = new List<GUILayoutOption>();
             if (AutoWidth) result.Add(GUILayout.ExpandWidth(true));
             if (AutoHeight) result.Add(GUILayout.ExpandHeight(true));
             return result.ToArray();
+        }
+
+        public override ConfigNode AsConfigNode()
+        {
+            ConfigNode result = base.AsConfigNode();
+            result.AddValue("AutoWidth", AutoWidth);
+            result.AddValue("AutoHeight", AutoHeight);
+            return result;
         }
 
         protected override void drawWindow(int windowID)

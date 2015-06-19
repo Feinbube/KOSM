@@ -24,7 +24,8 @@ namespace KOSM
 
         private bool initialized = false;
 
-        private string configName = "kosm.cfg";
+        private DateTime configSaveTime = DateTime.Now;
+        private string configName = "KOSM.cfg";
         private ConfigNode config = null;
 
         private Texture2D launcherButtonTexture;
@@ -40,21 +41,13 @@ namespace KOSM
             if (initialized) return;
             else initialized = true;
 
-            config = System.IO.File.Exists(configName) ? ConfigNode.Load(configName) : new ConfigNode(configName);
-
             launcherButtonTexture = GameDatabase.Instance.GetTexture("KOSM/GFX/launcher-button", false);
 
             GameEvents.onGUIApplicationLauncherReady.Add(addAppLauncher);
             GameEvents.onGUIApplicationLauncherDestroyed.Add(removeAppLauncher);
             GameEvents.onGameStateLoad.Add(gameReset);
 
-            controlBar = new ButtonBarWindow(1, "KOSM Control", Screen.width / 3 - 100, 0, new string[] { "SB", "ML", "MP", "LD", "DL" }, a => onClicked(a));
-            scriptBar = new ButtonBarWindow(2, "KOSM Scripts", Screen.width - 400, Screen.height - 80, new string[] { "None", "Present", "Ascend", "Land", "Maneuver", "Test" }, a => onClicked(a));
-
-            missionLogWindow = new LogWindow(3, "KOSM Mission Log", 0.05, 0.15, 0.3, 0.3, 10, world.MissionLog);
-            missionPlanWindow = new LogWindow(4, "KOSM Mission Plan", 0.05, 0.55, 0.3, 0.3, 10, world.MissionPlanLog);
-            liveDebugWindow = new LogWindow(5, "KOSM Live Debug", 0.65, 0.15, 0.3, 0.3, 10, world.LiveDebugLog);
-            persistentDebugWindow = new LogWindow(6, "KOSM Debug Log", 0.65, 0.55, 0.3, 0.3, 10, world.DebugLog);
+            loadConfig();
         }
 
         bool first = true;
@@ -73,12 +66,8 @@ namespace KOSM
                 world.FinishUpdate();
             }
 
-            world.LiveDebugLog.Add(String.Format("({0:0},{1:0})", Input.mousePosition.x, Screen.height - Input.mousePosition.y));
-            world.LiveDebugLog.Add(String.Format("({0:0},{1:0}) - ({2:0},{3:0})", liveDebugWindow.X, liveDebugWindow.Y, liveDebugWindow.Width + liveDebugWindow.X, liveDebugWindow.Height + liveDebugWindow.Y));
-            world.LiveDebugLog.Add(Input.GetMouseButtonDown(0) ? "Mouse is down" : "Mouse is up");
-            world.LiveDebugLog.Add(liveDebugWindow.mouse.ToString());
-
             checkGUI();
+            checkConfigSave();
         }
 
         private void gameReset(ConfigNode game)
@@ -122,6 +111,61 @@ namespace KOSM
             persistentDebugWindow.Check();
             controlBar.Check();
             scriptBar.Check();
+        }
+
+        private void checkConfigSave()
+        {
+            if (DateTime.Now < configSaveTime)
+                return;
+
+            config.SetNode(windowIdentifier(missionLogWindow), missionLogWindow.AsConfigNode(), true);
+            config.SetNode(windowIdentifier(missionPlanWindow), missionPlanWindow.AsConfigNode(), true);
+            config.SetNode(windowIdentifier(liveDebugWindow), liveDebugWindow.AsConfigNode(), true);
+            config.SetNode(windowIdentifier(persistentDebugWindow), persistentDebugWindow.AsConfigNode(), true);
+
+            config.SetNode(windowIdentifier(controlBar), controlBar.AsConfigNode(), true);
+            config.SetNode(windowIdentifier(scriptBar), scriptBar.AsConfigNode(), true);
+
+            config.Save(configName);
+            configSaveTime = DateTime.Now.AddSeconds(5);
+        }
+
+        private void loadConfig()
+        {
+            if (!System.IO.File.Exists(configName))
+            {
+                config = new ConfigNode(configName);
+
+                controlBar = new ButtonBarWindow(1, "KOSM Control", Screen.width / 3 - 100, 0, new string[] { "SB", "ML", "MP", "LD", "DL" }, a => onClicked(a));
+                scriptBar = new ButtonBarWindow(2, "KOSM Scripts", Screen.width - 400, Screen.height - 80, new string[] { "None", "Present", "Ascend", "Land", "Maneuver", "Test" }, a => onClicked(a));
+
+                missionLogWindow = new LogWindow(3, "KOSM Mission Log", 0.05, 0.15, 0.3, 0.3, 10, world.MissionLog);
+                missionPlanWindow = new LogWindow(4, "KOSM Mission Plan", 0.05, 0.55, 0.3, 0.3, 10, world.MissionPlanLog);
+                liveDebugWindow = new LogWindow(5, "KOSM Live Debug", 0.65, 0.15, 0.3, 0.3, 10, world.LiveDebugLog);
+                persistentDebugWindow = new LogWindow(6, "KOSM Debug Log", 0.65, 0.55, 0.3, 0.3, 10, world.DebugLog);
+            }
+            else
+            {
+                config = ConfigNode.Load(configName);
+
+                controlBar = new ButtonBarWindow(config.GetNode(windowIdentifier("KOSM Control", 1)), new string[] { "SB", "ML", "MP", "LD", "DL" }, a => onClicked(a));
+                scriptBar = new ButtonBarWindow(config.GetNode(windowIdentifier("KOSM Scripts", 2)), new string[] { "None", "Present", "Ascend", "Land", "Maneuver", "Test" }, a => onClicked(a));
+
+                missionLogWindow = new LogWindow(config.GetNode(windowIdentifier("KOSM Mission Log", 3)), world.MissionLog);
+                missionPlanWindow = new LogWindow(config.GetNode(windowIdentifier("KOSM Mission Plan", 4)), world.MissionPlanLog);
+                liveDebugWindow = new LogWindow(config.GetNode(windowIdentifier("KOSM Live Debug", 5)), world.LiveDebugLog);
+                persistentDebugWindow = new LogWindow(config.GetNode(windowIdentifier("KOSM Debug Log", 6)), world.DebugLog);
+            }
+        }
+
+        private string windowIdentifier(Window window)
+        {
+            return window.Title.Replace(" ", "_") + "_" + window.Index;
+        }
+
+        private string windowIdentifier(string title, int index)
+        {
+            return title.Replace(" ", "_") + "_" + index;
         }
 
         private void onClicked(string button)

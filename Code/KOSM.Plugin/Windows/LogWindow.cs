@@ -41,6 +41,13 @@ namespace KOSM.Windows
             this.log = log;
         }
 
+        public LogWindow(ConfigNode node, ILog log)
+            : base(node)
+        {
+            this.rows = int.Parse(node.GetValue("Rows"));
+            this.log = log;
+        }
+
         protected override void buildLayout()
         {            
             GUILayout.BeginVertical();
@@ -51,6 +58,13 @@ namespace KOSM.Windows
                 GUILayout.Label("", GUI.skin.label, GUILayout.ExpandWidth(true));
 
             GUILayout.EndVertical();
+        }
+
+        public override ConfigNode AsConfigNode()
+        {
+            ConfigNode result = base.AsConfigNode();
+            result.AddValue("Rows", rows);
+            return result;
         }
     }
 }

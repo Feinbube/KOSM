@@ -9,8 +9,8 @@ namespace KOSM.Windows
 {
     public abstract class Window
     {
-        protected int index;
-        protected string title = "Window Title";
+        public int Index { get; private set; }
+        public string Title { get; private set; }
 
         protected Rect rect;
 
@@ -43,13 +43,21 @@ namespace KOSM.Windows
 
         public Window(int index, string title, float x, float y, float w, float h)
         {
-            this.index = index;
-            this.title = title;
+            this.Index = index;
+            this.Title = title;
 
             this.rect = new Rect(x, y, w, h);
             this.callback = drawGUI;
 
             Draggable = true;
+        }
+
+        public Window(ConfigNode node)
+            : this(int.Parse(node.GetValue("Index")), node.GetValue("Title"),
+            float.Parse(node.GetValue("X")), float.Parse(node.GetValue("Y")), float.Parse(node.GetValue("Width")), float.Parse(node.GetValue("Height")))
+        {
+            Draggable = bool.Parse(node.GetValue("Draggable"));
+            shouldBeVisible = bool.Parse(node.GetValue("ShouldBeVisible"));
         }
 
         public void Show()
@@ -84,8 +92,8 @@ namespace KOSM.Windows
         {
             buildSkin();
 
-            rect = GUILayout.Window(index, rect, drawWindow, title, layoutOptions());
-        }        
+            rect = GUILayout.Window(Index, rect, drawWindow, Title, layoutOptions());
+        }
 
         protected virtual GUILayoutOption[] layoutOptions()
         {
@@ -111,11 +119,27 @@ namespace KOSM.Windows
             GUI.skin.label.padding = new RectOffset(0, 0, 2, 2);
         }
 
+        public virtual ConfigNode AsConfigNode()
+        {
+            ConfigNode node = new ConfigNode(this.Title);
+
+            node.AddValue("Title", this.Title);
+            node.AddValue("Index", this.Index);
+            node.AddValue("X", this.rect.x);
+            node.AddValue("Y", this.rect.y);
+            node.AddValue("Width", this.rect.width);
+            node.AddValue("Height", this.rect.height);
+            node.AddValue("Draggable", this.Draggable);
+            node.AddValue("ShouldBeVisible", this.shouldBeVisible);
+
+            return node;
+        }
+
         protected abstract void buildLayout();
 
         public override string ToString()
         {
-            return title;
+            return Title;
         }
     }
 }
