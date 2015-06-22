@@ -11,6 +11,8 @@ namespace KOSM.Interfaces
 
         void Add(object message);
 
+        Action<object> MessageAdded { set; }        
+
         void Clear();
     }
 }

@@ -21,8 +21,7 @@ namespace KOSM.Windows
         public double Width { get { return rect.width; } }
         public double Height { get { return rect.height; } }
 
-        protected bool shouldBeVisible = false;
-        protected bool isReallyVisible { get { return RenderingManager.fetch.postDrawQueue.Contains(callback); } }
+        public bool IsVisible { get; set; }
 
         public bool Draggable { get; set; }
 
@@ -47,7 +46,7 @@ namespace KOSM.Windows
             this.Title = title;
 
             this.rect = new Rect(x, y, w, h);
-            this.callback = drawGUI;
+            this.callback = Draw;
 
             Draggable = true;
         }
@@ -57,42 +56,18 @@ namespace KOSM.Windows
             float.Parse(node.GetValue("X")), float.Parse(node.GetValue("Y")), float.Parse(node.GetValue("Width")), float.Parse(node.GetValue("Height")))
         {
             Draggable = bool.Parse(node.GetValue("Draggable"));
-            shouldBeVisible = bool.Parse(node.GetValue("ShouldBeVisible"));
+            IsVisible = bool.Parse(node.GetValue("ShouldBeVisible"));
         }
 
-        public void Show()
+        public void ToggleVisibility()
         {
-            shouldBeVisible = true;
-
-            if (!isReallyVisible)
-                RenderingManager.AddToPostDrawQueue(3, callback);
+            IsVisible = !IsVisible;
         }
 
-        public void Hide()
+        public void Draw()
         {
-            shouldBeVisible = false;
-
-            if (isReallyVisible)
-                RenderingManager.RemoveFromPostDrawQueue(3, callback);
-        }
-
-        public void Check()
-        {
-            if (shouldBeVisible) Show();
-            else Hide();
-        }
-
-        public void ToggleShowHide()
-        {
-            if (!shouldBeVisible) Show();
-            else Hide();
-        }
-
-        private void drawGUI()
-        {
-            buildSkin();
-
-            rect = GUILayout.Window(Index, rect, drawWindow, Title, layoutOptions());
+            if(IsVisible)
+                rect = GUILayout.Window(Index, rect, drawWindow, Title, layoutOptions());
         }
 
         protected virtual GUILayoutOption[] layoutOptions()
@@ -102,21 +77,10 @@ namespace KOSM.Windows
 
         protected virtual void drawWindow(int windowID)
         {
-            if (!shouldBeVisible)
-                return;
-
             buildLayout();
 
             if (Draggable)
                 GUI.DragWindow();
-        }
-
-        private void buildSkin()
-        {
-            GUI.skin = HighLogic.Skin;
-            GUI.skin.label.fontSize = 11;
-            GUI.skin.label.margin = new RectOffset(1, 1, 1, 1);
-            GUI.skin.label.padding = new RectOffset(0, 0, 2, 2);
         }
 
         public virtual ConfigNode AsConfigNode()
@@ -130,7 +94,7 @@ namespace KOSM.Windows
             node.AddValue("Width", this.rect.width);
             node.AddValue("Height", this.rect.height);
             node.AddValue("Draggable", this.Draggable);
-            node.AddValue("ShouldBeVisible", this.shouldBeVisible);
+            node.AddValue("ShouldBeVisible", this.IsVisible);
 
             return node;
         }

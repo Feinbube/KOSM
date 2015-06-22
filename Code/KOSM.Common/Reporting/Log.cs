@@ -19,11 +19,16 @@ namespace KOSM.Common
         public void Add(object message)
         {
             messages.Add(message);
+
+            if (MessageAdded != null)
+                MessageAdded(message);
         }
 
         public void Clear()
         {
             messages.Clear();
         }
+
+        public Action<object> MessageAdded { private get; set; }
     }
 }

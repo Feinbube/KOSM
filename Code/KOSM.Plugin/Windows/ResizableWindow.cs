@@ -75,9 +75,6 @@ namespace KOSM.Windows
 
         protected override void drawWindow(int windowID)
         {
-            if (!shouldBeVisible)
-                return;
-
             checkResizing();
 
             if (AutoHeight && AutoWidth)

@@ -25,6 +25,8 @@ namespace KOSM.Game
             DebugLog = new Log();
             LiveDebugLog = new Log();
 
+            DebugLog.MessageAdded = a => ToGameLog(a);
+
             Camera = new Camera(this);
         }
 
@@ -35,9 +37,17 @@ namespace KOSM.Game
         public ILog DebugLog { get; private set; }
         public ILog LiveDebugLog { get; private set; }
 
+        public void ClearLogs()
+        {
+            MissionPlanLog.Clear();
+            MissionLog.Clear();
+            DebugLog.Clear();
+            LiveDebugLog.Clear();   
+        }
+
         public void ToGameLog(object message)
         {
-            UnityEngine.Debug.Log(message);
+            UnityEngine.Debug.Log("KOSM: " + message);
         }
 
         public ICamera Camera { get; private set; }

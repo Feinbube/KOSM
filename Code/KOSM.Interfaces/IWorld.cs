@@ -38,5 +38,7 @@ namespace KOSM.Interfaces
         bool WarpTime(double timespan);
         bool WarpTimeTo(double timeToWarpTo);
         void PreventTimeWarping();
+
+        void ClearLogs();
     }
 }

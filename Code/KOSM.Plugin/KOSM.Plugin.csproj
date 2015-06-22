@@ -47,6 +47,7 @@
     <Compile Include="Windows\LogWindow.cs" />
     <Compile Include="Windows\ResizableWindow.cs" />
     <Compile Include="Windows\Window.cs" />
+    <Compile Include="Windows\WindowManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KOSM.Examples\KOSM.Examples.csproj">
