@@ -21,13 +21,13 @@ namespace KOSM.Tasks
                 return;
             }
 
-            rocket.Throttle = (rocket.Body.SafeLowOrbitAltitude - rocket.Orbit.ApoapsisAltitude) / (rocket.Body.SafeLowOrbitAltitude * 0.01);
+            rocket.Throttle = (rocket.Body.SafeLowOrbitAltitude - rocket.Orbit.Apoapsis.Altitude) / (rocket.Body.SafeLowOrbitAltitude * 0.01);
             rocket.SetCompassSteering(90 * Math.Pow(1 - rocket.Altitude / rocket.Body.SafeLowOrbitAltitude, 4), 90, 0);
         }
 
         private bool RocketIsHeighEnough()
         {
-            return (!rocket.Body.HasAtmosphere && rocket.Orbit.ApoapsisAltitude > rocket.Body.SafeLowOrbitAltitude)
+            return (!rocket.Body.HasAtmosphere && rocket.Orbit.Apoapsis.Altitude > rocket.Body.SafeLowOrbitAltitude)
                 || (rocket.Body.HasAtmosphere && rocket.Altitude > Math.Min(rocket.Body.SafeLowOrbitAltitude * 0.91, rocket.Body.AtmosphereHeight));
         }
 

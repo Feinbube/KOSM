@@ -14,9 +14,9 @@ namespace KOSM.Tasks
 
         public override void Execute(IWorld world, Mission mission)
         {
-            rocket.AddApoapsisManeuver(rocket.Orbit.ApoapsisRadius);
+            rocket.AddApoapsisManeuver(rocket.Orbit.Apoapsis.Radius);
 
-            this.Details = "Raising periapsis from " + Format.Distance(rocket.Orbit.PeriapsisAltitude) + " to " + Format.Distance(rocket.Body.SafeLowOrbitAltitude);
+            this.Details = "Raising periapsis from " + Format.Distance(rocket.Orbit.Periapsis.Altitude) + " to " + Format.Distance(rocket.Body.SafeLowOrbitAltitude);
 
             mission.PushAfter(this,
                 new ExecuteManeuverTask(world, rocket),

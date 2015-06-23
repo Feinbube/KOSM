@@ -11,20 +11,20 @@ namespace KOSM.Common
     {
         public static IVector3 ApoapsisManeuver(IOrbit orbit, double targetPeriapsisRadius)
         {
-            return new Vector3(0, 0, Velocity.OrbitVelocity(orbit.Body.GravityParameter, orbit.ApoapsisRadius, targetPeriapsisRadius, orbit.ApoapsisRadius) - Velocity.AtApoapsis(orbit));
+            return new Vector3(0, 0, Velocity.OrbitVelocity(orbit.Body.GravityParameter, orbit.Apoapsis.Radius, targetPeriapsisRadius, orbit.Apoapsis.Radius) - orbit.Apoapsis.Velocity);
         }
 
         public static IVector3 PeriapsisManeuver(IOrbit orbit, double targetApoapsisRadius)
         {
-            return new Vector3(0, 0, Velocity.OrbitVelocity(orbit.Body.GravityParameter, orbit.PeriapsisRadius, orbit.PeriapsisRadius, targetApoapsisRadius) - Velocity.AtApoapsis(orbit));
+            return new Vector3(0, 0, Velocity.OrbitVelocity(orbit.Body.GravityParameter, orbit.Periapsis.Radius, orbit.Periapsis.Radius, targetApoapsisRadius) - orbit.Periapsis.Velocity);
         }
-
+        
         //public double DeltaVForApoapsisManeuver(double targetAltitude)
         //{
         //    double targetVelocityAtApsis = OrbitVelocity(
         //        raw.referenceBody.gravParameter,
-        //        ApoapsisRadius,
-        //        SemiMajorAxis(raw.referenceBody.Radius, ApoapsisAltitude, targetAltitude)
+        //        Apoapsis.Radius,
+        //        SemiMajorAxis(raw.referenceBody.Radius, Apoapsis.Altitude, targetAltitude)
         //        );
 
         //    return targetVelocityAtApsis - VelocityAtApoapsis;

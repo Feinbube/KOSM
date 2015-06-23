@@ -20,7 +20,7 @@ namespace KOSM.Tasks
 
         public override void Execute(IWorld world, Mission mission)
         {
-            if (rocket.Orbit.PeriapsisAltitude > targetAltitude * 0.95)
+            if (rocket.Orbit.Periapsis.Altitude > targetAltitude * 0.95)
             {
                 rocket.Throttle = 0;
                 mission.Complete(world, this);
@@ -29,7 +29,7 @@ namespace KOSM.Tasks
 
             this.Details = "Resulting orbit is too low! Trying my best to get back on track.";
 
-            if ((rocket.Orbit.MovingTowardsPeriapsis && rocket.Altitude < targetAltitude) || (rocket.Orbit.MovingTowardsApoapsis && rocket.Orbit.ApoapsisAltitude < targetAltitude))
+            if ((rocket.Orbit.Periapsis.MovingTowards && rocket.Altitude < targetAltitude) || (rocket.Orbit.Apoapsis.MovingTowards && rocket.Orbit.Apoapsis.Altitude < targetAltitude))
             {
                 rocket.SetSteering(rocket.Up);
                 rocket.Throttle = 1;
@@ -38,7 +38,7 @@ namespace KOSM.Tasks
 
             rocket.Throttle = 0;
 
-            this.Details = "Raising periapsis from " + Format.Distance(rocket.Orbit.PeriapsisAltitude) + " to " + Format.Distance(targetAltitude);
+            this.Details = "Raising periapsis from " + Format.Distance(rocket.Orbit.Periapsis.Altitude) + " to " + Format.Distance(targetAltitude);
 
             rocket.AddApoapsisManeuver(targetAltitude + rocket.Body.Radius);
             mission.PushBefore(this, new ExecuteManeuverTask(world, rocket));

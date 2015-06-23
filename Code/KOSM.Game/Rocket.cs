@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using KOSM.Common;
 using KOSM.Interfaces;
 using KOSM.Utility;
 
@@ -87,12 +88,12 @@ namespace KOSM.Game
 
         public void AddApoapsisManeuver(double targetRadius)
         {
-            addNode(world.PointInTime + this.Orbit.TimeToApoapsis, this.Orbit.DeltaVForApoapsisManeuver(targetRadius));
+            addNode(this.Orbit.Apoapsis.TimeOf, DeltaV.ApoapsisManeuver(this.Orbit, targetRadius));
         }
 
         public void AddPeriapsisManeuver(double targetRadius)
         {
-            addNode(world.PointInTime + this.Orbit.TimeToPeriapsis, this.Orbit.DeltaVForPeriapsisManeuver(targetRadius));
+            addNode(this.Orbit.Periapsis.TimeOf, DeltaV.PeriapsisManeuver(this.Orbit, targetRadius));
         }
 
         public void AddHohmannManeuver(IBody targetBody)
@@ -106,14 +107,7 @@ namespace KOSM.Game
 
         public void AddInclinationChangeManeuver(IBody targetBody)
         {
-            if (!targetBody.IsOrbiting(Body) && !Body.IsOrbiting(targetBody))
-                throw new Exception("For inclination changes, one of the two bodies must orbit the other!");
-
             throw new NotImplementedException();
-            // Vector3d targetVelocity = targetBody.IsOrbiting(Body) ? targetBody.Orbit.CurrentVelocity : -1 * Body.Orbit.CurrentVelocity;
-            // Vector3d angularMomentum = Vector3d.Cross(targetBody.Position - targetBody.Body.Position, targetVelocity);
-            // HERE Vector3d angularMomentumRocket = Vector3d.Cross(this.Position - this.MainBody.Position);
-
         }
 
         public double Throttle
@@ -205,12 +199,12 @@ namespace KOSM.Game
 
         public double AltitudeOverGround
         {
-            get { return raw.GetHeightFromTerrain() - RocketVerticalHeight; }
+            get { return raw.GetHeightFromSurface() - RocketVerticalHeight; }
         }
 
         public bool Turned
         {
-            get { return TurnDeviation < 0.05;  } // less than 0.05° deviation }
+            get { return TurnDeviation < 0.05; } // less than 0.05° deviation }
         }
 
         public double TurnDeviation
@@ -322,6 +316,11 @@ namespace KOSM.Game
         }
 
         #endregion IRocket
+
+        public override string ToString()
+        {
+            return Name;
+        }
 
         private void addNode(double pointInTime, IVector3 deltaV)
         {

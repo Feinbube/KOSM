@@ -46,6 +46,7 @@
     <Compile Include="IManeuver.cs" />
     <Compile Include="IInOrbitState.cs" />
     <Compile Include="IOrbit.cs" />
+    <Compile Include="IPointInOrbit.cs" />
     <Compile Include="IRocket.cs" />
     <Compile Include="IScript.cs" />
     <Compile Include="IOnGroundState.cs" />

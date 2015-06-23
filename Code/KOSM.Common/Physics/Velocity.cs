@@ -25,17 +25,6 @@ namespace KOSM.Common
             return Math.Sqrt(gravParameter * (2.0 / radius - 1.0 / semiMajorAxis));
         }
 
-        public static double AtApoapsis(IOrbit orbit)
-        {
-            return OrbitVelocity(orbit, orbit.ApoapsisRadius);
-        }
-
-        public static double AtPeriapsis(IOrbit orbit)
-        {
-            return OrbitVelocity(orbit, orbit.PeriapsisRadius);
-        }
-        
-
         //public static double SOIEdgeVelocity { get { return orbit.OrbitVelocity(raw.gravParameter, raw.sphereOfInfluence, orbit.SemiMajorAxis(raw.sphereOfInfluence, raw.sphereOfInfluence)); } }
 
         //public static double MeanMotion(IOrbit o)

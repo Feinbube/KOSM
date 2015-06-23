@@ -16,7 +16,7 @@ namespace KOSM.Tasks
         {
             rocket.AddPeriapsisManeuver(rocket.Body.SphereOfInfluenceRadius);
 
-            this.Details = "Raising apoapsis from " + Format.Distance(rocket.Orbit.ApoapsisAltitude) + " to " + Format.Distance(rocket.Body.SphereOfInfluenceAltitude);
+            this.Details = "Raising apoapsis from " + Format.Distance(rocket.Orbit.Apoapsis.Altitude) + " to " + Format.Distance(rocket.Body.SphereOfInfluenceAltitude);
 
             mission.PushAfter(this,
                 new ExecuteManeuverTask(world, rocket)

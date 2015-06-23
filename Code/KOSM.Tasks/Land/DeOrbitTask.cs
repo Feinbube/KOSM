@@ -32,18 +32,18 @@ namespace KOSM.Tasks
                 return;
             }
 
-            if (rocket.Orbit.PeriapsisAltitude > rocket.Body.SafeLowOrbitAltitude * 0.6)
+            if (rocket.Orbit.Periapsis.Altitude > rocket.Body.SafeLowOrbitAltitude * 0.6)
             {
-                if (rocket.Orbit.MovingTowardsApoapsis || rocket.Orbit.PeriapsisAltitude > rocket.Body.LowOrbitAltitude)
+                if (rocket.Orbit.Apoapsis.MovingTowards || rocket.Orbit.Periapsis.Altitude > rocket.Body.LowOrbitAltitude)
                 {
                     rocket.AddApoapsisManeuver(rocket.Body.LowOrbitAltitude * 0.5 + rocket.Body.Radius);
                     mission.PushBefore(this, new ExecuteManeuverTask(world, rocket));
                     return;
                 }
 
-                if (rocket.Orbit.MovingTowardsPeriapsis)
+                if (rocket.Orbit.Periapsis.MovingTowards)
                 {
-                    world.WarpTime(rocket.Orbit.TimeToPeriapsis - 120);
+                    world.WarpTime(rocket.Orbit.Periapsis.TimeTill - 120);
                     rocket.SetSteering(rocket.OrbitRetrograde);
 
                     if (rocket.Turned)
@@ -54,7 +54,7 @@ namespace KOSM.Tasks
 
             rocket.SetSteering(rocket.SurfaceRetrograde);
             rocket.Throttle = 0;
-            world.WarpTime(rocket.Orbit.TimeToPeriapsis);
+            world.WarpTime(rocket.Orbit.Periapsis.TimeTill);
         }
 
         bool first = true;
@@ -73,7 +73,7 @@ namespace KOSM.Tasks
                 return;
             }
 
-            if (rocket.Altitude > rocket.Body.SafeLowOrbitAltitude * 2 && rocket.Orbit.PeriapsisAltitude > rocket.Body.SafeLowOrbitAltitude * 2.1)
+            if (rocket.Altitude > rocket.Body.SafeLowOrbitAltitude * 2 && rocket.Orbit.Periapsis.Altitude > rocket.Body.SafeLowOrbitAltitude * 2.1)
             {
                 rocket.AddPeriapsisManeuver(rocket.Body.SafeLowOrbitAltitude * 2 + rocket.Body.Radius);
                 mission.PushBefore(this, new ExecuteManeuverTask(world, rocket));
@@ -81,7 +81,7 @@ namespace KOSM.Tasks
             }
 
             if (first)
-                if (!TurnAndWait(world, rocket.Orbit.TimeToPeriapsis, rocket.SurfaceRetrograde))
+                if (!TurnAndWait(world, rocket.Orbit.Periapsis.TimeTill, rocket.SurfaceRetrograde))
                     return;
             first = false;
 
