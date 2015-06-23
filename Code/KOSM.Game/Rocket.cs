@@ -199,7 +199,7 @@ namespace KOSM.Game
 
         public double AltitudeOverGround
         {
-            get { return raw.GetHeightFromSurface() - RocketVerticalHeight; }
+            get { return Math.Max(raw.altitude, raw.GetHeightFromTerrain()) - RocketVerticalHeight; }
         }
 
         public bool Turned
@@ -211,10 +211,9 @@ namespace KOSM.Game
         {
             get
             {
-                double vdot = Vector3d.Dot(this.raw.Autopilot.SAS.lockedHeading.eulerAngles.normalized, this.raw.Autopilot.SAS.currentRotation.eulerAngles.normalized);
-                return vdot >= 1 ? 0 : vdot <= -1 ? 180 : 180 * Math.Acos(vdot) / Math.PI;
+                return derivation(this.raw.Autopilot.SAS.lockedHeading, this.raw.Autopilot.SAS.currentRotation);
             }
-        }
+        }        
 
         /// <summary>
         /// 0 to 360° (North = 0°, East = 90°, South = 180°, West = 270°)
@@ -418,11 +417,23 @@ namespace KOSM.Game
 
             enableStabilityAssist();
 
-            if (raw.Autopilot.SAS.lockedHeading != newHeading)
+            if (!isOnTrack(newHeading))
                 this.raw.Autopilot.SAS.LockHeading(newHeading, true);
 
             if (!Turned)
-                world.PreventTimeWarping();
+                world.PreventTimeWarping();            
+        }
+
+        private double derivation(UnityEngine.Quaternion q1, UnityEngine.Quaternion q2)
+        {
+            double vdot = Vector3d.Dot(q1.eulerAngles.normalized, q2.eulerAngles.normalized);
+            return Math.Abs(vdot >= 1 ? 0 : vdot <= -1 ? 180 : 180 * Math.Acos(vdot) / Math.PI);
+        }
+
+        private bool isOnTrack(UnityEngine.Quaternion newHeading)
+        {
+            double newTurnDerivation = derivation(this.raw.Autopilot.SAS.lockedHeading, newHeading);
+            return newTurnDerivation < 0.01 || newTurnDerivation < 0.5 * TurnDeviation;
         }
 
         private UnityEngine.Quaternion facing
