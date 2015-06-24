@@ -34,3 +34,6 @@
 [submodule "Related Work/KerbalAlarmClock"]
 	path = Related Work/KerbalAlarmClock
 	url = https://github.com/TriggerAu/KerbalAlarmClock.git
+[submodule "Related Work/TransferWindowPlanner"]
+	path = Related Work/TransferWindowPlanner
+	url = https://github.com/TriggerAu/TransferWindowPlanner.git
