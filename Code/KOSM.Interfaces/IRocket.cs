@@ -30,6 +30,6 @@ namespace KOSM.Interfaces
         double HorizontalSurfaceSpeed { get; }
         IVectorXYZ SurfaceVelocity { get; }
 
-        double TimeToMissionTime(double pointInTime);        
+        double TimeToMissionTime(double pointInTime);
     }
 }

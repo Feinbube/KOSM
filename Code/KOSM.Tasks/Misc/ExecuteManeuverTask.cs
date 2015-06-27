@@ -19,6 +19,12 @@ namespace KOSM.Tasks
         
         public override void Execute(IWorld world, Mission mission)
         {
+            if(!rocket.HasManeuver)
+            {
+                mission.Abort(world, this);
+                return;
+            }
+
             if (maneuver == null)
                 maneuver = rocket.NextManeuver;
             

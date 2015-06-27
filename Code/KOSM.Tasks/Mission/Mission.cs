@@ -51,6 +51,12 @@ namespace KOSM.Tasks
             this.tasks.Remove(task);
         }
 
+        public void Abort(IWorld world, Task task)
+        {
+            UpdateLog(world, task);
+            this.tasks.Remove(task);
+        }
+
         public void Execute(IWorld world)
         {
             if (this.IsComplete)

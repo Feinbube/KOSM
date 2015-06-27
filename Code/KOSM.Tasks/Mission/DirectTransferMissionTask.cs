@@ -26,18 +26,17 @@ namespace KOSM.Tasks
             if (origin is IOnGroundState)
             {
                 double timeToOrbit = Format.KerbinTimespanTotalSeconds(0, 0, 2, 0, 0); // two hours should be enough to put the craft into orbit on time
-                ITransferWindow transferWindow = rocket.NextTransferWindow(world.PointInTime + timeToOrbit, origin.Body, destination.Body, destination.Body.HasAtmosphere);
+                ITransferWindow transferWindow = rocket.BestTransferWindow(world.PointInTime + timeToOrbit, origin.Body, origin.Body.SafeLowOrbitAltitude, destination.Body, destination.Body.HasAtmosphere);
                 
                 mission.PushBefore(this,
                     new WarpTask(world, transferWindow.TimeTill - timeToOrbit),
                     new RaiseToLowOrbitTask(world, rocket),
-                    new CircularizeOrbitTask(world, rocket),
                     new ExecuteTransferWindowTask(world, rocket, transferWindow)
                     );
             }
             else
             {
-                ITransferWindow transferWindow = rocket.NextTransferWindow(world.PointInTime, origin.Body, destination.Body, destination.Body.HasAtmosphere);
+                ITransferWindow transferWindow = rocket.BestTransferWindow(world.PointInTime, origin.Body, origin.Body.SafeLowOrbitAltitude, destination.Body, destination.Body.HasAtmosphere);
                 mission.PushBefore(this, new ExecuteTransferWindowTask(world, rocket, transferWindow));
             }
 

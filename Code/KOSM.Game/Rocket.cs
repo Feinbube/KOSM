@@ -95,6 +95,11 @@ namespace KOSM.Game
             }
         }
 
+        public bool HasManeuver
+        {
+            get { return raw.patchedConicSolver != null && raw.patchedConicSolver.maneuverNodes != null && raw.patchedConicSolver.maneuverNodes.Count > 0; }
+        }
+
         public void AddApoapsisManeuver(double targetRadius)
         {
             AddManeuver(this.Orbit.Apoapsis.TimeOf, DeltaV.ApoapsisManeuver(this.Orbit, targetRadius));
@@ -282,14 +287,31 @@ namespace KOSM.Game
             get { return vXYZ(raw.transform.position); }
         }
 
-        public ITransferWindow NextTransferWindow(double earliestDepartureTime, IBody origin, IBody destination, bool aerobraking)
+        public ITransferWindow NextTransferWindow(double earliestDepartureTime, IBody origin, double altitude, IBody destination, bool aerobraking)
         {
-            return new TransferWindow(world, earliestDepartureTime, origin, destination, aerobraking);
+            return new TransferWindow(world, earliestDepartureTime, origin, altitude, destination, aerobraking);
         }
 
-        public ITransferWindow BestTransferWindow(double earliestDepartureTime, IBody origin, IBody destination, bool aerobraking)
+        public ITransferWindow BestTransferWindow(double earliestDepartureTime, IBody origin, double altitude, IBody destination, bool aerobraking)
         {
-            return TransferWindow.Scan(world, earliestDepartureTime, origin, destination, aerobraking);
+            return TransferWindow.Scan(world, earliestDepartureTime, origin, altitude, destination, aerobraking);
+        }
+
+        public bool HasEncounter
+        {
+            get { return raw.patchedConicSolver != null && raw.patchedConicSolver.flightPlan.Where(a => a.patchStartTransition == global::Orbit.PatchTransitionType.ENCOUNTER).FirstOrDefault() != null; }
+        }
+
+        public double TimeTillEncounter
+        {
+            get
+            {
+
+                if (!HasEncounter)
+                    throw new Exception("There is no encounter! Check Rocket.HasEncounter!");
+
+                return raw.patchedConicSolver.flightPlan.Where(a => a.patchStartTransition == global::Orbit.PatchTransitionType.ENCOUNTER).FirstOrDefault().timeToPe;
+            }
         }
 
         #endregion IRocket
@@ -297,6 +319,6 @@ namespace KOSM.Game
         public override string ToString()
         {
             return Name;
-        } 
+        }
     }
 }

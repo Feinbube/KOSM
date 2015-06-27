@@ -8,6 +8,8 @@ namespace KOSM.Interfaces
     public interface IRocketManeuvers
     {
         List<IManeuver> Maneuvers { get; }
+        bool HasManeuver { get; }
+        double TimeTillEncounter { get; }
         IManeuver NextManeuver { get; }
         void AddManeuver(double pointInTime, IVectorXYZ burnVector);
 
@@ -16,8 +18,8 @@ namespace KOSM.Interfaces
         void AddHohmannManeuver(IBody targetBody);
         void AddInclinationChangeManeuver(IBody targetBody);
 
-        ITransferWindow NextTransferWindow(double earliestDepartureTime, IBody origin, IBody destination, bool aerobraking);
+        ITransferWindow NextTransferWindow(double earliestDepartureTime, IBody origin, double altitude, IBody destination, bool aerobraking);
 
-        ITransferWindow BestTransferWindow(double earliestDepartureTime, IBody origin, IBody destination, bool aerobraking);
+        ITransferWindow BestTransferWindow(double earliestDepartureTime, IBody origin, double altitude, IBody destination, bool aerobraking);
     }
 }

@@ -13,17 +13,19 @@ namespace KOSM.Game
     {
         TransferDetails raw = null;
 
-        private TransferWindow(World world, IBody origin, IBody destination, TransferDetails raw)
+        private TransferWindow(World world, IBody origin, double altitude, IBody destination, TransferDetails raw, bool aerobraking)
             : base(world)
         {
             this.Origin = origin;
+            this.originAltitude = altitude;
             this.Destination = destination;
+            this.Aerobraking = aerobraking;
 
             this.raw = raw;
         }
 
-        public TransferWindow(World world, double earliestDepartureTime, IBody origin, IBody destination, bool aerobraking)
-            : this(world, origin, destination, first(earliestDepartureTime, origin, destination, aerobraking && destination.HasAtmosphere))
+        public TransferWindow(World world, double earliestDepartureTime, IBody origin, double altitude, IBody destination, bool aerobraking)
+            : this(world, origin, altitude, destination, first(earliestDepartureTime, origin, altitude, destination, aerobraking && destination.HasAtmosphere), aerobraking && destination.HasAtmosphere)
         {
         }
 
@@ -44,8 +46,11 @@ namespace KOSM.Game
         #region ITransferWindow
 
         public IBody Origin { get; private set; }
+        public double originAltitude { get; private set; }
 
         public IBody Destination { get; private set; }
+
+        public bool Aerobraking { get; private set; }
 
         public double TimeTill
         {
@@ -69,12 +74,12 @@ namespace KOSM.Game
 
         #endregion ITransferWindow
 
-        public static TransferWindow Scan(World world, double earliestDepartureTime, IBody origin, IBody destination, bool aerobraking)
+        public static TransferWindow Scan(World world, double earliestDepartureTime, IBody origin, double altitude, IBody destination, bool aerobraking)
         {
-            return new TransferWindow(world, origin, destination, scan(earliestDepartureTime, origin, destination, aerobraking && destination.HasAtmosphere));
+            return new TransferWindow(world, origin, altitude, destination, scan(earliestDepartureTime, origin, altitude, destination, aerobraking && destination.HasAtmosphere), aerobraking && destination.HasAtmosphere);
         }
 
-        private static TransferDetails scan(double earliestDepartureTime, IBody origin, IBody destination, bool aerobraking)
+        private static TransferDetails scan(double earliestDepartureTime, IBody origin, double originAltitude, IBody destination, bool aerobraking)
         {
             int resolution = 50;
 
@@ -93,8 +98,8 @@ namespace KOSM.Game
                 for (double transferTime = earliestTransferTime; transferTime < latestTransferTime; transferTime += (latestTransferTime - earliestTransferTime) / resolution)
                 {
                     double currentDeltaV = aerobraking
-                        ? LambertSolver.TransferDeltaV((origin as Body).raw, (destination as Body).raw, departureTime, transferTime, origin.SafeLowOrbitAltitude, null)
-                        : LambertSolver.TransferDeltaV((origin as Body).raw, (destination as Body).raw, departureTime, transferTime, origin.SafeLowOrbitAltitude, destination.SafeLowOrbitAltitude);
+                        ? LambertSolver.TransferDeltaV((origin as Body).raw, (destination as Body).raw, departureTime, transferTime, originAltitude, null)
+                        : LambertSolver.TransferDeltaV((origin as Body).raw, (destination as Body).raw, departureTime, transferTime, originAltitude, destination.SafeLowOrbitAltitude);
 
                     if (currentDeltaV < minDeltaV)
                     {
@@ -106,22 +111,22 @@ namespace KOSM.Game
 
             TransferDetails transferSelected = null;
             double deltaV = aerobraking
-                        ? LambertSolver.TransferDeltaV((origin as Body).raw, (destination as Body).raw, minDepartureTime, minTransferTime, origin.SafeLowOrbitAltitude, null, out transferSelected)
-                        : LambertSolver.TransferDeltaV((origin as Body).raw, (destination as Body).raw, minDepartureTime, minTransferTime, origin.SafeLowOrbitAltitude, destination.SafeLowOrbitAltitude, out transferSelected);
+                        ? LambertSolver.TransferDeltaV((origin as Body).raw, (destination as Body).raw, minDepartureTime, minTransferTime, originAltitude, null, out transferSelected)
+                        : LambertSolver.TransferDeltaV((origin as Body).raw, (destination as Body).raw, minDepartureTime, minTransferTime, originAltitude, destination.SafeLowOrbitAltitude, out transferSelected);
 
             transferSelected.CalcEjectionValues();
             return transferSelected;
         }
 
-        private static TransferDetails first(double earliestDepartureTime, IBody origin, IBody destination, bool aerobraking)
+        private static TransferDetails first(double earliestDepartureTime, IBody origin, double originAltitude, IBody destination, bool aerobraking)
         {
             double hohmannTransferTime = LambertSolver.HohmannTimeOfFlight((origin.Orbit as Orbit).raw, (destination.Orbit as Orbit).raw);
             double shortestTransfertime = Math.Max(hohmannTransferTime - destination.Orbit.Period, hohmannTransferTime / 2);
 
             TransferDetails transferSelected = null;
             double deltaV = aerobraking
-                        ? LambertSolver.TransferDeltaV((origin as Body).raw, (destination as Body).raw, earliestDepartureTime, shortestTransfertime, origin.SafeLowOrbitAltitude, null, out transferSelected)
-                        : LambertSolver.TransferDeltaV((origin as Body).raw, (destination as Body).raw, earliestDepartureTime, shortestTransfertime, origin.SafeLowOrbitAltitude, destination.SafeLowOrbitAltitude, out transferSelected);
+                        ? LambertSolver.TransferDeltaV((origin as Body).raw, (destination as Body).raw, earliestDepartureTime, shortestTransfertime, originAltitude, null, out transferSelected)
+                        : LambertSolver.TransferDeltaV((origin as Body).raw, (destination as Body).raw, earliestDepartureTime, shortestTransfertime, originAltitude, destination.SafeLowOrbitAltitude, out transferSelected);
 
             transferSelected.CalcEjectionValues();
             return transferSelected;

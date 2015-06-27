@@ -11,6 +11,8 @@ namespace KOSM.Interfaces
 
         IBody Destination { get; }
 
+        bool Aerobraking { get; }
+
         double TimeTill { get; }
         double TimeOf { get; }
 

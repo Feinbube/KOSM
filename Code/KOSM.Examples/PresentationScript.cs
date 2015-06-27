@@ -49,15 +49,15 @@ namespace KOSM.Examples
 
         protected override Mission newMission(IWorld world, IRocket rocket)
         {
-            return newMissionDunaAndBack(world, rocket);
+            return newMissionEveAndBack(world, rocket);
         }
 
-        protected Mission newMissionDresAndBack(IWorld world, IRocket rocket)
+        protected Mission newMissionEveAndBack(IWorld world, IRocket rocket)
         {
             return new Mission(
-                new DirectTransferMissionTask(world, rocket, new OnGroundState(world, "Kerbin"), new OnGroundState(world, "Dres")),
+                new DirectTransferMissionTask(world, rocket, new OnGroundState(world, "Kerbin"), new OnGroundState(world, "Eve")),
                 new WaitForRealTimeTask(world, 300),
-                new DirectTransferMissionTask(world, rocket, new OnGroundState(world, "Dres"), new OnGroundState(world, "Kerbin")),
+                new DirectTransferMissionTask(world, rocket, new OnGroundState(world, "Eve"), new OnGroundState(world, "Kerbin")),
                 new WaitForRealTimeTask(world, 300),
                 new NewLaunchTask(world, rocket, randomRocketDesign(world))
             );

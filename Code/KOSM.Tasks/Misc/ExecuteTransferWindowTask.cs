@@ -20,12 +20,26 @@ namespace KOSM.Tasks
 
         public override void Execute(IWorld world, Mission mission)
         {
+            if(!rocket.Orbit.IsCircular)
+            {
+                mission.PushBefore(this, new CircularizeOrbitTask(world, rocket));
+                return;
+            }
+
+            transferWindow = rocket.NextTransferWindow(world.PointInTime, rocket.Body, rocket.Orbit.SemiMajorAxis - rocket.Body.Radius, transferWindow.Destination, transferWindow.Aerobraking);
+
+            if(transferWindow.TimeTill > rocket.Orbit.Period)
+            {
+                mission.PushBefore(this, new WarpTask(world, transferWindow.TimeTill));
+                return;
+            }
+
             double timeOfManeuver = world.PointInTime + rocket.Orbit.BodyPrograde.TimeTillDegreesToEquals(transferWindow.EjectionAngle);
 
             rocket.AddManeuver(timeOfManeuver, transferWindow.EjectionBurnVector);
-            mission.PushAfter(this, new ExecuteManeuverTask(world, rocket));
+            mission.PushAfter(this, new ExecuteManeuverTask(world, rocket), new WarpTask(world, rocket.TimeTillEncounter));
 
-            // TODO: Insertion
+            // TODO: control when approaching (to get closer and hit the atmosphere just right)
 
             mission.Complete(world, this);
         }

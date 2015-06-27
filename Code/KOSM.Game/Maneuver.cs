@@ -37,7 +37,7 @@ namespace KOSM.Game
 
         public bool Completed
         {
-            get { return completed || BurnVector.Magnitude <= rocket.TurnDeviation; }
+            get { return completed || BurnVector.Magnitude < 0.01 || BurnVector.Magnitude <= rocket.TurnDeviation * 0.02; }
         }
 
         public void Complete()
