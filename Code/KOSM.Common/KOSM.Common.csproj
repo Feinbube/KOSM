@@ -40,7 +40,7 @@
   <ItemGroup>
     <Compile Include="Math\EulerAngles3.cs" />
     <Compile Include="Math\Scalar.cs" />
-    <Compile Include="Math\Vector3.cs" />
+    <Compile Include="Math\VectorXYZ.cs" />
     <Compile Include="Physics\DeltaV.cs" />
     <Compile Include="Physics\Gravity.cs" />
     <Compile Include="Physics\Velocity.cs" />

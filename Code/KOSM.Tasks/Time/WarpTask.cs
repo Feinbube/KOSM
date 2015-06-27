@@ -13,7 +13,7 @@ namespace KOSM.Tasks
         protected double secondsToWait = 0;
         protected double timeToWaitFor = -1;
 
-        public WarpTask(IWorld world, int secondsToWait)
+        public WarpTask(IWorld world, double secondsToWait)
         {
             this.secondsToWait = secondsToWait;
         }

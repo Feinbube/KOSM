@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace KOSM.Interfaces
 {
-    public interface IRocket : IIdentifiable
+    public interface IRocket : IRocketControl, IRocketManeuvers, IOrbiter, IIdentifiable
     {
         string Name { get; }
 
@@ -11,21 +11,9 @@ namespace KOSM.Interfaces
         IOrbit Orbit { get; }
 
         double RocketVerticalHeight { get; }
+        double Mass { get; }
 
-        // maneuvers
-        List<IManeuver> Maneuvers { get; }
-        IManeuver NextManeuver { get; }
-        void AddApoapsisManeuver(double targetRadius);
-        void AddPeriapsisManeuver(double targetRadius);
-        void AddHohmannManeuver(IBody targetBody);
-        void AddInclinationChangeManeuver(IBody targetBody);
-
-        // interaction
-        double Throttle { get; set; }
-        void LockHeading(IEulerAngles3 newHeading);
-        void SetCompassSteering(double pitchAboveHorizon, double degreesFromNorth, double roll);
-        void SetSteering(IVector3 forward);
-        void Stage();
+        // interaction        
         void RaiseGear();
         void LowerGear();
 
@@ -37,28 +25,11 @@ namespace KOSM.Interfaces
         double Altitude { get; }
         double AltitudeOverGround { get; }
 
-        // orientation
-        bool Turned { get; }
-        double TurnDeviation { get; }
-        double Heading { get; }
-        double Pitch { get; }
-        double Roll { get; }
-        IVector3 Up { get; }
-        IVector3 OrbitRetrograde { get; }
-        IVector3 SurfaceRetrograde { get; }
-
-        // thrust
-        double MaxAcceleration { get; }
-        double CurrentThrust { get; }
-        double MaxThrust { get; }
-
         // speed
         double VerticalSpeed { get; }
         double HorizontalSurfaceSpeed { get; }
-        IVector3 SurfaceVelocity { get; }
+        IVectorXYZ SurfaceVelocity { get; }
 
-        double TimeToMissionTime(double pointInTime);
-
-        IVector3 Position { get; }
+        double TimeToMissionTime(double pointInTime);        
     }
 }

@@ -16,7 +16,7 @@ namespace KOSM.Tasks
             this.rocket = rocket;
         }
 
-        protected bool TurnAndWait(IWorld world, IManeuver maneuver, IVector3 vector)
+        protected bool TurnAndWait(IWorld world, IManeuver maneuver, IVectorXYZ vector)
         {
             Details = "Waiting for next maneuver.";
             if (world.WarpTimeTo(maneuver.TimeOfTurn))
@@ -32,7 +32,7 @@ namespace KOSM.Tasks
             return maneuver.TimeTillBurn <= 0;
         }
 
-        protected bool TurnAndWait(IWorld world, double timeToManeuver, IVector3 vector)
+        protected bool TurnAndWait(IWorld world, double timeToManeuver, IVectorXYZ vector)
         {
             Details = "Waiting for next maneuver.";
             if (world.WarpTime(timeToManeuver - 60))

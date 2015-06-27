@@ -10,19 +10,19 @@ namespace KOSM.Tasks
     public class RunMissionTask : Task
     {
         private IRocket rocket;
-        private IState start;
-        private IState objective;
+        private IState origin;
+        private IState destination;
 
-        public RunMissionTask(IWorld world, IRocket rocket, IState start, IState objective)
+        public RunMissionTask(IWorld world, IRocket rocket, IState origin, IState destination)
         {
             this.rocket = rocket;
-            this.start = start;
-            this.objective = objective;
+            this.origin = origin;
+            this.destination = destination;
         }
 
         public override void Execute(IWorld world, Mission mission)
         {
-            if (start is IOnGroundState)
+            if (origin is IOnGroundState)
             {
                 mission.PushBefore(this,
                     new RaiseToLowOrbitTask(world, rocket),
@@ -30,16 +30,16 @@ namespace KOSM.Tasks
                     );
             }
 
-            if (objective is IOnGroundState)
+            if (destination is IOnGroundState)
             {
                 mission.PushAfter(this,
-                    new LandAtTask(world, rocket, objective as IOnGroundState)
+                    new LandAtTask(world, rocket, destination as IOnGroundState)
                     );
             }
 
-            IBody commonMainBody = findCommonMainBody(start.Body, objective.Body);
+            IBody commonMainBody = findCommonMainBody(origin.Body, destination.Body);
             
-            IBody currentBody = start.Body;
+            IBody currentBody = origin.Body;
             while (commonMainBody != null && currentBody != commonMainBody)
             { // up
                 mission.PushBefore(this,
@@ -48,7 +48,7 @@ namespace KOSM.Tasks
                 currentBody = currentBody.MainBody;
             }
 
-            currentBody = objective.Body;
+            currentBody = destination.Body;
             while (commonMainBody != null && currentBody != commonMainBody)
             { // down
                 mission.PushAfter(this,
@@ -61,20 +61,20 @@ namespace KOSM.Tasks
             mission.Complete(world, this);
         }
 
-        private IBody findCommonMainBody(IBody start, IBody objective)
+        private IBody findCommonMainBody(IBody origin, IBody destination)
         {
-            while(start != null)
+            while(origin != null)
             {
-                if (objective.IsOrbiting(start))
-                    return start;
-                start = start.MainBody;
+                if (destination.IsOrbiting(origin))
+                    return origin;
+                origin = origin.MainBody;
             }
             return null;
         }
 
         public override string Description
         {
-            get { return "Running a mission to move " + rocket + " from " + start.ToString() + " to " + objective.ToString() + "."; }
+            get { return "Running a mission to move " + rocket + " from " + origin + " to " + destination + "."; }
         }
     }
 }

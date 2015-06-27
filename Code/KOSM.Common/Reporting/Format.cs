@@ -17,7 +17,22 @@ namespace KOSM.Common
             return pretty(value * 100, padding, 1, "%");
         }
 
+        public static string Degree(double value)
+        {
+            return Degree(value, 0);
+        }
+
         public static string Degree(double value, int padding)
+        {
+            return padLeft(string.Format("{0:0.0}°", value), padding, ' ');
+        }
+
+        public static string DegreeDetailed(double value)
+        {
+            return DegreeDetailed(value, 0);
+        }
+
+        public static string DegreeDetailed(double value, int padding)
         {
             string result = "";
 
@@ -79,7 +94,12 @@ namespace KOSM.Common
         {
             int[] timeParts = kerbalTimeParts(value);
 
-            return padLeft(timeParts[4], 2, '0') + "/" + padLeft(timeParts[5], 4, '0');
+            return padLeft(timeParts[5] + 1, 2, '0') + "/" + padLeft(timeParts[4] + 1, 3, '0');
+        }
+
+        public static string KerbalDateTime(double value)
+        {
+            return KerbalDate(value) + " " + KerbalTime(value);
         }
 
         private static double MathFractalPart(double value)
@@ -155,7 +175,7 @@ namespace KOSM.Common
 
         private static int[] kerbalTimeParts(double value)
         {
-            int[] factors = timeFactors();
+            int[] factors = kerbinTimeFactors();
             int[] result = new int[factors.Length];
 
             double remainder = value;
@@ -171,17 +191,23 @@ namespace KOSM.Common
             return result;
         }
 
-        private static int[] timeFactors()
+        private static int[] kerbinTimeFactors()
         {
             return new int[] { 0, 1, 60, 3600, 21600, 9203400 };
         }
 
         private static string padLeft(object text, int totalWidth, char paddingChar)
         {
-            if (totalWidth < 0)
+            if (totalWidth <= 0 || totalWidth <= text.ToString().Length)
                 return text.ToString();
 
             return text.ToString().PadLeft(totalWidth, paddingChar);
+        }
+
+        public static double KerbinTimespanTotalSeconds(int years, int days, int hours, int minutes, int seconds)
+        {
+            int[] factors = kerbinTimeFactors();
+            return factors[5] * years + factors[4] * days + factors[3] * hours + factors[2] * minutes + factors[1] * seconds;
         }
     }
 }

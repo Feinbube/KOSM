@@ -9,14 +9,14 @@ namespace KOSM.Common
 {
     public static class DeltaV
     {
-        public static IVector3 ApoapsisManeuver(IOrbit orbit, double targetPeriapsisRadius)
+        public static IVectorXYZ ApoapsisManeuver(IOrbit orbit, double targetPeriapsisRadius)
         {
-            return new Vector3(0, 0, Velocity.OrbitVelocity(orbit.Body.GravityParameter, orbit.Apoapsis.Radius, targetPeriapsisRadius, orbit.Apoapsis.Radius) - orbit.Apoapsis.Velocity);
+            return new VectorXYZ(0, 0, Velocity.OrbitVelocity(orbit.Body.GravityParameter, orbit.Apoapsis.Radius, targetPeriapsisRadius, orbit.Apoapsis.Radius) - orbit.Apoapsis.Velocity);
         }
 
-        public static IVector3 PeriapsisManeuver(IOrbit orbit, double targetApoapsisRadius)
+        public static IVectorXYZ PeriapsisManeuver(IOrbit orbit, double targetApoapsisRadius)
         {
-            return new Vector3(0, 0, Velocity.OrbitVelocity(orbit.Body.GravityParameter, orbit.Periapsis.Radius, orbit.Periapsis.Radius, targetApoapsisRadius) - orbit.Periapsis.Velocity);
+            return new VectorXYZ(0, 0, Velocity.OrbitVelocity(orbit.Body.GravityParameter, orbit.Periapsis.Radius, orbit.Periapsis.Radius, targetApoapsisRadius) - orbit.Periapsis.Velocity);
         }
         
         //public double DeltaVForApoapsisManeuver(double targetAltitude)

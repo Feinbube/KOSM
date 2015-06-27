@@ -54,7 +54,7 @@ namespace KOSM.Game
             get { return world.FindBodyByName(raw.referenceBody.GetName()); }
         }
 
-        public IOrbit Orbit { get { return new Orbit(world, raw.GetOrbit(), this.MainBody); } }
+        public IOrbit Orbit { get { return new Orbit(world, raw.GetOrbit(), this, this.MainBody); } }
 
         public List<IBody> Moons
         {
@@ -118,9 +118,9 @@ namespace KOSM.Game
             get { return Gravity.GravityAtSealevel(this); }
         }
 
-        public IVector3 Position
+        public IVectorXYZ Position
         {
-            get { return v3(raw.position); }
+            get { return vXYZ(raw.position); }
         }
 
         #endregion IBody

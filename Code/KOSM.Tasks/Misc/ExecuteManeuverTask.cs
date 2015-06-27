@@ -10,12 +10,13 @@ namespace KOSM.Tasks
 {
     public class ExecuteManeuverTask : RocketTask
     {
+        IManeuver maneuver = null;
+
         public ExecuteManeuverTask(IWorld world, IRocket rocket)
             : base(world, rocket)
         {
         }
-
-        IManeuver maneuver = null;
+        
         public override void Execute(IWorld world, Mission mission)
         {
             if (maneuver == null)
@@ -32,7 +33,7 @@ namespace KOSM.Tasks
                 return;
             }
 
-            Details = "Remaining DeltaV: " + Format.Speed(maneuver.BurnVector.Magnitude) + ". Orbit after maneuver: " + rocket.Orbit.ToString() + ".";
+            Details = "Remaining DeltaV: " + Format.Speed(maneuver.BurnVector.Magnitude) + ". Orbit after maneuver: " + rocket.Orbit + ".";
             
             rocket.Throttle = 0;
             maneuver.Complete();

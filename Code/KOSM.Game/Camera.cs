@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using UnityEngine;
+
 using KOSM.Interfaces;
 
 namespace KOSM.Game
@@ -37,7 +39,7 @@ namespace KOSM.Game
                 return;
 
             raw.transform.position = (v3d(rocket.Position) - v3d(body.Position)).normalized * 1 + v3d(body.Position);
-            raw.transform.rotation = UnityEngine.Quaternion.LookRotation((rocket as Rocket).raw.transform.position - raw.transform.position, UnityEngine.Vector3.up);
+            raw.transform.rotation = Quaternion.LookRotation((rocket as Rocket).raw.transform.position - raw.transform.position, Vector3.up);
         }
 
         #endregion ICamera

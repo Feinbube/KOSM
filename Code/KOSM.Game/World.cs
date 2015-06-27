@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+
+using UnityEngine;
 
 using KOSM.Interfaces;
 using KOSM.Common;
-using System.IO;
 
 namespace KOSM.Game
 {
@@ -22,10 +24,10 @@ namespace KOSM.Game
         {
             MissionLog = new Log();
             MissionPlanLog = new Log();
-            DebugLog = new Log();
+            PersistentDebugLog = new Log();
             LiveDebugLog = new Log();
 
-            DebugLog.MessageAdded = a => ToGameLog(a);
+            PersistentDebugLog.MessageAdded = a => ToGameLog(a);
 
             Camera = new Camera(this);
         }
@@ -34,20 +36,20 @@ namespace KOSM.Game
 
         public ILog MissionLog { get; private set; }
         public ILog MissionPlanLog { get; private set; }
-        public ILog DebugLog { get; private set; }
+        public ILog PersistentDebugLog { get; private set; }
         public ILog LiveDebugLog { get; private set; }
 
         public void ClearLogs()
         {
             MissionPlanLog.Clear();
             MissionLog.Clear();
-            DebugLog.Clear();
+            PersistentDebugLog.Clear();
             LiveDebugLog.Clear();   
         }
 
         public void ToGameLog(object message)
         {
-            UnityEngine.Debug.Log("KOSM: " + message);
+            Debug.Log("KOSM: " + message);
         }
 
         public ICamera Camera { get; private set; }

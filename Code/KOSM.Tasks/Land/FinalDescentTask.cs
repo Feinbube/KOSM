@@ -9,11 +9,11 @@ namespace KOSM.Tasks
 {
     public class FinalDescentTask : RocketTask
     {
-        protected IOnGroundState objective = null;
-        public FinalDescentTask(IWorld world, IRocket rocket, IOnGroundState objective)
+        protected IOnGroundState destination = null;
+        public FinalDescentTask(IWorld world, IRocket rocket, IOnGroundState destination)
             : base(world, rocket)
         {
-            this.objective = objective;
+            this.destination = destination;
         }
 
         public override void Execute(IWorld world, Mission mission)
@@ -36,7 +36,7 @@ namespace KOSM.Tasks
 
         public override string Description
         {
-            get { return "Decending to slowly to " + objective.ToString() + "."; }
+            get { return "Decending to slowly to " + destination + "."; }
         }
     }
 }

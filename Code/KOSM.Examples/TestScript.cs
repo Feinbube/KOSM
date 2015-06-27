@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 
 using KOSM.Interfaces;
+using KOSM.Tasks;
 
 namespace KOSM.Examples
 {
-    public class TestScript : IScript
+    public class TestScript : MultiRocketMissionScript
     {
-        public void Update(IWorld world)
+        protected override Mission newMission(IWorld world, IRocket rocket)
         {
-            throw new NotImplementedException();
+            return new Mission(new TestTask(world, rocket));
         }
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using UnityEngine;
+
 using KOSM.Common;
 using KOSM.Interfaces;
 using KOSM.Utility;
@@ -11,12 +13,14 @@ namespace KOSM.Game
 {
     public class Rocket : WorldObject, IRocket
     {
+        internal RocketControl control = null;
         internal Vessel raw = null;
 
         public Rocket(World world, Vessel vessel)
             : base(world)
         {
             this.raw = vessel;
+            this.control = new RocketControl(world, this);
         }
 
         #region WorldObject
@@ -42,7 +46,7 @@ namespace KOSM.Game
 
         public IOrbit Orbit
         {
-            get { return new Orbit(world, raw.GetOrbit(), this.Body); }
+            get { return new Orbit(world, raw.GetOrbit(), this, this.Body); }
         }
 
         public double RocketVerticalHeight
@@ -58,7 +62,7 @@ namespace KOSM.Game
                     if (part.collider == null)
                         continue;
 
-                    UnityEngine.Vector3 extents = part.collider.bounds.extents;
+                    Vector3 extents = part.collider.bounds.extents;
                     float partRadius = Math.Max(extents[0], Math.Max(extents[1], extents[2]));
                     double partAltitudeBottom = Math.Max(0, raw.mainBody.GetAltitude(part.collider.bounds.center) - partRadius);
                     if (partAltitudeBottom < altitudeOfPart)
@@ -67,6 +71,11 @@ namespace KOSM.Game
 
                 return Altitude - altitudeOfPart;
             }
+        }
+
+        public double Mass
+        {
+            get { return this.raw.GetTotalMass(); }
         }
 
         public List<IManeuver> Maneuvers
@@ -88,12 +97,12 @@ namespace KOSM.Game
 
         public void AddApoapsisManeuver(double targetRadius)
         {
-            addNode(this.Orbit.Apoapsis.TimeOf, DeltaV.ApoapsisManeuver(this.Orbit, targetRadius));
+            AddManeuver(this.Orbit.Apoapsis.TimeOf, DeltaV.ApoapsisManeuver(this.Orbit, targetRadius));
         }
 
         public void AddPeriapsisManeuver(double targetRadius)
         {
-            addNode(this.Orbit.Periapsis.TimeOf, DeltaV.PeriapsisManeuver(this.Orbit, targetRadius));
+            AddManeuver(this.Orbit.Periapsis.TimeOf, DeltaV.PeriapsisManeuver(this.Orbit, targetRadius));
         }
 
         public void AddHohmannManeuver(IBody targetBody)
@@ -110,32 +119,22 @@ namespace KOSM.Game
             throw new NotImplementedException();
         }
 
+        public void AddManeuver(double pointInTime, IVectorXYZ burnVector)
+        {
+            ManeuverNode node = raw.patchedConicSolver.AddManeuverNode(pointInTime);
+            node.DeltaV = v3d(burnVector); // X:radialOut, Y:normal, Z:prograde
+            raw.patchedConicSolver.UpdateFlightPlan();
+        }
+
         public double Throttle
         {
-            get
-            {
-                return raw == FlightGlobals.ActiveVessel ? FlightInputHandler.state.mainThrottle : raw.ctrlState.mainThrottle;
-            }
-            set
-            {
-                value = clamp(value, 0, 1);
-
-                if (value > 0)
-                {
-                    world.PreventTimeWarping();
-                    checkStaging();
-                }
-
-                raw.ctrlState.mainThrottle = (float)value;
-
-                if (raw == FlightGlobals.ActiveVessel)
-                    FlightInputHandler.state.mainThrottle = (float)value;
-            }
+            get { return control.Throttle; }
+            set { control.Throttle = value; }
         }
 
         public void LockHeading(IEulerAngles3 newHeading)
         {
-            lockHeading(UnityEngine.Quaternion.Euler(newHeading.X, newHeading.Y, newHeading.Z));
+            control.LockHeading(newHeading);
         }
 
         /// <summary>
@@ -146,25 +145,17 @@ namespace KOSM.Game
         /// <param name="roll">--180° to 180°</param>
         public void SetCompassSteering(double pitchAboveHorizon, double degreesFromNorth, double roll)
         {
-            UnityEngine.Quaternion targetDir = UnityEngine.Quaternion.LookRotation(getNorth(), raw.upAxis);
-            targetDir *= UnityEngine.Quaternion.Euler(new UnityEngine.Vector3((float)-pitchAboveHorizon, (float)degreesFromNorth, (float)roll));
-            lockHeading(targetDir);
+            control.SetCompassSteering(pitchAboveHorizon, degreesFromNorth, roll);
         }
 
-        public void SetSteering(IVector3 forward)
+        public void SetSteering(IVectorXYZ forward)
         {
-            lockHeading(UnityEngine.Quaternion.LookRotation(v3d(forward), facing * UnityEngine.Vector3.up));
+            control.SetSteering(forward);
         }
 
         public void Stage()
         {
-            raw.MakeActive();
-
-            if (!raw.isActiveVessel)
-                throw new Exception("Vessel has to be active to activate next stage.");
-
-            if (Staging.separate_ready)
-                Staging.ActivateNextStage();
+            control.Stage();
         }
 
         public void RaiseGear()
@@ -204,23 +195,20 @@ namespace KOSM.Game
 
         public bool Turned
         {
-            get { return TurnDeviation < 0.05; } // less than 0.05° deviation }
+            get { return control.Turned; } // less than 0.03° deviation }
         }
 
         public double TurnDeviation
         {
-            get
-            {
-                return derivation(this.raw.Autopilot.SAS.lockedHeading, this.raw.Autopilot.SAS.currentRotation);
-            }
-        }        
+            get { return control.TurnDeviation; }
+        }
 
         /// <summary>
         /// 0 to 360° (North = 0°, East = 90°, South = 180°, West = 270°)
         /// </summary>
         public double Heading
         {
-            get { return rotationVesselSurface.eulerAngles.y; }
+            get { return control.Heading; }
         }
 
         /// <summary>
@@ -228,7 +216,7 @@ namespace KOSM.Game
         /// </summary>
         public double Pitch
         {
-            get { return pitchEulerToNavBall(rotationVesselSurface.eulerAngles.x); }
+            get { return control.Pitch; }
         }
 
         /// <summary>
@@ -236,57 +224,37 @@ namespace KOSM.Game
         /// </summary>
         public double Roll
         {
-            get { return rollEulerToNavBall(rotationVesselSurface.eulerAngles.z); }
+            get { return control.Roll; }
         }
 
-        public IVector3 Up
+        public IVectorXYZ Up
         {
-            get { return v3(raw.upAxis); }
+            get { return control.Up; }
         }
 
-        public IVector3 OrbitRetrograde
+        public IVectorXYZ OrbitRetrograde
         {
-            get { return v3(raw.obt_velocity.normalized * -1); }
+            get { return control.OrbitRetrograde; }
         }
 
-        public IVector3 SurfaceRetrograde
+        public IVectorXYZ SurfaceRetrograde
         {
-            get { return v3(raw.srf_velocity.normalized * -1); }
+            get { return control.SurfaceRetrograde; }
         }
 
         public double MaxAcceleration
         {
-            get { return this.raw.GetTotalMass() == 0 ? 0 : this.MaxThrust / this.raw.GetTotalMass(); }
+            get { return control.MaxAcceleration; }
         }
 
         public double CurrentThrust
         {
-            get
-            {
-                double thrust = 0.0;
-
-                foreach (Part part in raw.parts)
-                    foreach (PartModule partModule in part.Modules)
-                        if (partModule.isEnabled && partModule is ModuleEngines)
-                            thrust += engineThrust((ModuleEngines)partModule, Throttle);
-
-                return thrust;
-            }
+            get { return control.CurrentThrust; }
         }
 
         public double MaxThrust
         {
-            get
-            {
-                double thrust = 0.0;
-
-                foreach (Part part in raw.parts)
-                    foreach (PartModule partModule in part.Modules)
-                        if (partModule.isEnabled && partModule is ModuleEngines)
-                            thrust += engineThrust((ModuleEngines)partModule, 1.0f);
-
-                return thrust;
-            }
+            get { return control.MaxThrust; }
         }
 
         public double VerticalSpeed
@@ -299,9 +267,9 @@ namespace KOSM.Game
             get { return raw.horizontalSrfSpeed; }
         }
 
-        public IVector3 SurfaceVelocity
+        public IVectorXYZ SurfaceVelocity
         {
-            get { return v3(raw.srf_velocity); }
+            get { return vXYZ(raw.srf_velocity); }
         }
 
         public double TimeToMissionTime(double pointInTime)
@@ -309,9 +277,19 @@ namespace KOSM.Game
             return MissionTime + pointInTime - world.PointInTime;
         }
 
-        public IVector3 Position
+        public IVectorXYZ Position
         {
-            get { return v3(raw.transform.position); }
+            get { return vXYZ(raw.transform.position); }
+        }
+
+        public ITransferWindow NextTransferWindow(double earliestDepartureTime, IBody origin, IBody destination, bool aerobraking)
+        {
+            return new TransferWindow(world, earliestDepartureTime, origin, destination, aerobraking);
+        }
+
+        public ITransferWindow BestTransferWindow(double earliestDepartureTime, IBody origin, IBody destination, bool aerobraking)
+        {
+            return TransferWindow.Scan(world, earliestDepartureTime, origin, destination, aerobraking);
         }
 
         #endregion IRocket
@@ -319,126 +297,6 @@ namespace KOSM.Game
         public override string ToString()
         {
             return Name;
-        }
-
-        private void addNode(double pointInTime, IVector3 deltaV)
-        {
-            ManeuverNode node = raw.patchedConicSolver.AddManeuverNode(pointInTime);
-            node.DeltaV = v3d(deltaV);
-            raw.patchedConicSolver.UpdateFlightPlan();
-        }
-
-        private void addNode(double pointInTime, double radialOut, double normal, double prograde)
-        {
-            ManeuverNode node = raw.patchedConicSolver.AddManeuverNode(pointInTime);
-            node.DeltaV = new Vector3d(radialOut, normal, prograde);
-            raw.patchedConicSolver.UpdateFlightPlan();
-        }
-
-        private UnityEngine.Quaternion rotationVesselSurface
-        {
-            get
-            {
-                UnityEngine.Quaternion rotationSurface = UnityEngine.Quaternion.LookRotation((UnityEngine.Vector3)getNorth(), (UnityEngine.Vector3)getUp());
-                return UnityEngine.Quaternion.Inverse(UnityEngine.Quaternion.Euler(90, 0, 0) * UnityEngine.Quaternion.Inverse(raw.GetTransform().rotation) * rotationSurface);
-            }
-        }
-
-        private void checkStaging()
-        {
-            if (MaxThrust > 0)
-                return;
-
-            Stage();
-        }
-
-        private double engineThrust(ModuleEngines engine, double throttle)
-        {
-            if (engine == null || !engine.isOperational)
-                return 0.0f;
-
-            throttle = throttle * engine.thrustPercentage / 100.0f; // consider thrust limiters
-            double atmPressure = engine.part.staticPressureAtm;
-
-            float flowMod = 1.0f;
-            float velMod = 1.0f;
-            if (engine.atmChangeFlow)
-                flowMod = (float)(engine.part.atmDensity / 1.225f);
-
-            if (engine.useAtmCurve && engine.atmCurve != null)
-                flowMod = engine.atmCurve.Evaluate(flowMod);
-
-            if (engine.useVelCurve && engine.velCurve != null)
-                velMod = velMod * engine.velCurve.Evaluate((float)engine.vessel.mach);
-
-            // thrust = (modified fuel flow rate) * isp * g * (velocity modifier for jet engines) // KSP 1.0
-            return Scalar.Interpolate(engine.minFuelFlow, engine.maxFuelFlow, throttle) * flowMod * engine.atmosphereCurve.Evaluate((float)atmPressure) * engine.g * velMod;
-        }
-
-        private double pitchEulerToNavBall(double value)
-        {
-            return value > 180 ? 360.0 - value : -value;
-        }
-
-        private double rollEulerToNavBall(double value)
-        {
-            return value > 180 ? value - 360.0 : value;
-        }
-
-        private void enableStabilityAssist()
-        {
-            if (!raw.ActionGroups[KSPActionGroup.SAS])
-                raw.ActionGroups.SetGroup(KSPActionGroup.SAS, true);
-            if (!raw.ActionGroups[KSPActionGroup.RCS])
-                raw.ActionGroups.SetGroup(KSPActionGroup.RCS, true);
-
-            if (this.raw.Autopilot.Mode != VesselAutopilot.AutopilotMode.StabilityAssist)
-                this.raw.Autopilot.SetMode(VesselAutopilot.AutopilotMode.StabilityAssist);
-        }
-
-        private Vector3d getNorth()
-        {
-            return Vector3d.Exclude(getUp(), (raw.mainBody.position + toDouble(raw.mainBody.transform.up) * raw.mainBody.Radius) - raw.findWorldCenterOfMass()).normalized;
-        }
-
-        private Vector3d toDouble(UnityEngine.Vector3 value)
-        {
-            return new Vector3d(value.x, value.y, value.z);
-        }
-
-        private Vector3d getUp()
-        {
-            return (raw.findWorldCenterOfMass() - raw.mainBody.position).normalized;
-        }
-
-        private void lockHeading(UnityEngine.Quaternion newHeading)
-        {
-            newHeading = newHeading * UnityEngine.Quaternion.Euler(90, 0, 0);
-
-            enableStabilityAssist();
-
-            if (!isOnTrack(newHeading))
-                this.raw.Autopilot.SAS.LockHeading(newHeading, true);
-
-            if (!Turned)
-                world.PreventTimeWarping();            
-        }
-
-        private double derivation(UnityEngine.Quaternion q1, UnityEngine.Quaternion q2)
-        {
-            double vdot = Vector3d.Dot(q1.eulerAngles.normalized, q2.eulerAngles.normalized);
-            return Math.Abs(vdot >= 1 ? 0 : vdot <= -1 ? 180 : 180 * Math.Acos(vdot) / Math.PI);
-        }
-
-        private bool isOnTrack(UnityEngine.Quaternion newHeading)
-        {
-            double newTurnDerivation = derivation(this.raw.Autopilot.SAS.lockedHeading, newHeading);
-            return newTurnDerivation < 0.01 || newTurnDerivation < 0.5 * TurnDeviation;
-        }
-
-        private UnityEngine.Quaternion facing
-        {
-            get { return UnityEngine.Quaternion.Inverse(UnityEngine.Quaternion.Euler(90, 0, 0) * UnityEngine.Quaternion.Inverse(raw.ReferenceTransform.rotation) * UnityEngine.Quaternion.identity); }
-        }
+        } 
     }
 }

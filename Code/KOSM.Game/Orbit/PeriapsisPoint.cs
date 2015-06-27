@@ -13,24 +13,12 @@ namespace KOSM.Game
             : base(world, orbit)
         {
         }
-        public override double Altitude
-        {
-            get { return orbit.raw.PeA; }
-        }
 
-        public override double Radius
-        {
-            get { return orbit.raw.PeR; }
-        }
+        // TODO: for efficiency override radius, altitude, timeto, ...
 
-        public override double TimeTill
+        protected override double degreesFromPeriapsis
         {
-            get { return orbit.raw.timeToPe; }
+            get { return 0; }
         }
-
-        public override bool MovingTowards
-        {
-            get { return orbit.raw.timeToPe < orbit.raw.timeToAp; }
-        }        
     }
 }

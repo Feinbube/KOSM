@@ -19,7 +19,7 @@ namespace KOSM
         WindowManager windowManager = null;
 
         private bool initialized = false;
-        private bool firstUpdate = true;
+        private double latestUpdate = -1;
 
         private DateTime configSaveTime = DateTime.Now;
         private string configName = "KOSM.cfg";
@@ -44,11 +44,18 @@ namespace KOSM
 
         public void FixedUpdate()
         {
-            if (firstUpdate)
+            if (latestUpdate == -1)
             {
-                firstUpdate = false;
-                world.StartGame("KOSM", "quicksave");                
+                latestUpdate = 0;
+                world.StartGame("KOSM", "quicksave");
+                return;
             }
+
+            if (latestUpdate == world.PointInTime) // just one update per tick (the game calls FixedUpdate way to often!)
+                return;
+
+            world.LiveDebugLog.Clear();
+            latestUpdate = world.PointInTime;
 
             if (script != null)
             {
@@ -62,7 +69,7 @@ namespace KOSM
         private void gameReset(ConfigNode game)
         {
             world.ClearLogs();
-         
+
             script = new PresentationScript();
 
             windowManager.Reset();
@@ -119,10 +126,7 @@ namespace KOSM
             if (button == "Ascend") script = new AscendToOrbitScript();
             if (button == "Land") script = new LandScript();
             if (button == "Maneuver") script = new ManeuverScript();
-            if (button == "Test")
-            {
-                // test stuff here
-            }
+            if (button == "Test") script = new TestScript();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace KOSM.Interfaces
     {
         ILog MissionLog { get; }
         ILog MissionPlanLog { get; }
-        ILog DebugLog { get; }
+        ILog PersistentDebugLog { get; }
         ILog LiveDebugLog { get; }
         void ToGameLog(object message);
 

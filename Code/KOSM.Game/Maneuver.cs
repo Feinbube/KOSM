@@ -52,14 +52,14 @@ namespace KOSM.Game
             patchedConicSolver.RemoveManeuverNode(maneuverNode);
         }
 
-        public IVector3 DeltaV
+        public IVectorXYZ DeltaV
         {
-            get { return v3(maneuverNode.DeltaV); }
+            get { return vXYZ(maneuverNode.DeltaV); }
         }
         
-        public IVector3 BurnVector
+        public IVectorXYZ BurnVector
         {
-            get { return v3(maneuverNode.GetBurnVector(rocket.raw.orbit)); }
+            get { return vXYZ(maneuverNode.GetBurnVector(rocket.raw.orbit)); }
         }
 
         public double BurnDuration

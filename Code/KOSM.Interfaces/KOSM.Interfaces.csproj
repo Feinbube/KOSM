@@ -46,12 +46,16 @@
     <Compile Include="IManeuver.cs" />
     <Compile Include="IInOrbitState.cs" />
     <Compile Include="IOrbit.cs" />
+    <Compile Include="IOrbiter.cs" />
     <Compile Include="IPointInOrbit.cs" />
     <Compile Include="IRocket.cs" />
+    <Compile Include="IRocketControl.cs" />
+    <Compile Include="IRocketManeuvers.cs" />
     <Compile Include="IScript.cs" />
     <Compile Include="IOnGroundState.cs" />
     <Compile Include="IState.cs" />
-    <Compile Include="IVector3.cs" />
+    <Compile Include="ITransferWindow.cs" />
+    <Compile Include="IVectorXYZ.cs" />
     <Compile Include="IWorld.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

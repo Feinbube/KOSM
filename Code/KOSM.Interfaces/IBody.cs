@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace KOSM.Interfaces
 {
-    public interface IBody : IIdentifiable
+    public interface IBody : IIdentifiable, IOrbiter
     {
         string Name { get; }
         bool HasAtmosphere { get; }
@@ -25,7 +25,5 @@ namespace KOSM.Interfaces
 
         double GravityParameter { get; }
         double GravityAtSealevel { get; }
-
-        IVector3 Position { get; }
     }
 }

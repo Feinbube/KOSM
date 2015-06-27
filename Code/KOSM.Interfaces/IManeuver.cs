@@ -8,8 +8,8 @@ namespace KOSM.Interfaces
         void Complete();
         void Abort();
 
-        IVector3 DeltaV { get; }
-        IVector3 BurnVector { get; }
+        IVectorXYZ DeltaV { get; }
+        IVectorXYZ BurnVector { get; }
 
         double BurnDuration { get; }
         

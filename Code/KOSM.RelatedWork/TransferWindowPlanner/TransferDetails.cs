@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using KSP;
 using UnityEngine;
 
 namespace KOSM.RelatedWork.TransferWindowPlanner
@@ -203,6 +202,29 @@ namespace KOSM.RelatedWork.TransferWindowPlanner
             }
 
             return LambertSolver.Deg2Rad * ((phaseAngle + 360) % 360);
+        }
+
+        public string TransferDetailsText
+        {
+            get
+            {
+
+                String Message = String.Format("Transfer from {0} to {1}", this.Origin.name, this.Destination.name);
+                Message += "\r\n" + String.Format("Depart at UT:   {0:0}", this.DepartureTime);
+                Message += "\r\n" + String.Format("   Travel UT:   {0:0}", this.TravelTime);
+                Message += "\r\n" + String.Format("Arrive at UT:   {0:0}", this.DepartureTime + this.TravelTime);
+                Message += "\r\n" + String.Format("Phase Angle:    {0:0.00}°", this.PhaseAngle * LambertSolver.Rad2Deg);
+                Message += "\r\n" + String.Format("Ejection Angle: {0:0.00}°", this.EjectionAngle * LambertSolver.Rad2Deg);
+                Message += "\r\n" + String.Format("Ejection Inc.:  {0:0.00}°", this.EjectionInclination * LambertSolver.Rad2Deg);
+                Message += "\r\n" + String.Format("Ejection Δv:    {0:0} m/s", this.DVEjection);
+                Message += "\r\n" + String.Format("Prograde Δv:    {0:0.0} m/s", this.EjectionDVPrograde);
+                Message += "\r\n" + String.Format("Normal Δv:      {0:0.0} m/s", this.EjectionDVNormal);
+                Message += "\r\n" + String.Format("Heading:        {0:0.00}°", this.EjectionHeading * LambertSolver.Rad2Deg);
+                Message += "\r\n" + String.Format("Insertion Inc.: {0:0.00}°", this.InsertionInclination * LambertSolver.Rad2Deg);
+                Message += "\r\n" + String.Format("Insertion Δv:   {0:0} m/s", this.DVInjection);
+                Message += "\r\n" + String.Format("Total Δv:       {0:0} m/s", this.DVTotal);
+                return Message;
+            }
         }
 
         //internal string TransferDetailsText

@@ -9,9 +9,15 @@ namespace KOSM.Interfaces
     {
         double Altitude { get; }
         double Radius { get; }
+        double Velocity { get; }
+        
+        bool MovingTowards { get; }
+        double DegreesTo { get; }
+        double DegreesFrom { get; }
+        
         double TimeTill { get; }
         double TimeOf { get; }
-        bool MovingTowards { get; }
-        double Velocity { get; }
+        double TimeTillDegreesToEquals(double degreesTo);
+        double TimeTillDegreesFromEquals(double degreesFrom);
     }
 }

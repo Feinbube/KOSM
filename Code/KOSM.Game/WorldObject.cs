@@ -45,12 +45,12 @@ namespace KOSM.Game
             world.MissionLog.Add(message);
         }
 
-        protected IVector3 v3(Vector3d vector)
+        protected IVectorXYZ vXYZ(Vector3d vector)
         {
-            return new Vector3(vector.x, vector.y, vector.z);
+            return new VectorXYZ(vector.x, vector.y, vector.z);
         }
 
-        protected Vector3d v3d(IVector3 vector)
+        protected Vector3d v3d(IVectorXYZ vector)
         {
             return new Vector3d(vector.X, vector.Y, vector.Z);
         }

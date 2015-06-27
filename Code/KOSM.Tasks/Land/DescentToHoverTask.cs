@@ -9,11 +9,11 @@ namespace KOSM.Tasks
 {
     public class DescentToHoverTask : RocketTask
     {
-        protected IOnGroundState objective = null;
-        public DescentToHoverTask(IWorld world, IRocket rocket, IOnGroundState objective)
+        protected IOnGroundState destination = null;
+        public DescentToHoverTask(IWorld world, IRocket rocket, IOnGroundState destination)
             : base(world, rocket)
         {
-            this.objective = objective;
+            this.destination = destination;
         }
 
         public override void Execute(IWorld world, Mission mission)
@@ -56,7 +56,7 @@ namespace KOSM.Tasks
 
         public override string Description
         {
-            get { return "Decending to " + objective.ToString() + "."; }
+            get { return "Decending to " + destination + "."; }
         }
     }
 }

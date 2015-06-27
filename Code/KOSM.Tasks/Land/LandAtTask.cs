@@ -9,26 +9,26 @@ namespace KOSM.Tasks
 {
     public class LandAtTask : RocketTask
     {
-        protected IOnGroundState objective = null;
-        public LandAtTask(IWorld world, IRocket rocket, IOnGroundState objective)
+        protected IOnGroundState destination = null;
+        public LandAtTask(IWorld world, IRocket rocket, IOnGroundState destination)
             : base(world, rocket)
         {
-            this.objective = objective;
+            this.destination = destination;
         }
 
         public override void Execute(IWorld world, Mission mission)
         {
             mission.PushAfter(this,
-                    new DeOrbitTask(world, rocket, objective),
-                    new DescentToHoverTask(world, rocket, objective),
-                    new FinalDescentTask(world, rocket, objective)
+                    new DeOrbitTask(world, rocket, destination),
+                    new DescentToHoverTask(world, rocket, destination),
+                    new FinalDescentTask(world, rocket, destination)
                     );
             mission.Complete(world, this);
         }
 
         public override string Description
         {
-            get { return "Landing at " + objective.ToString() + "."; }
+            get { return "Landing at " + destination + "."; }
         }
     }
 }

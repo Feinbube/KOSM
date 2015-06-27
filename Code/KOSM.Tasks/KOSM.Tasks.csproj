@@ -43,6 +43,8 @@
     <Compile Include="AdjustOrbit\InclinationChangeTask.cs" />
     <Compile Include="AdjustOrbit\StabilizeOrbitTask.cs" />
     <Compile Include="Launch\NewLaunchTask.cs" />
+    <Compile Include="Misc\TestTask.cs" />
+    <Compile Include="Misc\ExecuteTransferWindowTask.cs" />
     <Compile Include="Misc\ExecuteManeuverTask.cs" />
     <Compile Include="Land\DeOrbitTask.cs" />
     <Compile Include="Land\DescentToHoverTask.cs" />
@@ -50,6 +52,7 @@
     <Compile Include="Land\LandAtTask.cs" />
     <Compile Include="Launch\RaiseToLowOrbitTask.cs" />
     <Compile Include="Mission\Mission.cs" />
+    <Compile Include="Mission\DirectTransferMissionTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Misc\QuickLoadTask.cs" />
     <Compile Include="RocketTask.cs" />
