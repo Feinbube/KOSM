@@ -11,11 +11,11 @@ using KOSM.Utility;
 
 namespace KOSM.Game
 {
-    public class RocketControl : WorldObject, IRocketControl
+    public class RocketControlSAS : WorldObject, IRocketControl
     {
         private Rocket rocket;
 
-        public RocketControl(World world, Rocket rocket)
+        public RocketControlSAS(World world, Rocket rocket)
             : base(world)
         {
             this.rocket = rocket;
@@ -85,10 +85,7 @@ namespace KOSM.Game
 
         public double TurnDeviation
         {
-            get
-            {
-                return derivation(lockedHeading, this.rocket.raw.Autopilot.SAS.currentRotation);
-            }
+            get { return Quaternion.Angle(lockedHeading, currentHeading); }
         }
 
         /// <summary>
@@ -137,32 +134,12 @@ namespace KOSM.Game
 
         public double CurrentThrust
         {
-            get
-            {
-                double thrust = 0.0;
-
-                foreach (Part part in rocket.raw.parts)
-                    foreach (PartModule partModule in part.Modules)
-                        if (partModule.isEnabled && partModule is ModuleEngines)
-                            thrust += engineThrust((ModuleEngines)partModule, Throttle);
-
-                return thrust;
-            }
+            get { return thrustOfAllEnabledEngines(Throttle); }
         }
 
         public double MaxThrust
         {
-            get
-            {
-                double thrust = 0.0;
-
-                foreach (Part part in rocket.raw.parts)
-                    foreach (PartModule partModule in part.Modules)
-                        if (partModule.isEnabled && partModule is ModuleEngines)
-                            thrust += engineThrust((ModuleEngines)partModule, 1.0f);
-
-                return thrust;
-            }
+            get { return thrustOfAllEnabledEngines(1.0); }
         }
 
         public void Stage()
@@ -177,6 +154,18 @@ namespace KOSM.Game
         }
 
         #endregion IRocketControl
+
+        private double thrustOfAllEnabledEngines(double throttle)
+        {
+            double thrust = 0.0;
+
+            foreach (Part part in rocket.raw.parts)
+                foreach (PartModule partModule in part.Modules)
+                    if (partModule.isEnabled && partModule is ModuleEngines)
+                        thrust += engineThrust((ModuleEngines)partModule, throttle);
+
+            return thrust;
+        }
 
         private double engineThrust(ModuleEngines engine, double throttle)
         {
@@ -211,44 +200,78 @@ namespace KOSM.Game
             return value > 180 ? value - 360.0 : value;
         }
 
+        Quaternion currentHeading
+        {
+            get { return this.rocket.raw.transform.rotation; }
+            set { this.rocket.raw.Autopilot.SAS.LockHeading(value, true); }
+        }
+
+        Quaternion latestHeading;
+
+        Quaternion originalHeading;
+        Quaternion intermediateHeading;
+        Quaternion desiredHeading;
+
+        enum TurnStates { None, MovingTowards, Overshooting, MovingBack, KeepingTrack }
+
         private void lockHeading(Quaternion newHeading)
         {
-            newHeading = newHeading * Quaternion.Euler(90, 0, 0);
-
             enableStabilityAssist();
 
-            world.LiveDebugLog.Add("TurnDeviation: " + TurnDeviation);
-            world.LiveDebugLog.Add("New TurnDeviation: " + derivation(lockedHeading, newHeading));
-            world.LiveDebugLog.Add("Is on track: " + isOnTrack(newHeading));
+            newHeading = newHeading * Quaternion.Euler(90, 0, 0);
 
-            //if (!isOnTrack(newHeading))
-            this.rocket.raw.Autopilot.SAS.LockHeading(newHeading, true);
+            updateCurrentState(newHeading);
+
+            if (currentTurnState == TurnStates.KeepingTrack)
+                currentHeading = newHeading;
+            else
+                performTurn(newHeading);
 
             if (!Turned)
                 world.PreventTimeWarping();
+        }
+
+        private void performTurn(Quaternion newHeading)
+        {
+            if (currentTurnState == TurnStates.None || currentTurnState == TurnStates.MovingBack)
+            {
+                originalHeading = currentHeading;
+                desiredHeading = newHeading;
+                intermediateHeading = Quaternion.Lerp(originalHeading, desiredHeading, 0.5f);
+                currentTurnState = TurnStates.MovingTowards;
+            }
+
+            currentHeading = intermediateHeading;
+            latestHeading = currentHeading;
+        }
+
+        TurnStates currentTurnState = TurnStates.None;
+
+        private void updateCurrentState(Quaternion newHeading)
+        {
+            if (currentTurnState == TurnStates.MovingTowards && Quaternion.Angle(currentHeading, desiredHeading) < Quaternion.Angle(originalHeading, currentHeading))
+                currentTurnState = TurnStates.Overshooting;
+
+            if (currentTurnState == TurnStates.Overshooting && Quaternion.Angle(latestHeading, desiredHeading) < Quaternion.Angle(currentHeading, desiredHeading))
+                if (Quaternion.Angle(currentHeading, desiredHeading) < 2)
+                    currentTurnState = TurnStates.KeepingTrack;
+                else
+                    currentTurnState = TurnStates.MovingBack;
+
+            if (currentTurnState == TurnStates.KeepingTrack && Quaternion.Angle(currentHeading, newHeading) > 2)
+                currentTurnState = TurnStates.None;
         }
 
         private void enableStabilityAssist()
         {
             if (!rocket.raw.ActionGroups[KSPActionGroup.SAS])
                 rocket.raw.ActionGroups.SetGroup(KSPActionGroup.SAS, true);
+
             if (!rocket.raw.ActionGroups[KSPActionGroup.RCS])
                 rocket.raw.ActionGroups.SetGroup(KSPActionGroup.RCS, true);
 
             if (this.rocket.raw.Autopilot.Mode != VesselAutopilot.AutopilotMode.StabilityAssist)
                 this.rocket.raw.Autopilot.SetMode(VesselAutopilot.AutopilotMode.StabilityAssist);
-        }
-
-
-        private double derivation(Quaternion q1, Quaternion q2)
-        {
-            return Quaternion.Angle(q1, q2);
-        }
-
-        private bool isOnTrack(Quaternion newHeading)
-        {
-            double newTurnDerivation = derivation(lockedHeading, newHeading);
-            return newTurnDerivation < 0.01; //|| newTurnDerivation < 0.5 * TurnDeviation;
         }
 
         private Quaternion facing

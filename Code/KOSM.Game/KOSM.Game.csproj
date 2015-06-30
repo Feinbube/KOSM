@@ -57,7 +57,7 @@
     <Compile Include="Orbit\PeriapsisPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rocket.cs" />
-    <Compile Include="RocketControl.cs" />
+    <Compile Include="RocketControlSAS.cs" />
     <Compile Include="TransferWindow.cs" />
     <Compile Include="World.cs" />
     <Compile Include="WorldObject.cs" />

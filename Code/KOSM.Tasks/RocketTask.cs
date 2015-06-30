@@ -26,7 +26,7 @@ namespace KOSM.Tasks
             rocket.SetSteering(vector);
 
             if (rocket.Turned)
-                if (world.WarpTimeTo(maneuver.TimeOfBurn))
+                if (world.WarpTimeTo(maneuver.TimeOfBurn - 10))
                     return false;
 
             return maneuver.TimeTillBurn <= 0;

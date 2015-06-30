@@ -20,6 +20,7 @@ namespace KOSM
 
         private bool initialized = false;
         private double latestUpdate = -1;
+        private DateTime latestReset;
 
         private DateTime configSaveTime = DateTime.Now;
         private string configName = "KOSM.cfg";
@@ -52,10 +53,22 @@ namespace KOSM
             }
 
             if (latestUpdate == world.PointInTime) // just one update per tick (the game calls FixedUpdate way to often!)
+            {
+                world.PersistentDebugLog.Add("Multi-Update: " + latestUpdate);
                 return;
+            }            
 
             world.LiveDebugLog.Clear();
             latestUpdate = world.PointInTime;
+
+            if (latestReset == DateTime.MinValue)
+                latestReset = DateTime.Now;
+
+            if (latestReset > DateTime.Now.AddSeconds(-30)) // the game engine should have some time to load the scene and place the ship
+            {
+                world.LiveDebugLog.Add("Starting mission in T-" + (latestReset - DateTime.Now.AddSeconds(-30)).TotalSeconds + "s.");
+                return;
+            }
 
             if (script != null)
             {
@@ -73,6 +86,8 @@ namespace KOSM
             script = new PresentationScript();
 
             windowManager.Reset();
+
+            latestReset = DateTime.MinValue;
         }
 
         private void addAppLauncher()

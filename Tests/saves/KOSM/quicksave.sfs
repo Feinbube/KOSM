@@ -10,7 +10,7 @@ GAME
 	scene = 7
 	editor = None
 	flag = 
-	launchID = 21
+	launchID = 25
 	PARAMETERS
 	{
 		preset = Normal
@@ -303,7 +303,7 @@ GAME
 	{
 		name = ScenarioDiscoverableObjects
 		scene = 7, 8, 5
-		lastSeed = 1457015464
+		lastSeed = 1322670261
 		sizeCurve
 		{
 			key = 0 0 1.5 1.5
@@ -315,12 +315,12 @@ GAME
 	FLIGHTSTATE
 	{
 		version = 1.0.4
-		UT = 4842236.61449539
+		UT = 26001750.183166
 		activeVessel = 0
 		mapViewFiltering = -1026
 		VESSEL
 		{
-			pid = f27170b22bb240e5acf8f324eed2ba4f
+			pid = ed4793ec645b4bc7bfda2e98492fb663
 			name = SX1
 			type = Probe
 			sit = PRELAUNCH
@@ -328,40 +328,40 @@ GAME
 			landedAt = KSC_LaunchPad_Platform
 			splashed = False
 			met = 0
-			lct = 4842236.57449539
+			lct = 26001750.143166
 			root = 0
-			lat = -0.0972280455681282
-			lon = 285.442333942675
-			alt = 89.4486946604447
-			hgt = 16.90037
-			nrm = 0.0002537245,1,5.039382E-05
-			rot = -0.7010294,-0.09220774,-0.09709784,0.7004483
-			CoM = -0.0005178046,-11.59925,-1.55144E-05
+			lat = -0.0972278322150574
+			lon = 285.4423440021
+			alt = 89.3500925706467
+			hgt = 16.89658
+			nrm = 0.0003045197,1,-0.0001538024
+			rot = -0.7010282,-0.09269093,-0.09657907,0.7004573
+			CoM = -0.000745577,-11.59696,0.0002311035
 			stg = 5
 			prst = False
-			ref = 628909790
+			ref = 4115977899
 			ctrl = True
 			cPch = 0.2
 			cHdg = 0.3
 			cMod = 0
 			ORBIT
 			{
-				SMA = 300817.648869064
-				ECC = 0.994822617256176
-				INC = 0.0972280476797701
-				LPE = 90.0587466705665
-				LAN = 169.656245543271
-				MNA = 3.14158595400785
-				EPH = 4842236.61449539
+				SMA = 300817.515749157
+				ECC = 0.994823183950189
+				INC = 0.0972442341653838
+				LPE = 91.0480361313929
+				LAN = 28.6630145663299
+				MNA = 3.14155415648399
+				EPH = 26001750.183166
 				REF = 1
 			}
 			PART
 			{
 				name = probeCoreOcto
 				cid = 4294852316
-				uid = 628909790
-				mid = 2877591730
-				launchID = 20
+				uid = 4115977899
+				mid = 2614439265
+				launchID = 24
 				parent = 0
 				position = 0,0,0
 				rotation = 0,0,0,1
@@ -377,14 +377,14 @@ GAME
 				attN = bottom, 1
 				attN = top, 25
 				mass = 0.1
-				temp = 287.464209398638
-				tempExt = 288.242137046694
+				temp = 312.023060782219
+				tempExt = 311.933306757754
 				expt = 0
 				state = 0
 				connected = True
 				attached = True
 				flag = 
-				rTrf = probeCoreOcto
+				rTrf = probeCoreOcto (SX1)
 				modCost = 0
 				EVENTS
 				{
@@ -500,7 +500,7 @@ GAME
 				RESOURCE
 				{
 					name = ElectricCharge
-					amount = 9.98120000041849
+					amount = 7.80204797846148
 					maxAmount = 10
 					flowState = True
 					isTweakable = True
@@ -512,9 +512,9 @@ GAME
 			{
 				name = fuelTank.long
 				cid = 4294851816
-				uid = 780325489
-				mid = 2877591730
-				launchID = 20
+				uid = 494471050
+				mid = 2614439265
+				launchID = 24
 				parent = 0
 				position = 0,-2.06208038330078,0
 				rotation = 0,0,0,1
@@ -530,8 +530,8 @@ GAME
 				attN = top, 0
 				attN = bottom, 2
 				mass = 0.5
-				temp = 287.446359470967
-				tempExt = 288.226757946192
+				temp = 312.023539034551
+				tempExt = 311.926662654197
 				expt = 0.5
 				state = 0
 				connected = True
@@ -573,9 +573,9 @@ GAME
 			{
 				name = liquidEngine2
 				cid = 4294850626
-				uid = 858146855
-				mid = 2877591730
-				launchID = 20
+				uid = 2827551583
+				mid = 2614439265
+				launchID = 24
 				parent = 1
 				position = 0,-4.85140991210938,0
 				rotation = 0,0,0,1
@@ -591,8 +591,8 @@ GAME
 				attN = top, 1
 				attN = bottom, 3
 				mass = 1.5
-				temp = 287.477650206308
-				tempExt = 288.1853093757
+				temp = 312.023116228277
+				tempExt = 311.86936885863
 				expt = 0.5
 				state = 0
 				connected = True
@@ -789,7 +789,7 @@ GAME
 				RESOURCE
 				{
 					name = ElectricCharge
-					amount = 0
+					amount = 5.30748590967424E-05
 					maxAmount = 0.119999997317791
 					flowState = True
 					isTweakable = False
@@ -801,9 +801,9 @@ GAME
 			{
 				name = stackDecoupler
 				cid = 4294849342
-				uid = 731542818
-				mid = 2877591730
-				launchID = 20
+				uid = 3666506246
+				mid = 2614439265
+				launchID = 24
 				parent = 2
 				position = 0,-5.63438987731934,0
 				rotation = 0,0,0,1
@@ -819,8 +819,8 @@ GAME
 				attN = bottom, 4
 				attN = top, 2
 				mass = 0.05
-				temp = 287.508211032692
-				tempExt = 288.199464970504
+				temp = 312.022238540515
+				tempExt = 311.932181781378
 				expt = 0.5
 				state = 0
 				connected = True
@@ -899,9 +899,9 @@ GAME
 			{
 				name = fuelTank.long
 				cid = 4294849136
-				uid = 3094041742
-				mid = 2877591730
-				launchID = 20
+				uid = 926002827
+				mid = 2614439265
+				launchID = 24
 				parent = 3
 				position = 0,-7.64237976074219,0
 				rotation = 0,0,0,1
@@ -917,8 +917,8 @@ GAME
 				attN = top, 3
 				attN = bottom, 5
 				mass = 0.5
-				temp = 287.491365686706
-				tempExt = 288.267006164693
+				temp = 312.023537101178
+				tempExt = 311.921551430174
 				expt = 0.5
 				state = 0
 				connected = True
@@ -960,9 +960,9 @@ GAME
 			{
 				name = liquidEngine2
 				cid = 4294849098
-				uid = 1952407594
-				mid = 2877591730
-				launchID = 20
+				uid = 1935842828
+				mid = 2614439265
+				launchID = 24
 				parent = 4
 				position = 0,-10.4316997528076,0
 				rotation = 0,0,0,1
@@ -978,8 +978,8 @@ GAME
 				attN = top, 4
 				attN = bottom, 6
 				mass = 1.5
-				temp = 287.522784979065
-				tempExt = 288.228598613262
+				temp = 312.023110609839
+				tempExt = 311.867069299882
 				expt = 0.5
 				state = 0
 				connected = True
@@ -1176,7 +1176,7 @@ GAME
 				RESOURCE
 				{
 					name = ElectricCharge
-					amount = 0
+					amount = 5.30748590967424E-05
 					maxAmount = 0.119999997317791
 					flowState = True
 					isTweakable = False
@@ -1188,9 +1188,9 @@ GAME
 			{
 				name = stackDecoupler
 				cid = 4294848946
-				uid = 144845210
-				mid = 2877591730
-				launchID = 20
+				uid = 4130262648
+				mid = 2614439265
+				launchID = 24
 				parent = 5
 				position = 0,-11.2146797180176,0
 				rotation = 0,0,0,1
@@ -1206,8 +1206,8 @@ GAME
 				attN = bottom, 7
 				attN = top, 5
 				mass = 0.05
-				temp = 287.553412259903
-				tempExt = 288.242838531982
+				temp = 312.022245484929
+				tempExt = 311.932806238553
 				expt = 0.5
 				state = 0
 				connected = True
@@ -1286,9 +1286,9 @@ GAME
 			{
 				name = fuelTank.long
 				cid = 4294848652
-				uid = 4117030402
-				mid = 2877591730
-				launchID = 20
+				uid = 332081337
+				mid = 2614439265
+				launchID = 24
 				parent = 6
 				position = 0,-13.2226715087891,0
 				rotation = 0,0,0,1
@@ -1304,8 +1304,8 @@ GAME
 				attN = top, 6
 				attN = bottom, 8
 				mass = 0.5
-				temp = 287.536819146113
-				tempExt = 288.312940995879
+				temp = 312.023542163229
+				tempExt = 311.925603041921
 				expt = 0.5
 				state = 0
 				connected = True
@@ -1347,9 +1347,9 @@ GAME
 			{
 				name = liquidEngine2
 				cid = 4294848614
-				uid = 3817519890
-				mid = 2877591730
-				launchID = 20
+				uid = 1011826430
+				mid = 2614439265
+				launchID = 24
 				parent = 7
 				position = 0,-16.0120010375977,0
 				rotation = 0,0,0,1
@@ -1365,8 +1365,8 @@ GAME
 				attN = top, 7
 				attN = bottom, -1
 				mass = 1.5
-				temp = 287.560722056724
-				tempExt = 288.260841866203
+				temp = 312.023344055245
+				tempExt = 311.884231825569
 				expt = 0.5
 				state = 0
 				connected = True
@@ -1563,7 +1563,7 @@ GAME
 				RESOURCE
 				{
 					name = ElectricCharge
-					amount = 0
+					amount = 5.30748590967424E-05
 					maxAmount = 0.119999997317791
 					flowState = True
 					isTweakable = False
@@ -1575,9 +1575,9 @@ GAME
 			{
 				name = fuelTank.long
 				cid = 4294840930
-				uid = 2234199427
-				mid = 2877591730
-				launchID = 20
+				uid = 2267197490
+				mid = 2614439265
+				launchID = 24
 				parent = 7
 				position = -1.24562191963196,-13.5034713745117,0
 				rotation = -7.486784E-23,0,-1.842297E-15,1
@@ -1596,8 +1596,8 @@ GAME
 				attN = top, -1
 				attN = bottom, 10
 				mass = 0.5
-				temp = 287.539346674593
-				tempExt = 288.313148884164
+				temp = 312.023540763334
+				tempExt = 311.930518872656
 				expt = 0.5
 				state = 0
 				connected = True
@@ -1639,9 +1639,9 @@ GAME
 			{
 				name = liquidEngine2
 				cid = 4294840892
-				uid = 3021291768
-				mid = 2877591730
-				launchID = 20
+				uid = 1500040751
+				mid = 2614439265
+				launchID = 24
 				parent = 9
 				position = -1.24562191963196,-16.2928009033203,0
 				rotation = -7.486784E-23,0,-1.842297E-15,1
@@ -1660,8 +1660,8 @@ GAME
 				attN = top, 9
 				attN = bottom, -1
 				mass = 1.5
-				temp = 287.562864965011
-				tempExt = 288.265285109791
+				temp = 312.023348274607
+				tempExt = 311.887526958064
 				expt = 0.5
 				state = 0
 				connected = True
@@ -1858,7 +1858,7 @@ GAME
 				RESOURCE
 				{
 					name = ElectricCharge
-					amount = 0
+					amount = 5.30748590967424E-05
 					maxAmount = 0.119999997317791
 					flowState = True
 					isTweakable = False
@@ -1870,9 +1870,9 @@ GAME
 			{
 				name = winglet
 				cid = 4294837018
-				uid = 1582975504
-				mid = 2877591730
-				launchID = 20
+				uid = 2684661394
+				mid = 2614439265
+				launchID = 24
 				parent = 9
 				position = -2.50313472747803,-15.0080814361572,1.04308128356934E-07
 				rotation = 1.123018E-22,2.802597E-45,6.698508E-16,1
@@ -1889,8 +1889,8 @@ GAME
 				sym = 20
 				srfN = srfAttach, 9
 				mass = 0.037
-				temp = 287.583057039961
-				tempExt = 288.050063576
+				temp = 312.022621858808
+				tempExt = 311.951322964176
 				expt = 0.1
 				state = 0
 				connected = True
@@ -1923,9 +1923,9 @@ GAME
 			{
 				name = fuelTank.long
 				cid = 4294837824
-				uid = 31902332
-				mid = 2877591730
-				launchID = 20
+				uid = 4292218723
+				mid = 2614439265
+				launchID = 24
 				parent = 7
 				position = -5.21540641784668E-08,-13.5034713745117,1.24562168121338
 				rotation = -1.302701E-15,0.7071068,-1.302701E-15,0.7071068
@@ -1944,8 +1944,8 @@ GAME
 				attN = top, -1
 				attN = bottom, 13
 				mass = 0.5
-				temp = 287.539346939727
-				tempExt = 288.313155320673
+				temp = 312.023538355547
+				tempExt = 311.927587306908
 				expt = 0.5
 				state = 0
 				connected = True
@@ -1987,9 +1987,9 @@ GAME
 			{
 				name = liquidEngine2
 				cid = 4294837786
-				uid = 910388018
-				mid = 2877591730
-				launchID = 20
+				uid = 3324832175
+				mid = 2614439265
+				launchID = 24
 				parent = 12
 				position = -5.21540641784668E-08,-16.2928009033203,1.24562168121338
 				rotation = -1.302701E-15,0.7071068,-1.302701E-15,0.7071068
@@ -2008,8 +2008,8 @@ GAME
 				attN = top, 12
 				attN = bottom, -1
 				mass = 1.5
-				temp = 287.562864973945
-				tempExt = 288.265285130623
+				temp = 312.023346994991
+				tempExt = 311.886246440148
 				expt = 0.5
 				state = 0
 				connected = True
@@ -2206,7 +2206,7 @@ GAME
 				RESOURCE
 				{
 					name = ElectricCharge
-					amount = 0
+					amount = 5.30748590967424E-05
 					maxAmount = 0.119999997317791
 					flowState = True
 					isTweakable = False
@@ -2218,9 +2218,9 @@ GAME
 			{
 				name = winglet
 				cid = 4294836856
-				uid = 3838377177
-				mid = 2877591730
-				launchID = 20
+				uid = 777447868
+				mid = 2614439265
+				launchID = 24
 				parent = 12
 				position = 1.26659870147705E-07,-15.0080814361572,2.50313496589661
 				rotation = 4.736563E-16,0.7071068,4.736561E-16,0.7071068
@@ -2237,8 +2237,8 @@ GAME
 				sym = 20
 				srfN = srfAttach, 12
 				mass = 0.037
-				temp = 287.583057261617
-				tempExt = 288.05007410171
+				temp = 312.022642653669
+				tempExt = 311.952808054788
 				expt = 0.1
 				state = 0
 				connected = True
@@ -2271,9 +2271,9 @@ GAME
 			{
 				name = fuelTank.long
 				cid = 4294837634
-				uid = 1976817957
-				mid = 2877591730
-				launchID = 20
+				uid = 3763227270
+				mid = 2614439265
+				launchID = 24
 				parent = 7
 				position = 1.24562108516693,-13.5034713745117,-8.94069671630859E-08
 				rotation = -1.842297E-15,1,1.553972E-22,-4.371139E-08
@@ -2292,8 +2292,8 @@ GAME
 				attN = top, -1
 				attN = bottom, 16
 				mass = 0.5
-				temp = 287.539351897433
-				tempExt = 288.313162890408
+				temp = 312.023536381902
+				tempExt = 311.925797179277
 				expt = 0.5
 				state = 0
 				connected = True
@@ -2335,9 +2335,9 @@ GAME
 			{
 				name = liquidEngine2
 				cid = 4294837596
-				uid = 522390145
-				mid = 2877591730
-				launchID = 20
+				uid = 522918066
+				mid = 2614439265
+				launchID = 24
 				parent = 15
 				position = 1.24562108516693,-16.2928009033203,-8.94069671630859E-08
 				rotation = -1.842297E-15,1,1.553972E-22,-4.371139E-08
@@ -2356,8 +2356,8 @@ GAME
 				attN = top, 15
 				attN = bottom, -1
 				mass = 1.5
-				temp = 287.56335484932
-				tempExt = 288.265747990744
+				temp = 312.023345834849
+				tempExt = 311.885488459665
 				expt = 0.5
 				state = 0
 				connected = True
@@ -2554,7 +2554,7 @@ GAME
 				RESOURCE
 				{
 					name = ElectricCharge
-					amount = 0
+					amount = 5.30748590967424E-05
 					maxAmount = 0.119999997317791
 					flowState = True
 					isTweakable = False
@@ -2566,9 +2566,9 @@ GAME
 			{
 				name = winglet
 				cid = 4294836820
-				uid = 1205185795
-				mid = 2877591730
-				launchID = 20
+				uid = 1921288482
+				mid = 2614439265
+				launchID = 24
 				parent = 15
 				position = 2.50313520431519,-15.0080814361572,-2.98023223876953E-07
 				rotation = 6.698508E-16,1,-1.415819E-22,-4.371139E-08
@@ -2585,8 +2585,8 @@ GAME
 				sym = 20
 				srfN = srfAttach, 15
 				mass = 0.037
-				temp = 287.583057171692
-				tempExt = 288.050064231363
+				temp = 312.022627173553
+				tempExt = 311.951943440929
 				expt = 0.1
 				state = 0
 				connected = True
@@ -2619,9 +2619,9 @@ GAME
 			{
 				name = fuelTank.long
 				cid = 4294837444
-				uid = 1054736322
-				mid = 2877591730
-				launchID = 20
+				uid = 762013619
+				mid = 2614439265
+				launchID = 24
 				parent = 7
 				position = -1.11758708953857E-07,-13.5034713745117,-1.24562132358551
 				rotation = -1.302701E-15,0.7071068,1.302701E-15,-0.7071068
@@ -2640,8 +2640,8 @@ GAME
 				attN = top, -1
 				attN = bottom, 19
 				mass = 0.5
-				temp = 287.539352156209
-				tempExt = 288.313169813488
+				temp = 312.023538253721
+				tempExt = 311.927350754732
 				expt = 0.5
 				state = 0
 				connected = True
@@ -2683,9 +2683,9 @@ GAME
 			{
 				name = liquidEngine2
 				cid = 4294837406
-				uid = 2028771919
-				mid = 2877591730
-				launchID = 20
+				uid = 2584706690
+				mid = 2614439265
+				launchID = 24
 				parent = 18
 				position = -1.11758708953857E-07,-16.2928009033203,-1.24562132358551
 				rotation = -1.302701E-15,0.7071068,1.302701E-15,-0.7071068
@@ -2704,8 +2704,8 @@ GAME
 				attN = top, 18
 				attN = bottom, -1
 				mass = 1.5
-				temp = 287.5633548996
-				tempExt = 288.26575776707
+				temp = 312.023347064524
+				tempExt = 311.886416042823
 				expt = 0.5
 				state = 0
 				connected = True
@@ -2902,7 +2902,7 @@ GAME
 				RESOURCE
 				{
 					name = ElectricCharge
-					amount = 0
+					amount = 5.30748590967424E-05
 					maxAmount = 0.119999997317791
 					flowState = True
 					isTweakable = False
@@ -2914,9 +2914,9 @@ GAME
 			{
 				name = winglet
 				cid = 4294836784
-				uid = 2223991804
-				mid = 2877591730
-				launchID = 20
+				uid = 2520941467
+				mid = 2614439265
+				launchID = 24
 				parent = 18
 				position = 7.45058059692383E-09,-15.0080814361572,-2.50313544273376
 				rotation = 4.736561E-16,0.7071068,-4.736563E-16,-0.7071068
@@ -2933,8 +2933,8 @@ GAME
 				sym = 17
 				srfN = srfAttach, 18
 				mass = 0.037
-				temp = 287.583057419181
-				tempExt = 288.050072568427
+				temp = 312.022648119909
+				tempExt = 311.953139061621
 				expt = 0.1
 				state = 0
 				connected = True
@@ -2967,9 +2967,9 @@ GAME
 			{
 				name = winglet
 				cid = 4294841868
-				uid = 3082037828
-				mid = 2877591730
-				launchID = 20
+				uid = 3281809983
+				mid = 2614439265
+				launchID = 24
 				parent = 4
 				position = -1.25753092765808,-9.19330978393555,0
 				rotation = -7.486784E-23,0,-1.842297E-15,1
@@ -2986,8 +2986,8 @@ GAME
 				sym = 24
 				srfN = srfAttach, 4
 				mass = 0.037
-				temp = 287.535849661427
-				tempExt = 288.003392953946
+				temp = 312.022622540598
+				tempExt = 311.951543207727
 				expt = 0.1
 				state = 0
 				connected = True
@@ -3020,9 +3020,9 @@ GAME
 			{
 				name = winglet
 				cid = 4294841118
-				uid = 2182635856
-				mid = 2877591730
-				launchID = 20
+				uid = 3505263382
+				mid = 2614439265
+				launchID = 24
 				parent = 4
 				position = -5.21540641784668E-08,-9.19330978393555,1.2575306892395
 				rotation = -1.302701E-15,0.7071068,-1.302701E-15,0.7071068
@@ -3039,8 +3039,8 @@ GAME
 				sym = 24
 				srfN = srfAttach, 4
 				mass = 0.037
-				temp = 287.535863058251
-				tempExt = 288.003460944972
+				temp = 312.022653944953
+				tempExt = 311.953796535463
 				expt = 0.1
 				state = 0
 				connected = True
@@ -3073,9 +3073,9 @@ GAME
 			{
 				name = winglet
 				cid = 4294841082
-				uid = 3161514448
-				mid = 2877591730
-				launchID = 20
+				uid = 1857728382
+				mid = 2614439265
+				launchID = 24
 				parent = 4
 				position = 1.25753104686737,-9.19330978393555,-8.94069671630859E-08
 				rotation = -1.842297E-15,1,1.553972E-22,-4.371139E-08
@@ -3092,8 +3092,8 @@ GAME
 				sym = 24
 				srfN = srfAttach, 4
 				mass = 0.037
-				temp = 287.535873126846
-				tempExt = 288.003511739083
+				temp = 312.022620326459
+				tempExt = 311.951398421705
 				expt = 0.1
 				state = 0
 				connected = True
@@ -3126,9 +3126,9 @@ GAME
 			{
 				name = winglet
 				cid = 4294841046
-				uid = 3580520432
-				mid = 2877591730
-				launchID = 20
+				uid = 3503772484
+				mid = 2614439265
+				launchID = 24
 				parent = 4
 				position = -1.11758708953857E-07,-9.19330978393555,-1.25753033161163
 				rotation = -1.302701E-15,0.7071068,1.302701E-15,-0.7071068
@@ -3145,8 +3145,8 @@ GAME
 				sym = 23
 				srfN = srfAttach, 4
 				mass = 0.037
-				temp = 287.535880741211
-				tempExt = 288.003550458609
+				temp = 312.022653313365
+				tempExt = 311.953774782062
 				expt = 0.1
 				state = 0
 				connected = True
@@ -3179,9 +3179,9 @@ GAME
 			{
 				name = batteryBankMini
 				cid = 4294844008
-				uid = 691468181
-				mid = 2877591730
-				launchID = 20
+				uid = 1403315320
+				mid = 2614439265
+				launchID = 24
 				parent = 0
 				position = 0,0.287078857421875,0
 				rotation = 0,0,0,1
@@ -3197,8 +3197,8 @@ GAME
 				attN = top, 26
 				attN = bottom, 0
 				mass = 0.01
-				temp = 287.53485324421
-				tempExt = 288.25640666315
+				temp = 312.021545284499
+				tempExt = 311.943393590781
 				expt = 0.5
 				state = 0
 				connected = True
@@ -3218,7 +3218,7 @@ GAME
 				RESOURCE
 				{
 					name = ElectricCharge
-					amount = 199.981200000422
+					amount = 138.14303225779
 					maxAmount = 200
 					flowState = True
 					isTweakable = True
@@ -3230,9 +3230,9 @@ GAME
 			{
 				name = batteryBankMini
 				cid = 4294843804
-				uid = 3673733190
-				mid = 2877591730
-				launchID = 20
+				uid = 1894093545
+				mid = 2614439265
+				launchID = 24
 				parent = 25
 				position = 0,0.487068176269531,0
 				rotation = 0,0,0,1
@@ -3248,8 +3248,8 @@ GAME
 				attN = top, 27
 				attN = bottom, 25
 				mass = 0.01
-				temp = 287.581413603659
-				tempExt = 288.268280643495
+				temp = 312.021204814366
+				tempExt = 311.94341761805
 				expt = 0.5
 				state = 0
 				connected = True
@@ -3269,7 +3269,7 @@ GAME
 				RESOURCE
 				{
 					name = ElectricCharge
-					amount = 199.981200000422
+					amount = 138.14303225779
 					maxAmount = 200
 					flowState = True
 					isTweakable = True
@@ -3281,9 +3281,9 @@ GAME
 			{
 				name = batteryBankMini
 				cid = 4294843582
-				uid = 1083592715
-				mid = 2877591730
-				launchID = 20
+				uid = 4050796293
+				mid = 2614439265
+				launchID = 24
 				parent = 26
 				position = 0,0.687068939208984,0
 				rotation = 0,0,0,1
@@ -3299,8 +3299,8 @@ GAME
 				attN = top, -1
 				attN = bottom, 26
 				mass = 0.01
-				temp = 287.609792199846
-				tempExt = 288.27857521066
+				temp = 312.02118707495
+				tempExt = 311.978016337547
 				expt = 0.5
 				state = 0
 				connected = True
@@ -3320,7 +3320,7 @@ GAME
 				RESOURCE
 				{
 					name = ElectricCharge
-					amount = 199.981200000422
+					amount = 138.14303225779
 					maxAmount = 200
 					flowState = True
 					isTweakable = True
@@ -3332,9 +3332,9 @@ GAME
 			{
 				name = solarPanels5
 				cid = 4294843216
-				uid = 3591496880
-				mid = 2877591730
-				launchID = 20
+				uid = 2724907221
+				mid = 2614439265
+				launchID = 24
 				parent = 26
 				position = -0.308751583099365,0.474159240722656,0
 				rotation = -4.314875E-08,-0.7071068,-4.314874E-08,0.7071068
@@ -3353,8 +3353,8 @@ GAME
 				sym = 33
 				srfN = srfAttach, 26
 				mass = 0.005
-				temp = 287.590326519128
-				tempExt = 288.249157701472
+				temp = 312.021016509855
+				tempExt = 311.963129568091
 				expt = 0.5
 				state = 0
 				connected = True
@@ -3425,9 +3425,9 @@ GAME
 			{
 				name = solarPanels5
 				cid = 4294842588
-				uid = 1138973786
-				mid = 2877591730
-				launchID = 20
+				uid = 63123659
+				mid = 2614439265
+				launchID = 24
 				parent = 26
 				position = -0.15437576174736,0.474159240722656,0.267386674880981
 				rotation = -5.894228E-08,-0.258819,-1.579353E-08,0.9659259
@@ -3446,8 +3446,8 @@ GAME
 				sym = 33
 				srfN = srfAttach, 26
 				mass = 0.005
-				temp = 287.590352975385
-				tempExt = 288.24940372238
+				temp = 312.020992741092
+				tempExt = 311.962373935696
 				expt = 0.5
 				state = 0
 				connected = True
@@ -3518,9 +3518,9 @@ GAME
 			{
 				name = solarPanels5
 				cid = 4294842556
-				uid = 1984041268
-				mid = 2877591730
-				launchID = 20
+				uid = 4248799824
+				mid = 2614439265
+				launchID = 24
 				parent = 26
 				position = 0.154375836253166,0.474159240722656,0.267386645078659
 				rotation = -5.894228E-08,0.2588192,1.579354E-08,0.9659259
@@ -3539,8 +3539,8 @@ GAME
 				sym = 33
 				srfN = srfAttach, 26
 				mass = 0.005
-				temp = 287.590324206173
-				tempExt = 288.249272409544
+				temp = 312.020988883658
+				tempExt = 311.962225385508
 				expt = 0.5
 				state = 0
 				connected = True
@@ -3611,9 +3611,9 @@ GAME
 			{
 				name = solarPanels5
 				cid = 4294842524
-				uid = 1910827409
-				mid = 2877591730
-				launchID = 20
+				uid = 3051221765
+				mid = 2614439265
+				launchID = 24
 				parent = 26
 				position = 0.30875152349472,0.474159240722656,0
 				rotation = -4.314874E-08,0.7071069,4.314875E-08,0.7071067
@@ -3632,8 +3632,8 @@ GAME
 				sym = 33
 				srfN = srfAttach, 26
 				mass = 0.005
-				temp = 287.590289880258
-				tempExt = 288.249003895333
+				temp = 312.021005196674
+				tempExt = 311.962741101429
 				expt = 0.5
 				state = 0
 				connected = True
@@ -3704,9 +3704,9 @@ GAME
 			{
 				name = solarPanels5
 				cid = 4294842492
-				uid = 1798762726
-				mid = 2877591730
-				launchID = 20
+				uid = 3146195310
+				mid = 2614439265
+				launchID = 24
 				parent = 26
 				position = 0.154375731945038,0.474159240722656,-0.267386674880981
 				rotation = -1.579353E-08,0.9659259,5.894228E-08,0.2588189
@@ -3725,8 +3725,8 @@ GAME
 				sym = 33
 				srfN = srfAttach, 26
 				mass = 0.005
-				temp = 287.590251371922
-				tempExt = 288.248785970711
+				temp = 312.02099485754
+				tempExt = 311.962320302034
 				expt = 0.5
 				state = 0
 				connected = True
@@ -3797,9 +3797,9 @@ GAME
 			{
 				name = solarPanels5
 				cid = 4294842460
-				uid = 685542064
-				mid = 2877591730
-				launchID = 20
+				uid = 4260550042
+				mid = 2614439265
+				launchID = 24
 				parent = 26
 				position = -0.154375731945038,0.474159240722656,-0.267386674880981
 				rotation = 1.579354E-08,0.9659259,5.894228E-08,-0.2588191
@@ -3818,8 +3818,8 @@ GAME
 				sym = 32
 				srfN = srfAttach, 26
 				mass = 0.005
-				temp = 287.590232838949
-				tempExt = 288.248710533465
+				temp = 312.020998268981
+				tempExt = 311.962416770664
 				expt = 0.5
 				state = 0
 				connected = True

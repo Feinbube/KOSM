@@ -79,7 +79,7 @@ namespace KOSM.Game
 
         public double TimeOfTurn
         {
-            get { return TimeOfBurn - 120; }
+            get { return TimeOfBurn - 180; }
         }
 
         public double TimeTillDue
@@ -94,7 +94,7 @@ namespace KOSM.Game
 
         public double TimeTillTurn
         {
-            get { return TimeTillBurn - 120; }
+            get { return TimeTillBurn - 180; }
         }
 
         #endregion IManeuver

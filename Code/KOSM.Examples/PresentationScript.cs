@@ -33,7 +33,7 @@ namespace KOSM.Examples
 
             if (!first)
             {
-                if (world.Rockets.Count == 0)
+                if (world.Rockets.Count == 0 && !world.IsTimeWarping)
                 {
                     world.PersistentDebugLog.Add("No rockets alive. Starting a new launch.");
                     world.Launch(randomRocketDesign(world));
@@ -49,7 +49,7 @@ namespace KOSM.Examples
 
         protected override Mission newMission(IWorld world, IRocket rocket)
         {
-            return newMissionEveAndBack(world, rocket);
+            return newMissionDunaAndBack(world, rocket);
         }
 
         protected Mission newMissionEveAndBack(IWorld world, IRocket rocket)
@@ -87,9 +87,7 @@ namespace KOSM.Examples
         {
             return new Mission(
                 new RunMissionTask(world, rocket, new OnGroundState(world, "Kerbin"), new InOrbitState(world, "Kerbin")),
-                new WaitForRealTimeTask(world, 60),
                 new RunMissionTask(world, rocket, new InOrbitState(world, "Kerbin"), new OnGroundState(world, "Kerbin")),
-                new WaitForRealTimeTask(world, 60),
                 new NewLaunchTask(world, rocket, randomRocketDesign(world))
             );
         }

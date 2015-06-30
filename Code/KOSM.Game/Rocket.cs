@@ -13,14 +13,14 @@ namespace KOSM.Game
 {
     public class Rocket : WorldObject, IRocket
     {
-        internal RocketControl control = null;
+        internal RocketControlSAS control = null;
         internal Vessel raw = null;
 
         public Rocket(World world, Vessel vessel)
             : base(world)
         {
             this.raw = vessel;
-            this.control = new RocketControl(world, this);
+            this.control = new RocketControlSAS(world, this);
         }
 
         #region WorldObject
