@@ -28,7 +28,8 @@ namespace KOSM.Game
 
         public double Altitude
         {
-            get { return Radius - orbit.Body.Radius; }
+            // todo: how can this ever happen???
+            get { return orbit == null || orbit.Body == null ? -1 : Radius - orbit.Body.Radius; }
         }
 
         public double Velocity

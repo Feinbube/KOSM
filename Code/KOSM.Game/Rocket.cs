@@ -90,8 +90,12 @@ namespace KOSM.Game
                 if (Maneuvers.Count == 0)
                     return null;
 
-                var timeOfNextManeuver = Maneuvers.Where(a => a.TimeWhenDue > world.PointInTime).Min(a => a.TimeWhenDue);
-                return Maneuvers.Where(a => a.TimeWhenDue == timeOfNextManeuver).First();
+                var candidates = Maneuvers.Where(a => a.TimeWhenDue > world.PointInTime);
+                if (candidates.Count() == 0)
+                    return null;
+
+                var timeOfNextManeuver = candidates.Min(a => a.TimeWhenDue);
+                return Maneuvers.Where(a => a.TimeWhenDue == timeOfNextManeuver).FirstOrDefault();
             }
         }
 

@@ -22,7 +22,7 @@ namespace KOSM.Game
 
         public override string ToString()
         {
-            return "Apoapsis: " + Format.Distance(Apoapsis.Altitude) + " Periapsis: " + Format.Distance(Periapsis.Altitude);
+            return "Periapsis: " + Format.Distance(Periapsis.Altitude) + " Apoapsis: " + Format.Distance(Apoapsis.Altitude);
         }
 
         #region WorldObject

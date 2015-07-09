@@ -16,10 +16,15 @@ namespace KOSM.Tasks
             : base(world, rocket)
         {
         }
+
+        public ExecuteManeuverTask(IWorld world, IRocket rocket, Func<IWorld, IRocket, bool> completed)
+            : base(world, rocket)
+        {
+        }
         
         public override void Execute(IWorld world, Mission mission)
         {
-            if(!rocket.HasManeuver)
+            if (!rocket.HasManeuver)
             {
                 mission.Abort(world, this);
                 return;
@@ -27,7 +32,17 @@ namespace KOSM.Tasks
 
             if (maneuver == null)
                 maneuver = rocket.NextManeuver;
-            
+
+            if(maneuver.Completed)
+            {
+                rocket.Throttle = 0;
+                maneuver.Complete();
+                mission.Complete(world, this);
+
+                Details = "Remaining DeltaV: " + Format.Speed(maneuver.BurnVector.Magnitude) + ". Orbit after maneuver: " + rocket.Orbit + ".";
+                return;
+            }
+
             if (!TurnAndWait(world, maneuver, maneuver.BurnVector))
                 return;
 
@@ -38,12 +53,6 @@ namespace KOSM.Tasks
                 rocket.Throttle = Math.Min(maneuver.BurnDuration, 1);
                 return;
             }
-
-            Details = "Remaining DeltaV: " + Format.Speed(maneuver.BurnVector.Magnitude) + ". Orbit after maneuver: " + rocket.Orbit + ".";
-            
-            rocket.Throttle = 0;
-            maneuver.Complete();
-            mission.Complete(world, this);
         }
 
         public override string Description
