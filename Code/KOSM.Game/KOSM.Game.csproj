@@ -59,6 +59,7 @@
     <Compile Include="Rocket.cs" />
     <Compile Include="RocketControlSAS.cs" />
     <Compile Include="TransferWindow.cs" />
+    <Compile Include="TimeWarp.cs" />
     <Compile Include="World.cs" />
     <Compile Include="WorldObject.cs" />
   </ItemGroup>

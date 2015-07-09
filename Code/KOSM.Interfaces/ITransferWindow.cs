@@ -19,5 +19,7 @@ namespace KOSM.Interfaces
         IVectorXYZ EjectionBurnVector { get; }
 
         double EjectionAngle { get; }
+
+        double TravelTime { get; }
     }
 }

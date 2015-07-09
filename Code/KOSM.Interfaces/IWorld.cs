@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace KOSM.Interfaces
 {
-    public interface IWorld
+    public interface IWorld : ITimeWarp
     {
         ILog MissionLog { get; }
         ILog MissionPlanLog { get; }
@@ -32,12 +32,7 @@ namespace KOSM.Interfaces
         void Launch(string vabName);
 
         double PointInTime { get; }
-        double TimeOfNextManeuver { get; }
-        
-        bool IsTimeWarping { get; }
-        bool WarpTime(double timespan);
-        bool WarpTimeTo(double timeToWarpTo);
-        void PreventTimeWarping();
+        double TimeOfNextManeuver { get; }        
 
         void ClearLogs();
     }

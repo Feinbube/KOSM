@@ -46,7 +46,7 @@ namespace KOSM.Game
 
         public IOrbit Orbit
         {
-            get { return new Orbit(world, raw.GetOrbit(), this, this.Body); }
+            get { return new Orbit(world, raw.orbit, this, this.Body); }
         }
 
         public double RocketVerticalHeight
@@ -299,18 +299,15 @@ namespace KOSM.Game
 
         public bool HasEncounter
         {
-            get { return raw.patchedConicSolver != null && raw.patchedConicSolver.flightPlan.Where(a => a.patchStartTransition == global::Orbit.PatchTransitionType.ENCOUNTER).FirstOrDefault() != null; }
+            get { return NextEncounter != null; }
         }
 
-        public double TimeTillEncounter
+        public IBody NextEncounter
         {
             get
             {
-
-                if (!HasEncounter)
-                    throw new Exception("There is no encounter! Check Rocket.HasEncounter!");
-
-                return raw.patchedConicSolver.flightPlan.Where(a => a.patchStartTransition == global::Orbit.PatchTransitionType.ENCOUNTER).FirstOrDefault().timeToPe;
+                global::Orbit encounter = findNextOrbitPatch(global::Orbit.PatchTransitionType.ENCOUNTER);
+                return encounter == null ? null : world.FindBodyByName(encounter.referenceBody.name);
             }
         }
 
@@ -319,6 +316,19 @@ namespace KOSM.Game
         public override string ToString()
         {
             return Name;
+        }
+
+        private global::Orbit findNextOrbitPatch(global::Orbit.PatchTransitionType type)
+        {
+            var orbit = this.raw.orbit;
+            while (orbit != null)
+            {
+                if (orbit.patchStartTransition == type)
+                    return orbit;
+                orbit = orbit.nextPatch;
+            }
+
+            return null;
         }
     }
 }

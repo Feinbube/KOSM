@@ -54,6 +54,7 @@
     <Compile Include="IScript.cs" />
     <Compile Include="IOnGroundState.cs" />
     <Compile Include="IState.cs" />
+    <Compile Include="ITimeWarp.cs" />
     <Compile Include="ITransferWindow.cs" />
     <Compile Include="IVectorXYZ.cs" />
     <Compile Include="IWorld.cs" />

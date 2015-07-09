@@ -18,6 +18,8 @@ namespace KOSM.Common
 
         public void Add(object message)
         {
+            message = message == null ? "null" : message;
+
             messages.Add(message);
 
             if (MessageAdded != null)

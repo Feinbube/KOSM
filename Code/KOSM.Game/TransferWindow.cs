@@ -52,6 +52,8 @@ namespace KOSM.Game
 
         public bool Aerobraking { get; private set; }
 
+        public double TravelTime { get { return raw.TravelTime; } }
+
         public double TimeTill
         {
             get { return raw.DepartureTime - world.PointInTime; }

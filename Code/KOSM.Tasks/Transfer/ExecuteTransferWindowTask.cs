@@ -37,9 +37,13 @@ namespace KOSM.Tasks
             double timeOfManeuver = world.PointInTime + rocket.Orbit.BodyPrograde.TimeTillDegreesToEquals(transferWindow.EjectionAngle);
 
             rocket.AddManeuver(timeOfManeuver, transferWindow.EjectionBurnVector);
-            mission.PushAfter(this, new ExecuteManeuverTask(world, rocket), new WarpTask(world, rocket.TimeTillEncounter));
+            mission.PushAfter(this, 
+                new ExecuteManeuverTask(world, rocket), 
+                new WarpTask(world, transferWindow.TravelTime / 2),
+                
+                // TODO: control when approaching (to get closer and hit the atmosphere just right)
 
-            // TODO: control when approaching (to get closer and hit the atmosphere just right)
+                new WarpToEncounter(world, rocket, transferWindow.Destination));
 
             mission.Complete(world, this);
         }

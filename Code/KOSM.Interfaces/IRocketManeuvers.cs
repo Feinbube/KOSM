@@ -9,10 +9,9 @@ namespace KOSM.Interfaces
     {
         List<IManeuver> Maneuvers { get; }
         bool HasManeuver { get; }
-        double TimeTillEncounter { get; }
         IManeuver NextManeuver { get; }
-        void AddManeuver(double pointInTime, IVectorXYZ burnVector);
 
+        void AddManeuver(double pointInTime, IVectorXYZ burnVector);
         void AddApoapsisManeuver(double targetRadius);
         void AddPeriapsisManeuver(double targetRadius);
         void AddHohmannManeuver(IBody targetBody);
@@ -21,5 +20,8 @@ namespace KOSM.Interfaces
         ITransferWindow NextTransferWindow(double earliestDepartureTime, IBody origin, double altitude, IBody destination, bool aerobraking);
 
         ITransferWindow BestTransferWindow(double earliestDepartureTime, IBody origin, double altitude, IBody destination, bool aerobraking);
+
+        bool HasEncounter { get; }
+        IBody NextEncounter { get; }
     }
 }

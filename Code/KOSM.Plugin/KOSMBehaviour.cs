@@ -64,9 +64,9 @@ namespace KOSM
             if (latestReset == DateTime.MinValue)
                 latestReset = DateTime.Now;
 
-            if (latestReset > DateTime.Now.AddSeconds(-30)) // the game engine should have some time to load the scene and place the ship
+            if (latestReset > DateTime.Now.AddSeconds(-20)) // the game engine should have some time to load the scene and place the ship
             {
-                world.LiveDebugLog.Add("Starting mission in T-" + (latestReset - DateTime.Now.AddSeconds(-30)).TotalSeconds + "s.");
+                world.LiveDebugLog.Add("Starting mission in T-" + (latestReset - DateTime.Now.AddSeconds(-20)).TotalSeconds + "s.");
                 return;
             }
 

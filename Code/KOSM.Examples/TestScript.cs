@@ -5,6 +5,7 @@ using System.Text;
 
 using KOSM.Interfaces;
 using KOSM.Tasks;
+using KOSM.Common;
 
 namespace KOSM.Examples
 {
@@ -12,7 +13,10 @@ namespace KOSM.Examples
     {
         protected override Mission newMission(IWorld world, IRocket rocket)
         {
-            return new Mission(new TestTask(world, rocket));
+            return new Mission(
+                    new WarpToEncounter(world, rocket, world.FindBodyByName("Duna")),
+                    new LandAtTask(world, rocket, new OnGroundState(world, "Duna"))
+                );
         }
     }
 }

@@ -34,22 +34,12 @@ namespace KOSM.Tasks
 
             if (rocket.Orbit.Periapsis.Altitude > rocket.Body.SafeLowOrbitAltitude * 0.6)
             {
-                if (rocket.Orbit.Apoapsis.MovingTowards || rocket.Orbit.Periapsis.Altitude > rocket.Body.LowOrbitAltitude)
-                {
+                if (!orbitIsHyperbolic && (rocket.Orbit.Apoapsis.MovingTowards || rocket.Orbit.Periapsis.Altitude > rocket.Body.LowOrbitAltitude))
                     rocket.AddApoapsisManeuver(rocket.Body.LowOrbitAltitude * 0.5 + rocket.Body.Radius);
-                    mission.PushBefore(this, new ExecuteManeuverTask(world, rocket));
-                    return;
-                }
-
-                if (rocket.Orbit.Periapsis.MovingTowards)
-                {
-                    world.WarpTime(rocket.Orbit.Periapsis.TimeTill - 120);
-                    rocket.SetSteering(rocket.OrbitRetrograde);
-
-                    if (rocket.Turned)
-                        rocket.Throttle = 1;
-                    return;
-                }
+                else
+                    rocket.AddPeriapsisManeuver(rocket.Body.LowOrbitAltitude * 0.5 + rocket.Body.Radius);
+                mission.PushBefore(this, new ExecuteManeuverTask(world, rocket));
+                return;
             }
 
             rocket.SetSteering(rocket.SurfaceRetrograde);
@@ -87,6 +77,12 @@ namespace KOSM.Tasks
 
             rocket.SetSteering(rocket.SurfaceRetrograde);
             rocket.Throttle = 1;
+        }
+
+
+        private bool orbitIsHyperbolic
+        {
+            get { return rocket.Orbit.Apoapsis.Altitude < 0; }
         }
 
         public override string Description

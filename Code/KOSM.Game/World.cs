@@ -14,11 +14,8 @@ namespace KOSM.Game
     public class World : IWorld
     {
         private List<IBody> bodies = null;
-
-        // time warping
-        private double newWarpingTo = 0;
-        private double warpingTo = 0;
-        private double warpingStarted = 0;
+        
+        TimeWarp timeWarp = null;
 
         public World()
         {
@@ -30,6 +27,7 @@ namespace KOSM.Game
             PersistentDebugLog.MessageAdded = a => ToGameLog(a);
 
             Camera = new Camera(this);
+            timeWarp = new TimeWarp(this);
         }
 
         #region IWorld
@@ -81,7 +79,7 @@ namespace KOSM.Game
 
         public void FinishUpdate()
         {
-            applyTimeWarp();
+            timeWarp.ApplyTimeWarp();
         }
 
         public void StartGame(string profile, string filename)
@@ -165,64 +163,25 @@ namespace KOSM.Game
 
         public bool IsTimeWarping
         {
-            get { return isTimeWarping || PointInTime <= newWarpingTo; }
+            get { return timeWarp.IsTimeWarping; }
         }
 
         public bool WarpTime(double timespan)
         {
-            return WarpTimeTo(PointInTime + timespan);
+            return timeWarp.WarpTime(timespan);
         }
 
         public bool WarpTimeTo(double timeToWarpTo)
         {
-            if (timeToWarpTo <= PointInTime + 1)
-                return false;
-
-            if (IsTimeWarping && (timeToWarpTo >= warpingTo || timeToWarpTo >= newWarpingTo))
-                return true;
-
-            newWarpingTo = timeToWarpTo;
-            return true;
+            return timeWarp.WarpTimeTo(timeToWarpTo);
         }
 
         public void PreventTimeWarping()
         {
-            newWarpingTo = 0;
+            timeWarp.PreventTimeWarping();
         }
 
         #endregion IWorld
-
-        private bool isTimeWarping { get { return PointInTime <= warpingTo || TimeWarp.fetch.current_rate_index > 0; } }
-        private bool gameCompliedToTimeWarpingRequest { get { return !(PointInTime - warpingStarted > 3 && warpingTo > PointInTime + 10 && TimeWarp.fetch.current_rate_index == 0); } }
-
-        private void applyTimeWarp()
-        {
-            if ((isTimeWarping && newWarpingTo == 0) || TimeWarp.WarpMode == TimeWarp.Modes.LOW)
-            {
-                applyTimeWarp(0);
-                return;
-            }
-
-            if (warpingNeedsStarting || warpTimeNeedsUpdate)
-                applyTimeWarp(Math.Min(newWarpingTo, TimeOfNextManeuver));
-        }
-
-        private bool warpingNeedsStarting { get { return !isTimeWarping && newWarpingTo > PointInTime; } }
-
-        private bool warpTimeNeedsUpdate { get { return isTimeWarping && (TimeOfNextManeuver < warpingTo || newWarpingTo < warpingTo || !gameCompliedToTimeWarpingRequest); } }
-
-        private void applyTimeWarp(double timeToWarpTo)
-        {
-            warpingStarted = PointInTime;
-
-            newWarpingTo = timeToWarpTo;
-            warpingTo = timeToWarpTo;
-
-            if (timeToWarpTo > 0)
-                TimeWarp.fetch.WarpTo(timeToWarpTo);
-            else if (TimeWarp.fetch.current_rate_index > 0)
-                TimeWarp.fetch.WarpTo(PointInTime);
-        }
 
         private string vabPath
         {
