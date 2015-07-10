@@ -80,12 +80,12 @@ namespace KOSM.Game
 
         public bool Turned
         {
-            get { return TurnDeviation < 0.03; } // less than 0.03° deviation }
+            get { return TurnDeviation < 0.01; } // less than 0.01° deviation }
         }
 
         public double TurnDeviation
         {
-            get { return Quaternion.Angle(lockedHeading, currentHeading); }
+            get { return Quaternion.Angle(desiredHeading, currentHeading); }
         }
 
         /// <summary>
@@ -115,6 +115,11 @@ namespace KOSM.Game
         public IVectorXYZ Up
         {
             get { return vXYZ(rocket.raw.upAxis); }
+        }
+
+        public IVectorXYZ OrbitPrograde
+        {
+            get { return vXYZ(rocket.raw.obt_velocity.normalized); }
         }
 
         public IVectorXYZ OrbitRetrograde
@@ -223,7 +228,10 @@ namespace KOSM.Game
             updateCurrentState(newHeading);
 
             if (currentTurnState == TurnStates.KeepingTrack)
+            {
                 currentHeading = newHeading;
+                desiredHeading = newHeading;
+            }
             else
                 performTurn(newHeading);
 
@@ -309,11 +317,6 @@ namespace KOSM.Game
         private Vector3d getUp()
         {
             return (rocket.raw.findWorldCenterOfMass() - rocket.raw.mainBody.position).normalized;
-        }
-
-        private Quaternion lockedHeading
-        {
-            get { return this.rocket.raw.Autopilot.SAS.lockedHeading; }
         }
     }
 }

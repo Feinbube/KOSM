@@ -46,7 +46,7 @@ namespace KOSM.Game
 
         public IOrbit Orbit
         {
-            get { return new Orbit(world, raw.orbit, this, this.Body); }
+            get { return new Orbit(world, raw.orbit, this); }
         }
 
         public double RocketVerticalHeight
@@ -133,6 +133,20 @@ namespace KOSM.Game
             ManeuverNode node = raw.patchedConicSolver.AddManeuverNode(pointInTime);
             node.DeltaV = v3d(burnVector); // X:radialOut, Y:normal, Z:prograde
             raw.patchedConicSolver.UpdateFlightPlan();
+        }
+
+        public bool HasEncounter
+        {
+            get { return NextEncounter != null; }
+        }
+
+        public IOrbit NextEncounter
+        {
+            get
+            {
+                global::Orbit encounter = findNextOrbitPatch(global::Orbit.PatchTransitionType.ENCOUNTER);
+                return encounter == null ? null : new Orbit(world, encounter, this);
+            }
         }
 
         public double Throttle
@@ -241,6 +255,11 @@ namespace KOSM.Game
             get { return control.Up; }
         }
 
+        public IVectorXYZ OrbitPrograde
+        {
+            get { return control.OrbitPrograde; }
+        }
+
         public IVectorXYZ OrbitRetrograde
         {
             get { return control.OrbitRetrograde; }
@@ -299,20 +318,6 @@ namespace KOSM.Game
         public ITransferWindow BestTransferWindow(double earliestDepartureTime, IBody origin, double altitude, IBody destination, bool aerobraking)
         {
             return TransferWindow.Scan(world, earliestDepartureTime, origin, altitude, destination, aerobraking);
-        }
-
-        public bool HasEncounter
-        {
-            get { return NextEncounter != null; }
-        }
-
-        public IBody NextEncounter
-        {
-            get
-            {
-                global::Orbit encounter = findNextOrbitPatch(global::Orbit.PatchTransitionType.ENCOUNTER);
-                return encounter == null ? null : world.FindBodyByName(encounter.referenceBody.name);
-            }
         }
 
         #endregion IRocket

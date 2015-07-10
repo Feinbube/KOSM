@@ -15,6 +15,8 @@ namespace KOSM.Game
 
         private bool completed = false;
 
+        private double minMagnitude = double.MaxValue;
+
         public Maneuver(World world, Rocket rocket, PatchedConicSolver patchedConicSolver, ManeuverNode maneuverNode)
             : base(world)
         {
@@ -37,7 +39,13 @@ namespace KOSM.Game
 
         public bool Completed
         {
-            get { return completed || BurnVector.Magnitude < 0.01 || BurnVector.Magnitude <= rocket.TurnDeviation * 0.02; }
+            get
+            {
+                if (minMagnitude > BurnVector.Magnitude)
+                    minMagnitude = BurnVector.Magnitude;
+
+                return completed || BurnVector.Magnitude < 0.01 || BurnVector.Magnitude > minMagnitude * 1.05;
+            }
         }
 
         public void Complete()
@@ -56,7 +64,7 @@ namespace KOSM.Game
         {
             get { return vXYZ(maneuverNode.DeltaV); }
         }
-        
+
         public IVectorXYZ BurnVector
         {
             get { return vXYZ(maneuverNode.GetBurnVector(rocket.raw.orbit)); }

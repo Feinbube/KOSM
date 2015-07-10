@@ -12,12 +12,12 @@ namespace KOSM.Game
     {
         internal global::Orbit raw = null;
 
-        public Orbit(World world, global::Orbit orbit, IOrbiter orbiter, IBody body)
+        public Orbit(World world, global::Orbit orbit, IOrbiter orbiter)
             : base(world)
         {
             this.raw = orbit;
             this.Orbiter = orbiter;
-            this.Body = body;
+            this.Body = world.FindBodyByName(raw.referenceBody.name);
         }
 
         public override string ToString()

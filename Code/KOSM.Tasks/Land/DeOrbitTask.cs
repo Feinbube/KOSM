@@ -44,7 +44,7 @@ namespace KOSM.Tasks
 
             rocket.SetSteering(rocket.SurfaceRetrograde);
             rocket.Throttle = 0;
-            world.WarpTime(rocket.Orbit.Periapsis.TimeTill);
+            world.OneTickWarpTimeTo(rocket.Orbit.Periapsis.TimeTill);
         }
 
         bool first = true;

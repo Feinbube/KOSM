@@ -29,7 +29,7 @@ namespace KOSM.Tasks
                 ITransferWindow transferWindow = rocket.BestTransferWindow(world.PointInTime + timeToOrbit, origin.Body, origin.Body.SafeLowOrbitAltitude, destination.Body, destination.Body.HasAtmosphere);
                 
                 mission.PushBefore(this,
-                    new WarpTask(world, transferWindow.TimeTill - timeToOrbit),
+                    new WarpTask(world, transferWindow.TimeTill - timeToOrbit, true),
                     new RaiseToLowOrbitTask(world, rocket),
                     new ExecuteTransferWindowTask(world, rocket, transferWindow)
                     );

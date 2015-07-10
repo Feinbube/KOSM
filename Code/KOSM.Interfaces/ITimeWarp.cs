@@ -8,8 +8,13 @@ namespace KOSM.Interfaces
     public interface ITimeWarp
     {
         bool IsTimeWarping { get; }
-        bool WarpTime(double timespan);
-        bool WarpTimeTo(double timeToWarpTo);
+
         void PreventTimeWarping();
+
+        bool OneTickWarpTimeBy(double factor);
+        bool OneTickWarpTime(double timespan);
+        bool OneTickWarpTimeTo(double timeToWarpTo);
+        
+        bool PersistentWarpTimeTo(double timeToWarpTo);
     }
 }

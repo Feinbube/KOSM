@@ -44,7 +44,8 @@
     <Compile Include="AdjustOrbit\StabilizeOrbitTask.cs" />
     <Compile Include="Launch\NewLaunchTask.cs" />
     <Compile Include="Misc\TestTask.cs" />
-    <Compile Include="Time\WarpToEncounter.cs" />
+    <Compile Include="Time\WarpTill.cs" />
+    <Compile Include="Transfer\AdjustEncounterTask.cs" />
     <Compile Include="Transfer\ExecuteTransferWindowTask.cs" />
     <Compile Include="Misc\ExecuteManeuverTask.cs" />
     <Compile Include="Land\DeOrbitTask.cs" />

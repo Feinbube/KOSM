@@ -54,7 +54,7 @@ namespace KOSM.Game
             get { return world.FindBodyByName(raw.referenceBody.GetName()); }
         }
 
-        public IOrbit Orbit { get { return new Orbit(world, raw.GetOrbit(), this, this.MainBody); } }
+        public IOrbit Orbit { get { return new Orbit(world, raw.GetOrbit(), this); } }
 
         public List<IBody> Moons
         {

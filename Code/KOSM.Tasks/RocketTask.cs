@@ -18,15 +18,15 @@ namespace KOSM.Tasks
 
         protected bool TurnAndWait(IWorld world, IManeuver maneuver, IVectorXYZ vector)
         {
-            Details = "Waiting for next maneuver.";
-            if (world.WarpTimeTo(maneuver.TimeOfTurn))
+            Details = "Warping to next maneuver.";
+            if (world.OneTickWarpTimeTo(maneuver.TimeOfTurn))
                 return false;
 
             Details = "Turning ship for maneuver.";
             rocket.SetSteering(vector);
 
             if (rocket.Turned)
-                if (world.WarpTimeTo(maneuver.TimeOfBurn - 10))
+                if (world.OneTickWarpTimeTo(maneuver.TimeOfBurn - 10))
                     return false;
 
             return maneuver.TimeTillBurn <= 0;
@@ -34,15 +34,15 @@ namespace KOSM.Tasks
 
         protected bool TurnAndWait(IWorld world, double timeToManeuver, IVectorXYZ vector)
         {
-            Details = "Waiting for next maneuver.";
-            if (world.WarpTime(timeToManeuver - 60))
+            Details = "Warping to next maneuver.";
+            if (world.OneTickWarpTimeTo(timeToManeuver - 180))
                 return false;
 
             Details = "Turning ship for maneuver.";
             rocket.SetSteering(vector);
 
             if (rocket.Turned)
-                if (world.WarpTime(timeToManeuver))
+                if (world.OneTickWarpTimeTo(timeToManeuver - 10))
                     return false;
 
             return timeToManeuver <= 0;

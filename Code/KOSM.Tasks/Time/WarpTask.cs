@@ -10,26 +10,28 @@ namespace KOSM.Tasks
 {
     public class WarpTask : Task
     {
-        protected double secondsToWait = 0;
+        protected double secondsToWarp = 0;
         protected double timeToWaitFor = -1;
+        protected bool persistent;
 
-        public WarpTask(IWorld world, double secondsToWait)
+        public WarpTask(IWorld world, double secondsToWarp, bool persistent)
         {
-            this.secondsToWait = secondsToWait;
+            this.secondsToWarp = secondsToWarp;
+            this.persistent = persistent;
         }
 
         public override void Execute(IWorld world, Mission mission)
         {
             if (timeToWaitFor == -1)
-                timeToWaitFor = world.PointInTime + secondsToWait;
+                timeToWaitFor = world.PointInTime + secondsToWarp;
 
-            if (!world.WarpTimeTo(timeToWaitFor))
+            if (persistent ? !world.PersistentWarpTimeTo(timeToWaitFor) : !world.OneTickWarpTimeTo(timeToWaitFor))
                 mission.Complete(world, this);
         }
 
         public override string Description
         {
-            get { return "Warping for " + Format.KerbalTimespan(secondsToWait) + "."; }
+            get { return "Warping for " + Format.KerbalTimespan(secondsToWarp) + "."; }
         }
     }
 }

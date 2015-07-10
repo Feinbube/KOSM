@@ -19,6 +19,7 @@ namespace KOSM.Interfaces
         double Pitch { get; }
         double Roll { get; }
         IVectorXYZ Up { get; }
+        IVectorXYZ OrbitPrograde { get; }
         IVectorXYZ OrbitRetrograde { get; }
         IVectorXYZ SurfaceRetrograde { get; }
 

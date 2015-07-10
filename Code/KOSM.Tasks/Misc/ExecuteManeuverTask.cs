@@ -12,6 +12,8 @@ namespace KOSM.Tasks
     {
         IManeuver maneuver = null;
 
+        Func<IWorld, IRocket, bool> completed;
+
         public ExecuteManeuverTask(IWorld world, IRocket rocket)
             : base(world, rocket)
         {
@@ -20,6 +22,7 @@ namespace KOSM.Tasks
         public ExecuteManeuverTask(IWorld world, IRocket rocket, Func<IWorld, IRocket, bool> completed)
             : base(world, rocket)
         {
+            this.completed = completed;
         }
         
         public override void Execute(IWorld world, Mission mission)
@@ -33,7 +36,7 @@ namespace KOSM.Tasks
             if (maneuver == null)
                 maneuver = rocket.NextManeuver;
 
-            if(maneuver.Completed)
+            if (maneuver.Completed || (completed != null && completed(world, rocket)))
             {
                 rocket.Throttle = 0;
                 maneuver.Complete();

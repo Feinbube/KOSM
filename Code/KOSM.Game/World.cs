@@ -14,7 +14,7 @@ namespace KOSM.Game
     public class World : IWorld
     {
         private List<IBody> bodies = null;
-        
+
         TimeWarp timeWarp = null;
 
         public World()
@@ -42,7 +42,7 @@ namespace KOSM.Game
             MissionPlanLog.Clear();
             MissionLog.Clear();
             PersistentDebugLog.Clear();
-            LiveDebugLog.Clear();   
+            LiveDebugLog.Clear();
         }
 
         public void ToGameLog(object message)
@@ -166,19 +166,29 @@ namespace KOSM.Game
             get { return timeWarp.IsTimeWarping; }
         }
 
-        public bool WarpTime(double timespan)
-        {
-            return timeWarp.WarpTime(timespan);
-        }
-
-        public bool WarpTimeTo(double timeToWarpTo)
-        {
-            return timeWarp.WarpTimeTo(timeToWarpTo);
-        }
-
         public void PreventTimeWarping()
         {
             timeWarp.PreventTimeWarping();
+        }
+
+        public bool OneTickWarpTimeBy(double factor)
+        {
+            return timeWarp.OneTickWarpTimeBy(factor);
+        }
+
+        public bool OneTickWarpTime(double timespan)
+        {
+            return timeWarp.OneTickWarpTime(timespan);
+        }
+
+        public bool OneTickWarpTimeTo(double timeToWarpTo)
+        {
+            return timeWarp.OneTickWarpTimeTo(timeToWarpTo);
+        }
+
+        public bool PersistentWarpTimeTo(double timeToWarpTo)
+        {
+            return timeWarp.PersistentWarpTimeTo(timeToWarpTo);
         }
 
         #endregion IWorld
@@ -187,7 +197,7 @@ namespace KOSM.Game
         {
             get
             {
-                return KSPUtil.ApplicationRootPath + "saves/" +  HighLogic.SaveFolder + "/Ships/VAB/";
+                return KSPUtil.ApplicationRootPath + "saves/" + HighLogic.SaveFolder + "/Ships/VAB/";
             }
         }
     }

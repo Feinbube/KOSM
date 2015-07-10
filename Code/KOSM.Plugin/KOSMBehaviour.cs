@@ -54,7 +54,7 @@ namespace KOSM
 
             if (latestUpdate == world.PointInTime) // just one update per tick (the game calls FixedUpdate way to often!)
             {
-                world.PersistentDebugLog.Add("Multi-Update: " + latestUpdate);
+                //world.PersistentDebugLog.Add("Multi-Update: " + latestUpdate);
                 return;
             }            
 

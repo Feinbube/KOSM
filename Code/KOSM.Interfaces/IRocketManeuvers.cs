@@ -22,6 +22,6 @@ namespace KOSM.Interfaces
         ITransferWindow BestTransferWindow(double earliestDepartureTime, IBody origin, double altitude, IBody destination, bool aerobraking);
 
         bool HasEncounter { get; }
-        IBody NextEncounter { get; }
+        IOrbit NextEncounter { get; }
     }
 }
